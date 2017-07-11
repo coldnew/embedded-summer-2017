@@ -103,21 +103,15 @@
     #+RESULTS:
     : 0xd2951c84
 
-*** for/while 迴圈改寫
+*** for/while 迴圈版本
 
     先建立函式原型
 
     #+BEGIN_SRC C
-      uint32_t reverse_bits(uint32_t x)
+      uint32_t reverse_bits_32(uint32_t x)
       {
 	      /* FIXME: return the reverse_bits result */
       }
-    #+END_SRC
-
-    那如何使用迴圈改寫這題呢? 首先我們需要知道要反轉的目標字元數，以題目原型為 =uint32_t= 來看，字元數就是 32, 也就是:
-
-    #+BEGIN_SRC C
-      uint32_t bits_num = sizeof(uint32_t) * 8; /* <- 32 */
     #+END_SRC
 
     接下來需要一個暫存用的變數，我命名為 =reverse_x= (輸入到這函式的變數為 x)
@@ -126,10 +120,10 @@
       uint32_t reverse_x = 0;
     #+END_SRC
 
-    那要怎樣處理我們的迴圈呢? 我們知道我們要進行反轉的目標字元數是 =32= , 因此這個迴圈要跑 =32= 次，或是套用前面的變數，要跑 =bits_num= 次
+    那要怎樣處理我們的迴圈呢? 我們知道要進行反轉的目標字元數是 =32= , 因此這個迴圈要跑 =32= 次, 所以作個簡單的雛形如下:
 
     #+BEGIN_SRC C
-      for (int i = 0; i < bits_num; i++) {
+      for (int i = 0; i < 32; i++) {
 	      /* FIXME: How to do ? */
       }
     #+END_SRC
@@ -149,9 +143,9 @@
     所以可以知道，當要被處理的位元為 =1= 的時候，我們要這樣處理:
 
     #+BEGIN_SRC C
-      for (int i = 0; i < bits_num; i++) {
+      for (int i = 0; i < 32; i++) {
 	      if((x & (1 << i)))
-		      reverse_x |= 1 << ((bits_num - 1) - i);
+		      reverse_x |= 1 << ((32 - 1) - i);
       }
     #+END_SRC
 
@@ -160,21 +154,20 @@
     #+BEGIN_SRC C
       #include <stdint.h>
 
-      uint32_t reverse_bits(uint32_t x)
+      uint32_t reverse_bits_32(uint32_t x)
       {
-	      uint32_t bits_num = sizeof(x) * 8;
 	      uint32_t reverse_x = 0;
-	      for (int i = 0; i < bits_num; i++) {
+	      for (int i = 0; i < 32; i++) {
 		      if((x & (1 << i)))
-			      reverse_x |= 1 << ((bits_num - 1) - i);
+			      reverse_x |= 1 << ((32 - 1) - i);
 	      }
 	      return reverse_x;
       }
 
       int main(int argc, char *argv[])
       {
-	      uint32_t reverse1 = reverse_bits(0x12345678);
-	      uint32_t reverse2 = reverse_bits( reverse1 );
+	      uint32_t reverse1 = reverse_bits_32( 0x12345678 );
+	      uint32_t reverse2 = reverse_bits_32( reverse1   );
 
 	      printf("0x12345678 -> 0x%x -> 0x%x\n", reverse1, reverse2);
 	      return 0;
