@@ -1,0 +1,143 @@
+#+TITLE: 2017 年暑期系統軟體課程：台北場次 個人筆記
+#+DATE: <2017-07-11 Tue 11:01>
+#+AUTHOR: coldnew
+#+EMAIL: coldnew.tw@gmail.com
+
+* 課程資訊
+
+  連結: https://hackmd.io/s/BJRtkreHW
+
+* TODO 課前測驗題
+
+  從下方至少選 3 題來作答，不僅要提供程式碼，也該描述思路。作答方式為建立「新的」HackMD 頁面，在「標題」提及自己的姓名或可資識別的代號，內文則應標註原題號，如 Q1:，隨後將新建的 HackMD 連結貼入報名表格，課程工作人員會逐一通知。
+
+    參考: [[https://hackmd.io/s/Bk-1zqIte][HackMD 教學和作業原則]]
+    示範: [[https://github.com/coldnew/2015-embedded-summber-note][coldnew]]
+
+** TODO Q1
+
+   考慮以下 C99 程式，解釋其具體作用，並用 for/while 迴圈改寫，隨後提供 uint16_t 的版本。在什麼場合會用到下方的程式碼？
+
+   #+BEGIN_SRC C
+     #include <stdint.h>
+     uint32_t func(uint32_t x) {
+	 uint32_t n = x;
+	 n = ((n & 0xffff0000) >> 16) | ((n & 0x0000ffff) << 16);
+	 n = ((n & 0xff00ff00) >>  8) | ((n & 0x00ff00ff) <<  8);
+	 n = ((n & 0xf0f0f0f0) >>  4) | ((n & 0x0f0f0f0f) <<  4);
+	 n = ((n & 0xcccccccc) >>  2) | ((n & 0x33333333) <<  2);
+	 n = ((n & 0xaaaaaaaa) >>  1) | ((n & 0x55555555) <<  1);
+	 return n;
+     }
+   #+END_SRC
+
+** TODO Q2
+
+   在 C 程式中，使用遞迴和 bit-wise operator 來實作乘法運算，請參考以下提示:
+
+   - 加法器是用於執行加法的電路元件，通常由 AND 閘、OR 閘 和 XOR 閘構成
+
+     + 也可用加法器實作減法，只要將減數轉成二補數，並注意溢位即可
+
+   - 半加器：將兩個一位二進位數相加 (input: A, B) (output: S, C)
+
+     [[file:images/HRN0c1D.png]]
+
+   - 全加器：將兩個一位二進位數相加 (input: A, B, Cin) (output: S, Cout)
+
+     [[file:images/cypKq1H.png]]
+
+   - 波紋進位加法器：使用多個一位全加器構成 N 位加法器
+
+     [[file:images/X5fQcYn.png]]
+
+   - 半加器可用以下 C 程式來實作:
+
+     #+BEGIN_SRC c
+       uint32_t half_add(uint32_t a, uint32_t b) {
+	   if (b == 0) return a;
+	   uint32_t sum = a ^ b;             /* 相加但不進位 */
+	   uint32_t carry = (a & b) << 1;    /* 進位但不相加 */
+	   return half_add(sum, carry);
+       }
+     #+END_SRC
+** TODO Q3
+
+   思考以下 C 程式的用途，以及在什麼場合用得到 (提示: 記憶體管理常式)，探討應用場合時，需要一併列出最小可編譯和運作的 C 程式碼。
+
+   #+BEGIN_SRC c
+     void *p;
+     // ...
+     ,*p = (*p) & ~1;
+   #+END_SRC
+
+** TODO Q4
+
+   考慮以下 C 程式在 GNU/Linux 中，透過 linked list 來實作動態記憶體管理 (malloc 和 free)，虛擬記憶體的使用如下圖，初步的程式如下方，要注意到程式碼並不完整，也不能在多執行緒環境安全運用。
+   請改寫 =malloc= 程式碼使其正確運作，並提供對應的 =free= 實作。
+
+   [[file:images/NC8J0Hv.png]]
+
+   #+BEGIN_SRC C
+     #include <stddef.h>
+     #include <unistd.h>
+     #include <pthread.h>
+     struct header_t {
+	 size_t size;
+	 unsigned is_free;
+	 struct header_t *next;
+     } *head, *tail;
+
+     static struct header_t *
+     get_free_block(size_t size) {
+	 struct header_t *curr = head;
+	 while (curr) {
+	     if (curr->is_free && curr->size >= size) return curr;
+	     curr = curr->next;
+	 }
+	 return NULL;
+     }
+
+     pthread_mutex_t global_malloc_lock;
+
+     void *malloc(size_t size) {
+	 size_t total_size;
+	 void *block;
+	 struct header_t *header;
+	 if (!size) return NULL;
+	 if ((header = get_free_block(size))) {
+	     header->is_free = 0;
+	     return ? /* FIXME: */
+	 }
+
+	 total_size = sizeof(struct header_t) + size;
+	 if ((block = sbrk(total_size)) == (void *) -1)
+	     return NULL;
+
+	 header = block;
+	 header->size = size;
+	 header->is_free = 0;
+	 header->next = NULL;
+     //    ... /* FIXME: */
+	 return ? /* FIXME: */
+     }
+   #+END_SRC
+** TODO Q5
+
+   假設下方 C 程式檔名為 =fork.c= ，在 GNU/Linux 上編譯得到名為 =fork= 的執行檔，我們可用 =./fork | wc -c= 計算輸出的 =-= 字元，請解釋程式行為和輸出的 =-= 字元數量的關聯。
+
+   #+BEGIN_SRC C
+     #include <stdio.h>
+     #include <sys/types.h>
+     #include <sys/wait.h>
+     #include <unistd.h>
+
+     int main() {
+	 for (int i = 0; i < 3; i++) {
+	     fork();
+	     printf("-");
+	}
+	wait(NULL); wait(NULL); wait(NULL);
+	return 0;
+     }
+   #+END_SRC
