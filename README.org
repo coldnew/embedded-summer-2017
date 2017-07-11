@@ -226,7 +226,7 @@
 
     因此我們要考慮自己改寫 =uint32_t= 的版本成 =uint16_t=, 其結果如下: (其實大部分都可以直接套用 32-bit 版本的算法)
 
-    #+BEGIN_SRC C
+    #+BEGIN_SRC C :exports all
       #include <stdint.h>
       uint16_t reverse_bits_16(uint16_t n) {
 	      /* swap bytes */
@@ -257,7 +257,7 @@
 
     承上，目標一樣是 16-bit 的系統，這時候我們的迴圈版本就變成這樣了 (其實和 [[*for/while 迴圈版本][for/while 迴圈版本]] 差不多):
 
-    #+BEGIN_SRC C
+    #+BEGIN_SRC C :exports all
       #include <stdint.h>
 
       uint16_t reverse_bits_16(uint16_t x)
