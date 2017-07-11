@@ -445,6 +445,31 @@
       hello, this is a test
     #+END_SRC
 
+*** 使用到的場合: CRC-32 運算
+
+    從 [[*使用到的場合: 加解密運算][使用到的場合: 加解密運算]] 這邊可以知道僅僅只是反轉一下位元就可以製作加解密程式，實務上，[[https://zh.wikipedia.org/zh-tw/循環冗餘校驗][循環冗餘校驗 (CRC)]] 的實作就有用到 位元反轉 (bit reverse) 的部分。
+
+    具體實作可以參考:
+
+    - [[http://www.hackersdelight.org/hdcodetxt/crc.c.txt][Hacker's Delight - crc.c]]
+
+*** 使用到的場合: Linux Kernel
+
+    Linux kernel 裡面有實作 =bitrev32= 等位元反轉的命令，可以在 [[http://elixir.free-electrons.com/linux/v4.12/source/include/linux/bitrev.h][bitrev.h]] 看到，最常用到的用途，則是在 =ether_crc()= 這個函式上:
+
+    #+BEGIN_SRC c
+      /*
+       ,* Helpers for hash table generation of ethernet nics:
+       ,*
+       ,* Ethernet sends the least significant bit of a byte first, thus crc32_le
+       ,* is used. The output of crc32_le is bit reversed [most significant bit
+       ,* is in bit nr 0], thus it must be reversed before use. Except for
+       ,* nics that bit swap the result internally...
+       ,*/
+      #define ether_crc(length, data)    bitrev32(crc32_le(~0, data, length))
+      #define ether_crc_le(length, data) crc32_le(~0, data, length)
+    #+END_SRC
+
 *** TODO 使用到的場合: 快速傅利葉轉換
 *** 使用到的場合: 開源專案
 
