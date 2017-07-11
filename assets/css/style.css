@@ -6,3 +6,22 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+.DONEheader {
+    color: #1572AE;
+    text-decoration: none;
+}
+
+.DONE {
+    background-color: #d9f441;
+    border: 1px solid #64f441;
+    color: #64f441;
+}
+
+h3.DONEheader {
+    border-bottom: 1px solid #B5DAF1;
+}
+
+h4.DONEheader {
+    border-bottom: 1px solid #B5DAF1;
+}

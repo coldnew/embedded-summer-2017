@@ -430,7 +430,7 @@ $(function() {
 
 $(function() {
     $('.done').parent(':header').parent().find(':header').addClass('DONEheader');
-    $('.done').parent(':header').parent().css({color: '#999999'});
+    // $('.done').parent(':header').parent().css({color: '#999999'});
 });
 
 $(function() {
