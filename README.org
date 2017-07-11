@@ -450,6 +450,8 @@
 
     以下列出有使用 reverse bits 函式的知名開源專案以及程式碼位置 (點擊可以找到 GitHub 上的原始碼):
 
+    - [[http://elixir.free-electrons.com/linux/v4.12/source/include/linux/bitrev.h][linux kernel]]
+
     - [[https://github.com/antirez/redis/blob/3.0/src/dict.c#L755][redis]]
 
 *** 補充說明
