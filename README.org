@@ -1,4 +1,4 @@
-#+TITLE: 2017 年暑期系統軟體課程：台北場次 個人筆記
+#+TITLE: 2017 年暑期系統軟體課程：台北場次 coldnew's 筆記
 #+DATE: <2017-07-11 Tue 11:01>
 #+AUTHOR: coldnew
 #+EMAIL: coldnew.tw@gmail.com
