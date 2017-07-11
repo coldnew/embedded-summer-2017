@@ -518,6 +518,8 @@
 
     - [[http://graphics.stanford.edu/~seander/bithacks.html#BitReverseObvious][Bit Twiddling Hacks -  Reverse an N-bit quantity in parallel in 5 * lg(N) operations]]
 
+    - [[http://aggregate.org/MAGIC/#Bit%2520Reversal][The Aggregate Magic Algorithms - Bit Reversal]]
+
     - [[http://bsmartt13.github.io/blog/2012/01/05/reversing-bits-and-bytes/][Reversing Bits and Bytes]]
 
     - [[http://acm.nudt.edu.cn/~twcourse/BitwiseOperation.html][演算法筆記 - Bitwise Operation]]
