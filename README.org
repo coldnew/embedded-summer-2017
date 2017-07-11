@@ -493,6 +493,8 @@
 
     - [[http://graphics.stanford.edu/~seander/bithacks.html#BitReverseObvious][Bit Twiddling Hacks -  Reverse an N-bit quantity in parallel in 5 * lg(N) operations]]
 
+    - [[http://bsmartt13.github.io/blog/2012/01/05/reversing-bits-and-bytes/][Reversing Bits and Bytes]]
+
     - [[http://acm.nudt.edu.cn/~twcourse/BitwiseOperation.html][演算法筆記 - Bitwise Operation]]
 
     - [[https://www.ptt.cc/bbs/C_and_CPP/M.1221326572.A.43C.html][Re: 什麼是快速傅立葉轉換 - 看板 C_and_CPP - 批踢踢實業坊]]
