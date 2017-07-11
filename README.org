@@ -3,6 +3,8 @@
 #+AUTHOR: coldnew
 #+EMAIL: coldnew.tw@gmail.com
 
+#+SETUPFILE: .theme.org
+
 * 課程資訊
 
   連結: https://hackmd.io/s/BJRtkreHW
@@ -12,6 +14,7 @@
   從下方至少選 3 題來作答，不僅要提供程式碼，也該描述思路。作答方式為建立「新的」HackMD 頁面，在「標題」提及自己的姓名或可資識別的代號，內文則應標註原題號，如 Q1:，隨後將新建的 HackMD 連結貼入報名表格，課程工作人員會逐一通知。
 
     參考: [[https://hackmd.io/s/Bk-1zqIte][HackMD 教學和作業原則]]
+
     示範: [[https://github.com/coldnew/2015-embedded-summber-note][coldnew]]
 
 ** TODO Q1
