@@ -212,6 +212,35 @@
     0x1234 => 0001 0010 0011 0100
     0x2c48 => 0010 1100 0100 1000
 
+*** uint16_t 版本: 目標為 16-bit 系統 (迴圈)
+
+    承上，目標一樣是 16-bit 的系統，這時候我們的迴圈版本就變成這樣了 (其實和 [[*for/while 迴圈版本][for/while 迴圈版本]] 差不多):
+
+    #+BEGIN_SRC C
+      #include <stdint.h>
+
+      uint16_t reverse_bits_16(uint16_t x)
+      {
+	      uint16_t reverse_x = 0;
+	      for (int i = 0; i < 16; i++) {
+		      reverse_x |= ( x >> ( ( 16 - 1 ) - i) & 1 ) << i;
+	      }
+	      return reverse_x;
+      }
+
+      int main(int argc, char *argv[])
+      {
+	      uint16_t reverse1 = reverse_bits_16( 0x1234 );
+	      uint16_t reverse2 = reverse_bits_16( reverse1 );
+
+	      printf("0x1234 -> 0x%x -> 0x%x\n", reverse1, reverse2);
+	      return 0;
+      }
+    #+END_SRC
+
+    #+RESULTS:
+    : 0x1234 -> 0x2c48 -> 0x1234
+
 *** 使用到的場合: 加解密運算
 
     透過本題的程式，可以將 =0x12345678= 轉變成 =0x1e6a2c48= ，而這動作是可以反向的, 我們一樣可以將此函式套用在 =0x1e6a2c48= 從而得到 =0x12345678= 這樣的答案，也就是說將東西丟給這個函式，再把結果丟給這函式，可以得到原本的輸入:
