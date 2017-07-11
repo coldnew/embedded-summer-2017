@@ -51,7 +51,7 @@
      }
    #+END_SRC
 
-*** TODO 想法 & 思考
+*** 想法 & 思考
 
     一開始看到這樣的題目可能不知道怎樣解，所以我們可以套用個數值 =0x12345678= 進去一行一行的測試:
 
@@ -79,9 +79,9 @@
     #+RESULTS:
     : 0x78563412
 
-    可以注意到這一組命令，會做出 =0xAABBCCDD= => =0xBBAADDCC= 這樣的運作。
+    可以注意到這一組命令，會做出 ~0xAABBCCDD~ => ~0xBBAADDCC~ 這樣的運作，也就是對兩個兩個 byte 進行 swap。
 
-    接下來看第三組:
+    接下來看第三組，這一組則是將 4 位元 (半個 byte, 英文為 =nibble= ) 進行了 swap。
 
     #+header: :includes <stdint.h>
     #+BEGIN_SRC C :exports all
@@ -93,15 +93,77 @@
     #+RESULTS:
     : 0x87654321
 
+    到此，我們已經將原本的 =0x12345678= 轉換成 =0x87654321= 了。
+
+    接下來這一組直接看看不懂
+
     #+header: :includes <stdint.h>
     #+BEGIN_SRC C :exports all
-	 uint32_t n = 0x78654321;
+	 uint32_t n = 0x87654321;
 	 n = ((n & 0xcccccccc) >>  2) | ((n & 0x33333333) <<  2);
 	 printf("0x%x\n", n);
     #+END_SRC
 
     #+RESULTS:
-    : 0xd2951c84
+    : 0x2d951c84
+
+    因為看不懂，所以我們用二進制來觀察
+
+    #+BEGIN_EXAMPLE
+      從: 0x87654321 => 1000 0111 0110 0101 0100 0011 0010 0001
+      到: 0x2d951c84 => 0010 1101 1001 0101 0001 1100 1000 0100
+    #+END_EXAMPLE
+
+    可以看到是對續的兩個 bit 進行對調，用這樣的圖來看就比較好懂了:
+
+    [[file:images/swap_consecutive_pairs.png]]
+
+    終於到了最後一組，來跑看看
+
+    #+header: :includes <stdint.h>
+    #+BEGIN_SRC C :exports all
+	 uint32_t n = 0x2d951c84;
+	 n = ((n & 0xaaaaaaaa) >>  1) | ((n & 0x55555555) <<  1);
+	 printf("0x%x\n", n);
+    #+END_SRC
+
+    #+RESULTS:
+    : 0x1e6a2c48
+
+    因為看不懂，所以我們一樣用二進制來觀察
+
+    #+BEGIN_EXAMPLE
+      ？: 0xaaaaaaaa => 1010 1010 1010 1010 1010 1010 1010 1010
+      ？: 0x55555555 => 0101 0101 0101 0101 0101 0101 0101 0101
+
+      從: 0x2d951c84 => 0010 1101 1001 0101 0001 1100 1000 0100
+      到: 0x1e6a2c48 => 0001 1110 0110 1010 0010 1100 0100 1000
+
+      原: 0x12345678 => 0001 0010 0011 0100 0101 0110 0111 1000
+    #+END_EXAMPLE
+
+    在這邊，我們可以透過 =0xaaaaaaaa= 和 =0x55555555= 發現到這邊的運算是對奇數/偶數的位元進行 swap 的動作。
+
+    此外，如果仔細看可以看出，原本的 =0x12345678= 經過這一系列的運作，變成了 =0x1e6a2c48= ，而從 2 進制來看， =0x12345678= 將所有的 bit 進行反轉，就會得到 =0x1e6a2c48= 。
+
+    於是我們知道了這個函式用途是作位元的反轉，我們可以整理前面的分析並將註解加回原始題目去:
+
+    #+BEGIN_SRC C
+      #include <stdint.h>
+      uint32_t reverse_bits_32 (uint32_t n) {
+	      /* swap 2-byte long pairs  0xAABBCCDD => 0xCCDDAABB */
+	      n = ((n & 0xffff0000) >> 16) | ((n & 0x0000ffff) << 16);
+	      /* swap bytes              0xAABBCCDD => 0xBBAADDCC */
+	      n = ((n & 0xff00ff00) >>  8) | ((n & 0x00ff00ff) <<  8);
+	      /* swap nibbles            0x12345678 => 0x21436587*/
+	      n = ((n & 0xf0f0f0f0) >>  4) | ((n & 0x0f0f0f0f) <<  4);
+	      /* swap consecutive pairs */
+	      n = ((n & 0xcccccccc) >>  2) | ((n & 0x33333333) <<  2);
+	      /* swap odd/even bits */
+	      n = ((n & 0xaaaaaaaa) >>  1) | ((n & 0x55555555) <<  1);
+	      return n;
+      }
+    #+END_SRC
 
 *** for/while 迴圈版本
 
