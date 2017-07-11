@@ -360,6 +360,8 @@
 
     - [[http://acm.nudt.edu.cn/~twcourse/BitwiseOperation.html][演算法筆記 - Bitwise Operation]]
 
+    - [[https://www.ptt.cc/bbs/C_and_CPP/M.1221326572.A.43C.html][Re: 什麼是快速傅立葉轉換 - 看板 C_and_CPP - 批踢踢實業坊]]
+
     - [[http://eshare.stust.edu.tw/EshareFile/2010_6/2010_6_a78298c9.pdf][一般信號處理，常用快速傅立葉轉換（FFT）來求得信所對應的頻譜]]
 
     - [[https://ccjou.wordpress.com/2012/05/25/%E5%BF%AB%E9%80%9F%E5%82%85%E7%AB%8B%E8%91%89%E8%BD%89%E6%8F%9B/][快速傅立葉轉換 | 線代啟示錄]]
