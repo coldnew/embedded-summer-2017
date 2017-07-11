@@ -5,6 +5,10 @@
 
 #+SETUPFILE: .theme.org
 
+# Badge
+[[https://circleci.com/gh/coldnew/embedded-summer-2017][https://circleci.com/gh/coldnew/embedded-summer-2017.svg?style=svg]]
+
+
 * 課程資訊
 
   連結: https://hackmd.io/s/BJRtkreHW
