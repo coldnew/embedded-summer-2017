@@ -110,6 +110,15 @@ unwanted space when exporting org-mode to html."
 	    "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
     (ad-set-arg 1 fixed-contents)))
 
+;; https://emacs.stackexchange.com/questions/9492/is-it-possible-to-export-content-of-subtrees-without-their-headings
+(defun org-remove-headlines (backend)
+  "Remove headlines with :no_title: tag."
+  (org-map-entries (lambda () (delete-region (point-at-bol) (point-at-eol)))
+		   "no_title"))
+
+(add-hook 'org-export-before-processing-hook #'org-remove-headlines)
+
+
 (defun generate-this-doc ()
   "Export the README.org to index.html."
   (find-file "README.org")
