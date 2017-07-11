@@ -10,7 +10,7 @@
 #+HTML_HEAD: <script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/jquery.localscroll-min.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/jquery.zclip.min.js"></script>
-#+HTML_HEAD: <script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/bigblow.js"></script>
+##+HTML_HEAD: <script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/bigblow.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/hideshow.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="https://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
 
@@ -19,3 +19,4 @@
 # my theme
 
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+#+HTML_HEAD: <script type="text/javascript" src="assets/js/bigblow.js"></script>
