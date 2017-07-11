@@ -177,40 +177,81 @@
     #+RESULTS:
     : 0x12345678 -> 0x1e6a2c48 -> 0x12345678
 
-*** TODO 改成 uint16_t 的版本
+    而這程式其實可以再簡化，省掉 =if= 的判斷:
 
     #+BEGIN_SRC C
       #include <stdint.h>
-      uint16_t reverse_bits(uint16_t x) {
-	      //uint16_t n = x;
-	      uint16_t n = 0x00001234;
-	      n = ((n & 0x0000ff00) >> 8) | ((n & 0x000000ff) << 8)
-	      return n;
+
+      uint32_t reverse_bits_32(uint32_t x)
+      {
+	      uint32_t reverse_x = 0;
+	      for (int i = 0; i < 32; i++){
+		      reverse_x |= ( x >> ( ( 32 - 1 ) - i ) & 1 ) << i;
+	      }
+	      return reverse_x;
       }
     #+END_SRC
 
-    #+header: :includes <stdint.h>
-    #+BEGIN_SRC C :exports all
-	 uint32_t n = 0x00001234;
+*** uint16_t 版本: 目標為 32-bit 系統或是以上
 
-	 n = ((n & 0xffff0000) >> 16) | ((n & 0x0000ffff) << 16);
-	 n = ((n & 0xff00ff00) >>  8) | ((n & 0x00ff00ff) <<  8);
-	 n = ((n & 0xf0f0f0f0) >>  4) | ((n & 0x0f0f0f0f) <<  4);
-	 n = ((n & 0xcccccccc) >>  2) | ((n & 0x33333333) <<  2);
-	 n = ((n & 0xaaaaaaaa) >>  1) | ((n & 0x55555555) <<  1);
+    假如目標平台本身就是 32-bit 系統或是更高位元 (64-bit, 128-bit ... etc)，則我們可以直接使用題目的版本作點 shift 就可以得到 =uint16_t= 的版本:
 
-//	 n = ((n & 0x0000ff00) >> 8) | ((n & 0x000000ff) << 8);
-//	 n = ((n & 0x0000f0f0) >> 4) | ((n & 0x00000f0f) << 4);
-//	 n = ((n & 0xcccccccc) >>  2) | ((n & 0x33333333) <<  2);
-//	 n = ((n & 0xaaaaaaaa) >>  1) | ((n & 0x55555555) <<  1);
-	 printf("0x%x\n", n >> 16);
+    #+BEGIN_SRC C
+	#include <stdint.h>
+
+	uint32_t reverse_bits_32(uint32_t n) {
+		n = ((n & 0xffff0000) >> 16) | ((n & 0x0000ffff) << 16);
+		n = ((n & 0xff00ff00) >>  8) | ((n & 0x00ff00ff) <<  8);
+		n = ((n & 0xf0f0f0f0) >>  4) | ((n & 0x0f0f0f0f) <<  4);
+		n = ((n & 0xcccccccc) >>  2) | ((n & 0x33333333) <<  2);
+		n = ((n & 0xaaaaaaaa) >>  1) | ((n & 0x55555555) <<  1);
+		return n;
+	}
+
+	uint16_t reverse_bits_16(uint16_t x) {
+		return (uint16_t) (reverse_bits_32(x) >> 16);
+	}
     #+END_SRC
 
-    #+RESULTS:
-    : 0x2c48
+    這樣子的程式，一樣是可以順利運作的:
 
-    0x1234 => 0001 0010 0011 0100
-    0x2c48 => 0010 1100 0100 1000
+    #+BEGIN_EXAMPLE
+      從:  0x1234 => 0001 0010 0011 0100
+      到:  0x3c48 => 0010 1100 0100 1000
+    #+END_EXAMPLE
+
+*** uint16_t 版本: 目標為 16-bit 系統
+
+    假設今天的目標為 16-bit 系統，我們就不能用 =uint32_t= 的版本，因為系統最大的位元數是 =16-bit= ，如果要用軟體先做到模擬 32-bit 系統，在將其轉換回來這中間的損耗是划不來的。
+
+    因此我們要考慮自己改寫 =uint32_t= 的版本成 =uint16_t=, 其結果如下: (其實大部分都可以直接套用 32-bit 版本的算法)
+
+    #+BEGIN_SRC C
+      #include <stdint.h>
+      uint16_t reverse_bits_16(uint16_t n) {
+	      /* swap bytes */
+	      n = ((n & 0xff00) >> 8) | ((n & 0x00ff) << 8);
+	      /* swap nibbles */
+	      n = ((n & 0xf0f0) >> 4) | ((n & 0x0f0f) << 4);
+	      /* swap bit pairs */
+	      n = ((n & 0xcccc) >> 2) | ((n & 0x3333) << 2);
+	      /* swap odd/even bits */
+	      n = ((n & 0xaaaa) >> 1) | ((n & 0x5555) << 1);
+	      return n;
+      }
+
+      int main(int argc, char *argv[])
+      {
+	      uint16_t reverse1 = reverse_bits_16( 0x1234   );
+	      uint16_t reverse2 = reverse_bits_16( reverse1 );
+
+	      printf("0x1234 -> 0x%x -> 0x%x\n", reverse1, reverse2);
+	      return 0;
+      }
+   #+END_SRC
+
+   #+RESULTS:
+   : 0x1234 -> 0x2c48 -> 0x1234
 
 *** uint16_t 版本: 目標為 16-bit 系統 (迴圈)
 
@@ -375,6 +416,8 @@
     : 0001 0010 0011 0100 0101 0110 0111 1000
 
 *** 延伸閱讀
+
+    - [[https://stackoverflow.com/questions/746171/best-algorithm-for-bit-reversal-from-msb-lsb-to-lsb-msb-in-c][Best Algorithm for Bit Reversal ( from MSB->LSB to LSB->MSB) in C - Stack Overflow]]
 
     - [[https://stackoverflow.com/questions/2602823/in-c-c-whats-the-simplest-way-to-reverse-the-order-of-bits-in-a-byte][In C/C++ what's the simplest way to reverse the order of bits in a byte? - Stack Overflow]]
 
