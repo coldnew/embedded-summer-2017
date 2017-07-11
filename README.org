@@ -2,6 +2,7 @@
 #+DATE: <2017-07-11 Tue 11:01>
 #+AUTHOR: coldnew
 #+EMAIL: coldnew.tw@gmail.com
+#+OPTIONS: ^:nil -:nil \n:t ^:nil num:nil LaTeX:dvipng
 
 #+SETUPFILE: .theme.org
 
