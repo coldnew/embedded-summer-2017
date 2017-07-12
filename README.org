@@ -3,6 +3,7 @@
 #+AUTHOR: coldnew
 #+EMAIL: coldnew.tw@gmail.com
 #+OPTIONS: ^:nil -:nil \n:t ^:nil num:nil LaTeX:dvipng
+#+TODO: TODO(t) | DONE(d)
 
 #+SETUPFILE: .theme.org
 
