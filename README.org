@@ -40,7 +40,7 @@
     參考: [[https://hackmd.io/s/Bk-1zqIte][HackMD 教學和作業原則]]
     示範: [[https://github.com/coldnew/2015-embedded-summber-note][coldnew]]
 
-** TODO Q1
+** DONE Q1
 
    考慮以下 C99 程式，解釋其具體作用，並用 for/while 迴圈改寫，隨後提供 uint16_t 的版本。在什麼場合會用到下方的程式碼？
 
@@ -492,7 +492,18 @@
       #define ether_crc_le(length, data) crc32_le(~0, data, length)
     #+END_SRC
 
-*** TODO 使用到的場合: 快速傅利葉轉換
+*** 使用到的場合: 快速傅利葉轉換
+
+    在進行快速傅利葉轉換(Fast Fourier Transform, FFT)之前，我們會需要進行位元反轉 (bit reverse)，從 [[http://www.idi.ntnu.no/~elster/pubs/elster-bit-rev-1989.pdf][FAST BIT-REVERSAL ALGORITHM]] 論文一開頭的描述來看:
+
+    [[file:images/fast-bit-reversal-algorithm.png]]
+
+    足以知道位元反轉 (bit reverse) 對於快速傅利葉轉換(FFT)的重要性。
+
+    (註: [[http://ieeexplore.ieee.org/document/1631/?denied][Unscrambling for fast DFT algorithms]] 我沒找到電子檔)
+
+    此外，在 [[http://www.hpl.hp.com/techreports/93/HPL-93-89.pdf][Bit Reversal on Uniprocessors]] 這篇文章也列舉了 30 種用來作位元反轉(bit reverse)的演算法，用來測試在不同硬體上面的效能比較。
+
 *** 開源專案與位元反轉
 
     以下列出有使用 reverse bits 函式的知名開源專案以及程式碼位置 (點擊可以找到 GitHub 上的原始碼):
@@ -551,6 +562,8 @@
     - [[http://aggregate.org/MAGIC/#Bit%2520Reversal][The Aggregate Magic Algorithms - Bit Reversal]]
 
     - [[http://bsmartt13.github.io/blog/2012/01/05/reversing-bits-and-bytes/][Reversing Bits and Bytes]]
+
+    - [[http://www.hpl.hp.com/techreports/93/HPL-93-89.pdf][Bit Reversal on Uniprocessors]]
 
     - [[http://acm.nudt.edu.cn/~twcourse/BitwiseOperation.html][演算法筆記 - Bitwise Operation]]
 
