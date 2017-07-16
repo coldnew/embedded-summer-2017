@@ -7,6 +7,9 @@
 
 #+SETUPFILE: .theme.org
 
+( 返回 [[https://hackmd.io/s/BJRtkreHW][2017 年暑期系統軟體課程：台北場次]] )
+( 返回 [[https://hackmd.io/s/rk1c0TOrZ][2017 年暑期系統軟體課程：台北場次 - coldnew's 筆記 HackMD 版]] )
+
 * 關於這份文件                                                     :noexport:
 
 [[https://circleci.com/gh/coldnew/embedded-summer-2017][https://circleci.com/gh/coldnew/embedded-summer-2017.svg?style=svg]]
