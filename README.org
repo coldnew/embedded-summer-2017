@@ -603,7 +603,7 @@
 	   return half_add(sum, carry);
        }
      #+END_SRC
-** TODO Q3
+** DONE Q3
 
    思考以下 C 程式的用途，以及在什麼場合用得到 (提示: 記憶體管理常式)，探討應用場合時，需要一併列出最小可編譯和運作的 C 程式碼。
 
@@ -652,7 +652,7 @@
     #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1
       #define MY_MEMORY_SIZE 37
 
-      static uint32_t memory[MY_MEMORY_SIZE];
+      static uint32_t memory[MY_MEMORY_SIZE] = { NULL };
 
       static uint32_t *brkp;
       static uint32_t *endp;
@@ -698,7 +698,7 @@
 	      if ((int)header == -1)
 		      return NULL;
 
-	      ,*header = blk_size | 1;	// mark allocated bit
+	      ,*header = (blk_size << 1) | 1;	// mark allocated bit
 
 	      return header + 1;	// return payload address
       }
@@ -709,7 +709,7 @@
     #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1
       void my_free(const void *ptr)
       {
-	      size_t *header = ((size_t *) ptr) - 1;
+	      size_t *header = ((size_t *) ptr) - 1 * sizeof(int);
 	      ,*header &= ~1; // unmark allocated bit
       }
     #+END_SRC
@@ -739,7 +739,7 @@
 	      int *a3 = my_malloc( 1 * sizeof(int));
 	      assert(a3);
 
-	      ,*a3= 4;
+	      ,*a3= 3;
 	      printf("a3: %p, *a3 = %d\n", a3, *a3);
 
 	      return 0;
@@ -751,7 +751,7 @@
      #+BEGIN_EXAMPLE
        a1: 0x10b6d9028, *a1 = 1
        a2: 0x10b6d9058, *a2 = 2
-       a3: 0x10b6d9088, *a3 = 4
+       a3: 0x10b6d9088, *a3 = 3
      #+END_EXAMPLE
 
      假如 =MY_MEMORY_SIZE= 設定為 =30= 的話，則會變成這樣，代表可用的記憶體已經用完了，無法進行配置。 (沒用 =assert()= 的話就會遇到 =segmentfault=)
@@ -778,9 +778,175 @@
      #+RESULTS:
      | a1: 0x10fd71028 | *a1 = 1 |
      | a2: 0x10fd71058 | *a2 = 2 |
-     | a3: 0x10fd71088 | *a3 = 4 |
+     | a3: 0x10fd71088 | *a3 = 3 |
 
-*** TODO 實作 2 - 實作 1 改良版
+*** 實作 2 - 實作 1 改良版
+
+    在 [[*實作 1 - 最簡單的 malloc][實作 1 - 最簡單的 malloc]] 裡面，雖然我們有對使用中/不使用的記憶體區塊設定好了 flag, 然而我們並沒有使用他，也因此當呼叫 =my_free()= 的時候會發現其實他並沒有實質的作用。
+
+    這個實作將沿用 [[*實作 1 - 最簡單的 malloc][實作 1 - 最簡單的 malloc]] 的想法，製作出一個實際上可以用的 =my_free()= 函式。
+
+    (當然這個東西會有問題，比如記憶體碎片化的狀況)
+
+    #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc2-header :exports none
+       #include <stdio.h>
+       #include <unistd.h>
+       #include <stdint.h>
+       #include <assert.h>
+    #+END_SRC
+
+    因為是沿用前面的程式，基本的部分都差不多，差別在這次 =MY_MEMORY_SIZE= 設定為 =30=, 在前面的例子中這個數值在執行 ~a3 = my_malloc()~ 的時候就會爆掉了。
+
+    #+BEGIN_SRC C :tangle no :nowebref q3-malloc2
+      #define MY_MEMORY_SIZE 30
+
+      static uint32_t memory[MY_MEMORY_SIZE] = { NULL };
+
+      static uint32_t *brkp;
+      static uint32_t *endp;
+
+      void my_init()
+      {
+	      brkp = memory;
+	      endp = brkp + MY_MEMORY_SIZE;
+      }
+
+      void *my_sbrk(const size_t size)
+      {
+	      if (0 == size)
+		      return (void *) memory;
+
+	      void *free = (void *) brkp;
+	      brkp += size;
+
+	      if (brkp >= endp)
+		      return (void *) -1;
+
+	      return free;
+      }
+    #+END_SRC
+
+    這次我們的 =my_malloc()= 則長得有點不一樣，他會透過 =find_free_block()= 去找尋可以使用的區塊位址。
+
+    #+BEGIN_SRC C :tangle no :nowebref q3-malloc2
+      void *my_malloc(const size_t size)
+      {
+	      // blk_size = header + payload + footer
+	      size_t blk_size = 1 * sizeof(int) + size + 1 * sizeof(int);
+
+	      size_t *header = find_free_block(size);
+	      if ((int)header == -1)
+		      return NULL;
+
+	      ,*header = (blk_size << 1) | 1;	// mark allocated bit
+
+	      return header + 1;	// return payload address
+      }
+    #+END_SRC
+
+    那要怎樣尋找可以使用的區塊位址呢? 我們可以先透過 =sbrk(0)= 檢查當前的位址，如果和 =brkp= 相同的話，則直接透過 =sbrk()= 進行配置。
+
+    反之，透過每一個記憶體區塊的大小找尋下一組可以使用的記憶體區塊，並反回位址。
+
+    #+BEGIN_SRC C  :tangle no :nowebref q3-malloc2-header
+      void *find_free_block(size_t size)
+      {
+	      /* check if we are at top of heap */
+	      if (my_sbrk(0) == brkp)
+		      return my_sbrk(size);
+
+	      int *ptr = my_sbrk(0);
+
+	      /* find free block which also has enough size */
+	      while (1) {
+		      /* if memory is in used, skip it */
+		      if ( *ptr & 1 ) {
+			      ptr += 1 * sizeof(int) + (*ptr >> 1) + 1 *sizeof(int);
+			      continue;
+		      }
+		      /* if size is enough, use this block */
+		      if ((( *ptr >> 1 ) >= size) || *ptr == NULL)
+			      break;
+
+		      /* oops, we search to end of the memory */
+		      if (ptr >= endp) {
+			      return (int) -1;
+		      }
+	      }
+
+	      return ptr;
+      }
+    #+END_SRC
+
+    =my_free()= 則維持和原本的一樣，當需要 free 的時候，設定好 flag 就行了。
+
+    #+BEGIN_SRC C :tangle no :nowebref q3-malloc2
+      void my_free(const void *ptr)
+      {
+	      size_t *header = ((size_t *) ptr) - 1;
+	      ,*header &= ~1; // unmark allocated bit
+      }
+    #+END_SRC
+
+    最後就是我們的測試，透過記憶體位置可以看到基本的 =my_free()= 有作用了。
+
+    #+BEGIN_SRC C  :tangle no :nowebref q3-malloc2-main
+      int main(int argc, char *argv[])
+      {
+	      my_init();
+
+	      int *a1 = my_malloc( 1 * sizeof(int));
+	      assert(a1);
+
+	      ,*a1 = 1;
+	      printf("a1: %p, *a1 = %d\n", a1, *a1);
+
+	      int *a2 = my_malloc( 1 * sizeof(int));
+	      assert(a2);
+
+	      ,*a2 = 2;
+	      printf("a2: %p, *a2 = %d\n", a2, *a2);
+	      my_free(a2);		// try to free a2
+
+	      int *a3 = my_malloc( 1 * sizeof(int));
+	      assert(a3);
+
+	      ,*a3= 3;
+	      printf("a3: %p, *a3 = %d\n", a3, *a3);
+	      my_free(a3); 		// try to free a3
+
+	      my_free(a1); 		// try to free a1
+
+	      int *a4 = my_malloc( 1 * sizeof(int));
+	      assert(a4);
+
+	      ,*a4 = 4;
+	      printf("a4: %p, *a4 = %d\n", a4, *a4);
+
+	      return 0;
+      }
+    #+END_SRC
+
+    #+RESULTS:
+    | a1: 0x10644f028 | *a1 = 1 |
+    | a2: 0x10644f078 | *a2 = 2 |
+    | a3: 0x10644f078 | *a3 = 3 |
+    | a4: 0x10644f028 | *a4 = 4 |
+
+**** 完整的程式碼如下                                              :noexport:
+
+     #+BEGIN_SRC C :noweb yes
+       <<q3-malloc2-header>>
+       <<q3-malloc2>>
+       <<q3-malloc2-main>>
+     #+END_SRC
+
+*** TODO 實作 3 - 實作 2 改良版
+
+    TODO: 避免碎片化
+
+    需要實作碎片合併
+
 *** 使用情境
 
     實作記憶體管理常式的方法有很多，在 [[http://www.inf.udec.cl/~leo/Malloc_tutorial.pdfo][A Malloc Tutorial]] 裡面有講解到更完整的資訊。
