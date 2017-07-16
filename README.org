@@ -7,7 +7,6 @@
 
 #+SETUPFILE: .theme.org
 
-
 * 關於這份文件                                                     :noexport:
 
 [[https://circleci.com/gh/coldnew/embedded-summer-2017][https://circleci.com/gh/coldnew/embedded-summer-2017.svg?style=svg]]
@@ -16,6 +15,7 @@
 
 具體將 [[http://orgmode.org/][org-mode]] 變成 HTML 的腳本，請見 [[file:scripts/makefile-script.el]]。
 
+如果想要在 [[http://orgmode.org][org-mode]] 下使用 babel 功能的話，則可以參考: [[http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-C.html][C, C++, D Source Code Blocks in Org Mode]]。
 * 課程資訊
 
   連結: https://hackmd.io/s/BJRtkreHW
