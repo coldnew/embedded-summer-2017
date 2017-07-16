@@ -1154,6 +1154,7 @@
 
     - [[https://www.nowcoder.com/questionTerminal/1f6cc9c0ef354f86b1727c6c030a1a19][请问下面的程序一共输出多少个“-”？]]
 
+    - [[https://unix.stackexchange.com/questions/155017/does-fork-immediately-copy-the-entire-process-heap-in-linux][Does fork() immediately copy the entire process heap in Linux?]]
 
 * Google Analytics                                                 :no_title:
 
