@@ -893,7 +893,7 @@
 
     最後就是我們的測試，透過記憶體位置可以看到基本的 =my_free()= 有作用了。
 
-    #+BEGIN_SRC C  :tangle no :nowebref q3-malloc2-main
+    #+BEGIN_SRC C  :tangle no :nowebref q3-malloc2-main :exports all
       int main(int argc, char *argv[])
       {
 	      my_init();
@@ -930,11 +930,12 @@
       }
     #+END_SRC
 
-    #+RESULTS:
-    | a1: 0x10644f028 | *a1 = 1 |
-    | a2: 0x10644f078 | *a2 = 2 |
-    | a3: 0x10644f078 | *a3 = 3 |
-    | a4: 0x10644f028 | *a4 = 4 |
+    #+BEGIN_EXAMPLE
+      a1: 0x10644f028  *a1 = 1
+      a2: 0x10644f078  *a2 = 2
+      a3: 0x10644f078  *a3 = 3
+      a4: 0x10644f028  *a4 = 4
+    #+END_EXAMPLE
 
 **** 完整的程式碼如下                                              :noexport:
 
