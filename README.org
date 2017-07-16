@@ -686,6 +686,8 @@
       }
     #+END_SRC
 
+    有了 =sbrk()= 後，就可以透過他製作最簡單的 =malloc()= 了，在這邊我們對要到的記憶體標頭進行設定，將 flag 設定為 1 代表該區塊記憶體正在使用中。
+
     #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1
       void *my_malloc(const size_t size)
       {
@@ -700,7 +702,11 @@
 
 	      return header + 1;	// return payload address
       }
+    #+END_SRC
 
+    相對於 =my_malloc()= 會將 header 的尾巴設定 =1= 來代表該區塊被使用，當要進行 =free()= 的動作的時候，我們就把 header 的尾巴設定回 =0= 。
+
+    #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1
       void my_free(const void *ptr)
       {
 	      size_t *header = ((size_t *) ptr) - 1;
@@ -713,29 +719,31 @@
     (因為每一次 malloc 佔用了 sizeof(int) *3 的大小，即 =12 bytes=, 因此 my_malloc() 呼叫 3 次，會用掉 36 bytes 空間，此時 =sbrk()= 會失敗)
 
     #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1-main
-       int main(int argc, char *argv[])
-       {
-	       my_init();
+      int main(int argc, char *argv[])
+      {
+	      my_init();
 
-	       int *a1 = my_malloc( 1 * sizeof(int));
-	       assert(a1);
+	      int *a1 = my_malloc( 1 * sizeof(int));
+	      assert(a1);
 
-	       ,*a1 = 1;
-	       printf("a1: %p, *a1 = %d\n", a1, *a1);
+	      ,*a1 = 1;
+	      printf("a1: %p, *a1 = %d\n", a1, *a1);
 
-	       int *a2 = my_malloc( 1 * sizeof(int));
-	       assert(a2);
-	       ,*a2 = 2;
-	       printf("a2: %p, *a2 = %d\n", a2, *a2);
+	      int *a2 = my_malloc( 1 * sizeof(int));
+	      assert(a2);
+	      ,*a2 = 2;
+	      printf("a2: %p, *a2 = %d\n", a2, *a2);
 
-	       int *a3 = my_malloc( 1 * sizeof(int));
-	       assert(a3);
+	      my_free(a2);	// try to free a2
 
-	       ,*a3= 4;
-	       printf("a3: %p, *a3 = %d\n", a3, *a3);
+	      int *a3 = my_malloc( 1 * sizeof(int));
+	      assert(a3);
 
-	       return 0;
-       }
+	      ,*a3= 4;
+	      printf("a3: %p, *a3 = %d\n", a3, *a3);
+
+	      return 0;
+      }
      #+END_SRC
 
      正常情況會得到這樣的結果:
@@ -754,6 +762,10 @@
        Assertion failed: (a3), function main, file b.c, line 69.
        Abort trap: 6
      #+END_EXAMPLE
+
+     這是一個非常簡單的 =malloc()= 實作，從這實作可以發現到我們並沒有作真的 =free()= 的動作，也因此如果一直呼叫 =my_malloc()= 會遇到記憶體爆掉的狀況。
+
+     接下來就講講如何透過 header 的尾巴那個 flag 來作閒置記憶體區塊的判斷。
 
 **** 完整的程式碼如下:                                             :noexport:
 
