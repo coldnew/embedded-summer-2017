@@ -611,6 +611,40 @@
 	   return half_add(sum, carry);
        }
      #+END_SRC
+*** 想法 & 思考
+
+    題目提供了半加器的實作方式，我們在列一次, 並先實作全加器
+
+    - 半加器
+
+      [[file:images/HRN0c1D.png]]
+
+      #+BEGIN_SRC C
+	uint32_t half_add(uint32_t a, uint32_t b) {
+	    if (b == 0) return a;
+	    uint32_t sum = a ^ b;             /* 相加但不進位 */
+	    uint32_t carry = (a & b) << 1;    /* 進位但不相加 */
+	    return half_add(sum, carry);
+	}
+      #+END_SRC
+
+    - 全加器
+
+      一個全加器可以透過兩個半加器實作，如下圖:
+
+      [[file:images/full_add.png]]
+
+      因此我們的實作是這樣的:
+
+      #+BEGIN_SRC C
+	uint32_t full_add(uint32_t a, uint32_t b, uint32_t c)
+	{
+		uint32_t s1 = half_add(a, b);
+		return half_add(c, s1);
+	}
+      #+END_SRC
+
+
 ** DONE Q3
 
    思考以下 C 程式的用途，以及在什麼場合用得到 (提示: 記憶體管理常式)，探討應用場合時，需要一併列出最小可編譯和運作的 C 程式碼。
