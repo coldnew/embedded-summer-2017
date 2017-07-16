@@ -888,7 +888,7 @@
 
     那要怎樣尋找可以使用的區塊位址呢? 我們可以先透過 =sbrk(0)= 檢查當前的位址，如果和 =brkp= 相同的話，則直接透過 =sbrk()= 進行配置。
 
-    反之，透過每一個記憶體區塊的大小找尋下一組可以使用的記憶體區塊，並反回位址。
+    反之，透過每一個記憶體區塊的大小找尋下一組可以使用的記憶體區塊，並返回位址。
 
     #+BEGIN_SRC C  :tangle no :nowebref q3-malloc2-header
       void *find_free_block(size_t size)
