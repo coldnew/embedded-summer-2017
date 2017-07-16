@@ -1069,6 +1069,165 @@
 	return 0;
      }
    #+END_SRC
+
+*** 思考 * 想法
+
+    我們將程式
+
+    我們將 =i= 數值調小來觀看程式，並搭配 =getpid()= 去取得 process ID
+
+    #+header: :includes <stdio.h> <sys/types.h> <sys/wait.h> <unistd.h>
+    #+BEGIN_SRC C
+      for (int i = 0; i < 2; i++) {
+	      pid_t pid = fork();
+	      if (pid == 0)
+		      printf("child_pid %d round %d\n", getpid(), i);
+	      else
+		      printf("parend_pid %d round %d\n", getpid(), i);
+      }
+      wait(NULL); wait(NULL); wait(NULL);
+    #+END_SRC
+
+    #+RESULTS:
+    | parend_pid | 72228 | round | 0 |
+    | child_pid  | 72230 | round | 1 |
+    | child_pid  | 72229 | round | 0 |
+    | child_pid  | 72231 | round | 1 |
+    | child_pid  | 72229 | round | 0 |
+    | parend_pid | 72229 | round | 1 |
+    | parend_pid | 72228 | round | 0 |
+    | parend_pid | 72228 | round | 1 |
+
+
+
+
+
+
+    | parend_pid | 72058 | round | 0 |
+    | parend_pid | 72058 | round | 0 |
+    | parend_pid | 72058 | round | 0 |
+    | parend_pid | 72058 | round | 0 |
+    | parend_pid | 72058 | round | 1 |
+    | parend_pid | 72058 | round | 1 |
+    | parend_pid | 72058 | round | 2 |
+
+    | parend_pid | 72059 | round | 1 |
+    | parend_pid | 72059 | round | 1 |
+    | parend_pid | 72059 | round | 2 |
+    | child_pid  | 72059 | round | 0 |
+    | child_pid  | 72059 | round | 0 |
+    | child_pid  | 72059 | round | 0 |
+    | child_pid  | 72059 | round | 0 |
+
+    | parend_pid | 72060 | round | 2 |
+    | parend_pid | 72061 | round | 2 |
+
+    | child_pid  | 72063 | round | 2 |
+    | child_pid  | 72062 | round | 2 |
+    | child_pid  | 72060 | round | 1 |
+    | child_pid  | 72064 | round | 2 |
+    | child_pid  | 72060 | round | 1 |
+
+    | child_pid  | 72061 | round | 1 |
+    | child_pid  | 72065 | round | 2 |
+
+    | child_pid  | 72061 | round | 1 |
+
+
+    執行第一次的時候，原先的 process 透過 =fork()= 生出一個新的 process, 兩者都會執行 =printf()= 因此第一輪共顯示 =2 次=
+
+    #+RESULTS:
+    | pid | 71802 | round | 0 |
+    | pid | 71801 | round | 0 |
+
+    那第二次會怎樣呢?
+
+    #+header: :includes <stdio.h> <sys/types.h> <sys/wait.h> <unistd.h>
+    #+BEGIN_SRC C
+	for (int i = 0; i < 2; i++) {
+		pid_t pid = fork();
+		if (pid == 0)
+			printf("child_pid %d round %d\n", getpid(), i);
+		else
+			printf("parend_pid %d round %d\n", getpid(), i);
+	}
+	wait(NULL); wait(NULL); wait(NULL);
+    #+END_SRC
+
+    #+RESULTS:
+    | parend_pid | 72033 | round | 0 |
+    | child_pid  | 72035 | round | 1 |
+    | child_pid  | 72034 | round | 0 |
+    | child_pid  | 72036 | round | 1 |
+    | child_pid  | 72034 | round | 0 |
+    | parend_pid | 72034 | round | 1 |
+    | parend_pid | 72033 | round | 0 |
+    | parend_pid | 72033 | round | 1 |
+
+    我們知道第一輪執行 =printf()= 兩次，而第二輪跑起來的結果是 ~8 - 2 = 6 次~ (上面程式有兩次是屬於第一輪的)。
+
+    在第一輪中，我們總共生出了兩個 process, 進入到第二輪後，這兩個 process 會透過 =fork()= 在生出兩個 process (於是到第二輪總共有四個)
+
+    而每個 process 都會執行 =printf()= 兩次，因此會得到 2^3 = 8 個。
+
+    #+RESULTS:
+    | pid | 71791 | round | 0 |
+    | pid | 71793 | round | 1 |
+    | pid | 71792 | round | 0 |
+    | pid | 71794 | round | 1 |
+    | pid | 71792 | round | 0 |
+    | pid | 71792 | round | 1 |
+    | pid | 71791 | round | 0 |
+    | pid | 71791 | round | 1 |
+
+    #+header: :includes <stdio.h> <sys/types.h> <sys/wait.h> <unistd.h>
+    #+BEGIN_SRC C
+      for (int i = 0; i < 3; i++) {
+	      fork();
+	      printf("pid %d round %d\n", getpid(), i);
+      }
+      wait(NULL); wait(NULL); wait(NULL);
+    #+END_SRC
+
+    #+RESULTS:
+    | pid | 71905 | round | 0 |
+    | pid | 71905 | round | 1 |
+    | pid | 71908 | round | 2 |
+    | pid | 71905 | round | 0 |
+    | pid | 71907 | round | 1 |
+    | pid | 71910 | round | 2 |
+    | pid | 71906 | round | 0 |
+    | pid | 71906 | round | 1 |
+    | pid | 71911 | round | 2 |
+    | pid | 71905 | round | 0 |
+    | pid | 71907 | round | 1 |
+    | pid | 71907 | round | 2 |
+    | pid | 71906 | round | 0 |
+    | pid | 71909 | round | 1 |
+    | pid | 71912 | round | 2 |
+    | pid | 71906 | round | 0 |
+    | pid | 71909 | round | 1 |
+    | pid | 71909 | round | 2 |
+    | pid | 71906 | round | 0 |
+    | pid | 71906 | round | 1 |
+    | pid | 71906 | round | 2 |
+    | pid | 71905 | round | 0 |
+    | pid | 71905 | round | 1 |
+    | pid | 71905 | round | 2 |
+
+*** 延伸閱讀
+
+    - [[https://www.quora.com/For-int-i-0-i-10-i++-fork-how-many-process-will-be-created][For (int i=0;i<10;i++) fork(); how many process will be created?]]
+
+    - [[https://stackoverflow.com/questions/26793402/visually-what-happens-to-fork-in-a-for-loop][Visually what happens to fork() in a For Loop]]
+
+    - [[http://www.cnblogs.com/ittinybird/p/4492098.html][一個 fork 的面試題]]
+
+    - [[http://coolshell.cn/articles/945.html][C 语言的谜题]]
+
+    - [[https://www.nowcoder.com/questionTerminal/1f6cc9c0ef354f86b1727c6c030a1a19][请问下面的程序一共输出多少个“-”？]]
+
+
 * Google Analytics                                                 :no_title:
 
   #+BEGIN_EXPORT html
