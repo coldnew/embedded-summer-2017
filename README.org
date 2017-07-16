@@ -522,7 +522,7 @@
 
 *** 補充: Clang 與 GCC 支援
 
-    Clang 是有內建 [[http://clang.llvm.org/docs/LanguageExtensions.html#builtin-bitreverse][字元反轉]] 的函式的，不過 GCC 根據 [[https://gcc.gnu.org/bugzilla/show_bug.cgi?id=50481][BUG 50481]] 來看是尚未支援內建這功能。
+    Clang 是有內建 [[http://clang.llvm.org/docs/LanguageExtensions.html#builtin-bitreverse][字元反轉]] 的函式的，不過根據 [[https://gcc.gnu.org/bugzilla/show_bug.cgi?id=50481][BUG 50481]] 來看 GCC 是尚未支援內建這功能。
 
     以下為 Clang 內建的版本說明如下:
 
