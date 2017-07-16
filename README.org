@@ -754,7 +754,7 @@
        a3: 0x10b6d9088, *a3 = 4
      #+END_EXAMPLE
 
-     假如 =MY_MEMORY_SIZE= 設定為 =30= 的話，則會變成這樣 (沒用 =assert()= 的話就會遇到 =segmentfault=)
+     假如 =MY_MEMORY_SIZE= 設定為 =30= 的話，則會變成這樣，代表可用的記憶體已經用完了，無法進行配置。 (沒用 =assert()= 的話就會遇到 =segmentfault=)
 
      #+BEGIN_EXAMPLE
        a1: 0x10acf4028, *a1 = 1
