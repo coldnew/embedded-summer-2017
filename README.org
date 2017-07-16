@@ -1050,7 +1050,7 @@
 	 return ? /* FIXME: */
      }
    #+END_SRC
-** TODO Q5
+** DONE Q5
 
    假設下方 C 程式檔名為 =fork.c= ，在 GNU/Linux 上編譯得到名為 =fork= 的執行檔，我們可用 =./fork | wc -c= 計算輸出的 =-= 字元，請解釋程式行為和輸出的 =-= 字元數量的關聯。
 
@@ -1072,148 +1072,66 @@
 
 *** 思考 * 想法
 
-    我們將程式
+    這題乍看之下應該是要產生出 =14= 個 =-= 符號，然而實際執行卻是生出了 =24= 個，從 [[http://coolshell.cn/articles/945.html][C 语言的谜题]] 可以注意到， =printf()= 呼叫的時候，並不會馬上把資料寫入到 =stdout= 去，而是會先暫存到一個緩衝區中，也許問題就這這邊。
+
+    讓我們加入 =fflush()= 強迫 =printf()= 將資料從緩衝區寫到 =stdout= 看看。
 
     我們將 =i= 數值調小來觀看程式，並搭配 =getpid()= 去取得 process ID
 
     #+header: :includes <stdio.h> <sys/types.h> <sys/wait.h> <unistd.h>
     #+BEGIN_SRC C
-      for (int i = 0; i < 2; i++) {
-	      pid_t pid = fork();
-	      if (pid == 0)
-		      printf("child_pid %d round %d\n", getpid(), i);
-	      else
-		      printf("parend_pid %d round %d\n", getpid(), i);
-      }
-      wait(NULL); wait(NULL); wait(NULL);
-    #+END_SRC
-
-    #+RESULTS:
-    | parend_pid | 72228 | round | 0 |
-    | child_pid  | 72230 | round | 1 |
-    | child_pid  | 72229 | round | 0 |
-    | child_pid  | 72231 | round | 1 |
-    | child_pid  | 72229 | round | 0 |
-    | parend_pid | 72229 | round | 1 |
-    | parend_pid | 72228 | round | 0 |
-    | parend_pid | 72228 | round | 1 |
-
-
-
-
-
-
-    | parend_pid | 72058 | round | 0 |
-    | parend_pid | 72058 | round | 0 |
-    | parend_pid | 72058 | round | 0 |
-    | parend_pid | 72058 | round | 0 |
-    | parend_pid | 72058 | round | 1 |
-    | parend_pid | 72058 | round | 1 |
-    | parend_pid | 72058 | round | 2 |
-
-    | parend_pid | 72059 | round | 1 |
-    | parend_pid | 72059 | round | 1 |
-    | parend_pid | 72059 | round | 2 |
-    | child_pid  | 72059 | round | 0 |
-    | child_pid  | 72059 | round | 0 |
-    | child_pid  | 72059 | round | 0 |
-    | child_pid  | 72059 | round | 0 |
-
-    | parend_pid | 72060 | round | 2 |
-    | parend_pid | 72061 | round | 2 |
-
-    | child_pid  | 72063 | round | 2 |
-    | child_pid  | 72062 | round | 2 |
-    | child_pid  | 72060 | round | 1 |
-    | child_pid  | 72064 | round | 2 |
-    | child_pid  | 72060 | round | 1 |
-
-    | child_pid  | 72061 | round | 1 |
-    | child_pid  | 72065 | round | 2 |
-
-    | child_pid  | 72061 | round | 1 |
-
-
-    執行第一次的時候，原先的 process 透過 =fork()= 生出一個新的 process, 兩者都會執行 =printf()= 因此第一輪共顯示 =2 次=
-
-    #+RESULTS:
-    | pid | 71802 | round | 0 |
-    | pid | 71801 | round | 0 |
-
-    那第二次會怎樣呢?
-
-    #+header: :includes <stdio.h> <sys/types.h> <sys/wait.h> <unistd.h>
-    #+BEGIN_SRC C
-	for (int i = 0; i < 2; i++) {
-		pid_t pid = fork();
-		if (pid == 0)
-			printf("child_pid %d round %d\n", getpid(), i);
-		else
-			printf("parend_pid %d round %d\n", getpid(), i);
-	}
-	wait(NULL); wait(NULL); wait(NULL);
-    #+END_SRC
-
-    #+RESULTS:
-    | parend_pid | 72033 | round | 0 |
-    | child_pid  | 72035 | round | 1 |
-    | child_pid  | 72034 | round | 0 |
-    | child_pid  | 72036 | round | 1 |
-    | child_pid  | 72034 | round | 0 |
-    | parend_pid | 72034 | round | 1 |
-    | parend_pid | 72033 | round | 0 |
-    | parend_pid | 72033 | round | 1 |
-
-    我們知道第一輪執行 =printf()= 兩次，而第二輪跑起來的結果是 ~8 - 2 = 6 次~ (上面程式有兩次是屬於第一輪的)。
-
-    在第一輪中，我們總共生出了兩個 process, 進入到第二輪後，這兩個 process 會透過 =fork()= 在生出兩個 process (於是到第二輪總共有四個)
-
-    而每個 process 都會執行 =printf()= 兩次，因此會得到 2^3 = 8 個。
-
-    #+RESULTS:
-    | pid | 71791 | round | 0 |
-    | pid | 71793 | round | 1 |
-    | pid | 71792 | round | 0 |
-    | pid | 71794 | round | 1 |
-    | pid | 71792 | round | 0 |
-    | pid | 71792 | round | 1 |
-    | pid | 71791 | round | 0 |
-    | pid | 71791 | round | 1 |
-
-    #+header: :includes <stdio.h> <sys/types.h> <sys/wait.h> <unistd.h>
-    #+BEGIN_SRC C
       for (int i = 0; i < 3; i++) {
-	      fork();
-	      printf("pid %d round %d\n", getpid(), i);
+	      pid_t pid = fork();
+	      printf("-");
+	      fflush(stdout);
       }
       wait(NULL); wait(NULL); wait(NULL);
     #+END_SRC
 
     #+RESULTS:
-    | pid | 71905 | round | 0 |
-    | pid | 71905 | round | 1 |
-    | pid | 71908 | round | 2 |
-    | pid | 71905 | round | 0 |
-    | pid | 71907 | round | 1 |
-    | pid | 71910 | round | 2 |
-    | pid | 71906 | round | 0 |
-    | pid | 71906 | round | 1 |
-    | pid | 71911 | round | 2 |
-    | pid | 71905 | round | 0 |
-    | pid | 71907 | round | 1 |
-    | pid | 71907 | round | 2 |
-    | pid | 71906 | round | 0 |
-    | pid | 71909 | round | 1 |
-    | pid | 71912 | round | 2 |
-    | pid | 71906 | round | 0 |
-    | pid | 71909 | round | 1 |
-    | pid | 71909 | round | 2 |
-    | pid | 71906 | round | 0 |
-    | pid | 71906 | round | 1 |
-    | pid | 71906 | round | 2 |
-    | pid | 71905 | round | 0 |
-    | pid | 71905 | round | 1 |
-    | pid | 71905 | round | 2 |
+    : --------------
+
+    這樣的執行結果，就是我們想要的 =14 個 -= ，可見問題的確出在 =printf()= 沒有立即將緩衝區的資料寫入到 =stdout= 而導致 fork 的時候連緩衝區的資料一起 fork 一份了。
+
+    要了解整個程式的 fork 流程，我們可以把原本程式稍微改成下面這樣，在透過 =pstree= 去顯示
+
+    #+BEGIN_SRC C
+      #include <stdio.h>
+      #include <sys/types.h>
+      #include <sys/wait.h>
+      #include <unistd.h>
+
+      int main() {
+	      for (int i = 0; i < 3; i++) {
+		      fork();
+		      printf("-");
+	      }
+	      wait(NULL); wait(NULL); wait(NULL);
+	      sleep(10);
+	      return 0;
+      }
+    #+END_SRC
+
+    將檔案編譯成 =fork.out= 並透過 =pstree= 去觀察 fork 的狀況 (n 個迴圈總共會出現 2^n - 1 個 process, 此例來看就是有 8 個 process)
+
+    : ./fork.out & pstree -p | grep fork.out
+
+    #+BEGIN_EXAMPLE
+      |-fork.out(14759)-+-fork.out(14762)-+-fork.out(14766)---fork.out(+
+      |                 |                 `-fork.out(14767)
+      |                 |-fork.out(14763)---fork.out(14765)
+      |                 `-fork.out(14764)
+    #+END_EXAMPLE
+
+    可以看到此題迴圈跑 3 次的狀況，共出現了 8 個 process，用圖片表達的話就是這樣。
+
+    [[file:images/q5_1.png]]
+
+    當我們的 =printf()= 有把透過 =fflush()= 把緩衝區清乾淨的狀況下，就會像上圖一樣，最終印出 14 個 =-= 。
+
+    那緩衝區沒弄乾淨的情況呢? 就會變成這樣了，在 =fork()= 下面的 =-= 就是被複製走而多出來的傢伙。
+
+    [[file:images/q5_2.png]]
 
 *** 延伸閱讀
 
