@@ -72,9 +72,9 @@
     : 0x56781234
 
     可以發現到第一行是前後 2byte 進行對換的動作，即 =0xAABBCCDD => 0xCCDDAABB= 。
-    ..
-    讓....往. 看到第二組:
-	  .  ...
+
+    接下來讓我們看第二組:
+
     #+header: :includes <stdint.h>
     #+BEGIN_SRC C :exports all
 	 uint32_t n = 0x56781234;
