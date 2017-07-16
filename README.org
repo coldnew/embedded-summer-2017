@@ -72,9 +72,9 @@
     : 0x56781234
 
     可以發現到第一行是前後 2byte 進行對換的動作，即 =0xAABBCCDD => 0xCCDDAABB= 。
-
-    讓我們往下看到第二組:
-
+    ..
+    讓....往. 看到第二組:
+	  .  ...
     #+header: :includes <stdint.h>
     #+BEGIN_SRC C :exports all
 	 uint32_t n = 0x56781234;
@@ -612,6 +612,212 @@
      // ...
      ,*p = (*p) & ~1;
    #+END_SRC
+
+*** 思考 & 想法
+
+    要看這一題，先把 =~1= 轉換成 =0xfffffffe= 這樣會比較好想，一般來說這種的用途是用在設定某個 bit (flag) 用的，也就是題目其實在問在記憶體管理函式中，怎樣的狀況會用到下面這個：
+
+    #+BEGIN_SRC C
+      ,*p &= 0xfffffffe;
+      // 0xfffffffe =>
+      // 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1110
+    #+END_SRC
+
+    從上面可以看出，執行這行程式時會將 bit[0] 歸零。
+
+    那這樣的東西要怎樣和記憶體管理常式扯到邊呢? 前面提到了這種作法是在設定某個 bit (flag) 用的，也就是說我們可以這樣想:
+
+    - 設定為 1 -> 該段記憶體使用中
+    - 設定為 0 -> 該段記憶體尚未被使用
+
+      [[file:images/mem_header.png]]
+
+*** 實作 1 - 最簡單的 malloc
+
+    從上面的想法，可以想到每次進行 malloc 的時候，其實我們是這樣佔用記憶體的 (payload 為實際存放資料的區塊)
+
+    [[file:images/mem1.png]]
+
+    #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1-header :exports none
+       #include <stdio.h>
+       #include <unistd.h>
+       #include <stdint.h>
+       #include <assert.h>
+    #+END_SRC
+
+    為了方便理解，我們首先定義自己的記憶體區塊來製作我們的記憶體管理程式，其中 =MY_MEMORY_SIZE= 決定了我們可以索取的記憶體大小。
+
+    在主程式開始之前，則需要呼叫 =my_init()= 來確保這個記憶體管理方式是有正確初始化的。
+
+    #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1
+      #define MY_MEMORY_SIZE 37
+
+      static uint32_t memory[MY_MEMORY_SIZE];
+
+      static uint32_t *brkp;
+      static uint32_t *endp;
+
+      void my_init()
+      {
+	      brkp = memory;
+	      endp = brkp + MY_MEMORY_SIZE;
+      }
+    #+END_SRC
+
+    接著定義我們的 =sbrk()= 函式，可以從 =manpage= 看到 =sbrk()= 的描述是這樣的
+
+    [[file:images/sbrk.png]]
+
+    所以我們可以這樣實作他
+
+    #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1
+      void *my_sbrk(const size_t size)
+      {
+	      if (0 == size)
+		      return (void *) memory;
+
+	      void *free = (void *) brkp;
+	      brkp += size;
+
+	      if (brkp >= endp)
+		      return (void *) -1;
+
+	      return free;
+      }
+    #+END_SRC
+
+    #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1
+      void *my_malloc(const size_t size)
+      {
+	      // blk_size = header + payload + footer
+	      size_t blk_size = 1 * sizeof(int) + size + 1 * sizeof(int);
+
+	      size_t *header = my_sbrk(blk_size);
+	      if ((int)header == -1)
+		      return NULL;
+
+	      ,*header = blk_size | 1;	// mark allocated bit
+
+	      return header + 1;	// return payload address
+      }
+
+      void my_free(const void *ptr)
+      {
+	      size_t *header = ((size_t *) ptr) - 1;
+	      ,*header &= ~1; // unmark allocated bit
+      }
+    #+END_SRC
+
+    最後在搭配一個簡單的測試程式，假如上面的 =MY_MEMORY_SIZE= 設定小於 =36= 就會遇到 =assertion failed= 的錯誤，代表已經用滿了可以用的記憶體了。
+
+    (因為每一次 malloc 佔用了 sizeof(int) *3 的大小，即 =12 bytes=, 因此 my_malloc() 呼叫 3 次，會用掉 36 bytes 空間，此時 =sbrk()= 會失敗)
+
+    #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1-main
+       int main(int argc, char *argv[])
+       {
+	       my_init();
+
+	       int *a1 = my_malloc( 1 * sizeof(int));
+	       assert(a1);
+
+	       ,*a1 = 1;
+	       printf("a1: %p, *a1 = %d\n", a1, *a1);
+
+	       int *a2 = my_malloc( 1 * sizeof(int));
+	       assert(a2);
+	       ,*a2 = 2;
+	       printf("a2: %p, *a2 = %d\n", a2, *a2);
+
+	       int *a3 = my_malloc( 1 * sizeof(int));
+	       assert(a3);
+
+	       ,*a3= 4;
+	       printf("a3: %p, *a3 = %d\n", a3, *a3);
+
+	       return 0;
+       }
+     #+END_SRC
+
+     正常情況會得到這樣的結果:
+
+     #+BEGIN_EXAMPLE
+       a1: 0x10b6d9028, *a1 = 1
+       a2: 0x10b6d9058, *a2 = 2
+       a3: 0x10b6d9088, *a3 = 4
+     #+END_EXAMPLE
+
+     假如 =MY_MEMORY_SIZE= 設定為 =30= 的話，則會變成這樣 (沒用 =assert()= 的話就會遇到 =segmentfault=)
+
+     #+BEGIN_EXAMPLE
+       a1: 0x10acf4028, *a1 = 1
+       a2: 0x10acf4058, *a2 = 2
+       Assertion failed: (a3), function main, file b.c, line 69.
+       Abort trap: 6
+     #+END_EXAMPLE
+
+**** 完整的程式碼如下:                                             :noexport:
+
+     #+BEGIN_SRC C :noweb yes
+       <<q3-malloc1-header>>
+       <<q3-malloc1>>
+       <<q3-malloc1-main>>
+     #+END_SRC
+
+     #+RESULTS:
+     | a1: 0x10fd71028 | *a1 = 1 |
+     | a2: 0x10fd71058 | *a2 = 2 |
+     | a3: 0x10fd71088 | *a3 = 4 |
+
+*** TODO 實作 2 - 實作 1 改良版
+*** 使用情境
+
+    實作記憶體管理常式的方法有很多，在 [[http://www.inf.udec.cl/~leo/Malloc_tutorial.pdfo][A Malloc Tutorial]] 裡面有講解到更完整的資訊。
+
+    此題目的應用場合應該是在有限的程式空間 (flsh size 很小)的情況下，需要簡單的記憶體管理機制，使用這種方式來管理記憶體雖然性能不好，但是也可能夠用。
+
+    舉例: FreeRTOS 的記憶體管理機制中， [[https://github.com/coldnew/FreeRTOS-mirror/blob/master/FreeRTOS/Source/portable/MemMang/heap_1.c][heap_1.c]] 就是一種很簡單的記憶體管理方式，他描述是這樣的:
+
+    #+BEGIN_EXAMPLE
+      The simplest possible implementation of pvPortMalloc().  Note that this
+      implementation does NOT allow allocated memory to be freed again.
+
+      See heap_2.c, heap_3.c and heap_4.c for alternative implementations, and the
+      memory management pages of http://www.FreeRTOS.org for more information.
+    #+END_EXAMPLE
+
+    而和此題實作比較接近的，則是 FreeRTOS 的 [[https://github.com/coldnew/FreeRTOS-mirror/blob/master/FreeRTOS/Source/portable/MemMang/heap_2.c][heap_2.c]]
+
+    #+BEGIN_EXAMPLE
+      A sample implementation of pvPortMalloc() and vPortFree() that permits
+      allocated blocks to be freed, but does not combine adjacent free blocks
+      into a single larger block (and so will fragment memory).  See heap_4.c for
+      an equivalent that does combine adjacent blocks into single larger blocks.
+
+      See heap_1.c, heap_3.c and heap_4.c for alternative implementations, and the
+      memory management pages of http://www.FreeRTOS.org for more information.
+    #+END_EXAMPLE
+
+*** 延伸閱讀
+
+    - [[http://arcs.skku.edu/pmwiki/uploads/Courses/ProgrammingLanguages/p2.memManage.pdf][Dynamic memory Management]]
+
+    - [[https://www.cs.cmu.edu/~guna/15-123S11/Lectures/Lecture08.pdf][Lecture 08 - Dynamic memory Allocation]]
+
+    - [[https://courses.engr.illinois.edu/cs241/fa2012/lectures/08-MemoryMalloc.pdf][08-MemoryMalloc]]
+
+    - [[http://www.inf.udec.cl/~leo/Malloc_tutorial.pdfo][A Malloc Tutorial]]
+
+    - [[https://s3.amazonaws.com/iedu-attachments-question/38edd7d5a7535016c8f914a7a871ad0d_feb9cc6ba00f1fc42cbe607593cf02c1.pdf][Project 3: A Custom malloc() and free()]]
+
+    - [[https://danluu.com/malloc-tutorial/][A quick tutorial on implementing and debugging malloc, free, calloc, and realloc]]
+
+    - [[https://people.kth.se/~johanmon/courses/id2206/assignments/maplloc.pdf][My mallock using mmap]]
+
+    - [[https://stackoverflow.com/questions/6988487/what-does-brk-system-call-do][What does brk( ) system call do?]]
+
+    - [[https://github.com/angrave/SystemProgramming/wiki/Memory%252C-Part-2%253A-Implementing-a-Memory-Allocator][SystemProgramming - Memory, Part 2: Implementing a Memory Allocator]]
+
+    - [[http://moss.cs.iit.edu/cs351/slides/slides-malloc.pdf][Implementing malloc]]
 
 ** TODO Q4
 
