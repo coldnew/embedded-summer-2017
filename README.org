@@ -22,6 +22,8 @@
 
 此筆記亦有一個 HackMD 版本，非同步更新在 https://hackmd.io/s/rk1c0TOrZ。
 
+( 註: 由於 GitHub 對 [[http://orgmode.org][org-mode]] 的支援有待加強，建議在 [[https://coldnew.github.io/embedded-summer-2017/][網頁版]] 觀看 )
+
 * 課程資訊
 
   連結: https://hackmd.io/s/BJRtkreHW
