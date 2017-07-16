@@ -1119,8 +1119,6 @@
 
     讓我們加入 =fflush()= 強迫 =printf()= 將資料從緩衝區寫到 =stdout= 看看。
 
-    我們將 =i= 數值調小來觀看程式，並搭配 =getpid()= 去取得 process ID
-
     #+header: :includes <stdio.h> <sys/types.h> <sys/wait.h> <unistd.h>
     #+BEGIN_SRC C
       for (int i = 0; i < 3; i++) {
