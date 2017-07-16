@@ -994,7 +994,7 @@
 
     實作記憶體管理常式的方法有很多，在 [[http://www.inf.udec.cl/~leo/Malloc_tutorial.pdfo][A Malloc Tutorial]] 裡面有講解到更完整的資訊。
 
-    此題目的應用場合應該是在有限的程式空間 (flsh size 很小)的情況下，需要簡單的記憶體管理機制，使用這種方式來管理記憶體雖然性能不好，但是也可能夠用。
+    此題目的應用場合應該是在有限的程式空間 (flash size 很小)的情況下，需要簡單的記憶體管理機制，使用這種方式來管理記憶體雖然性能不好，但是也可能夠用。
 
     舉例: FreeRTOS 的記憶體管理機制中， [[https://github.com/coldnew/FreeRTOS-mirror/blob/master/FreeRTOS/Source/portable/MemMang/heap_1.c][heap_1.c]] 就是一種很簡單的記憶體管理方式，他描述是這樣的:
 
