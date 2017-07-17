@@ -3,7 +3,7 @@ EMACS ?= emacs
 all: generate
 
 generate:
-	${EMACS} -Q -l "scripts/makefile-script.el" -f generate-this-doc
+	${EMACS} -Q -nw -l "scripts/makefile-script.el" -f generate-this-doc
 
 clean:
 	$(RM) *.html
