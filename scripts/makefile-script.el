@@ -118,6 +118,19 @@ unwanted space when exporting org-mode to html."
 
 (add-hook 'org-export-before-processing-hook #'org-remove-headlines)
 
+;; Highlight FIXME, TODO
+(defun font-lock-comment-annotations ()
+  "Highlight a bunch of well known comment annotations.
+This functions should be added to the hooks of major modes for programming."
+  (font-lock-add-keywords
+   nil
+   '(("\\<\\(FIX\\(ME\\)?\\|BUG\\|HACK\\):" 1 font-lock-warning-face t)
+     ("\\<\\(NOTE\\):" 1 'org-level-2 t)
+     ("\\<\\(TODO\\):" 1 'org-todo t)
+     ("\\<\\(DONE\\):" 1 'org-done t))))
+
+(add-hook 'prog-mode-hook 'font-lock-comment-annotations)
+
 
 (defun generate-this-doc ()
   "Export the README.org to index.html."
