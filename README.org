@@ -758,7 +758,7 @@
 
     最後在搭配一個簡單的測試程式，假如上面的 =MY_MEMORY_SIZE= 設定小於 =36= 就會遇到 =assertion failed= 的錯誤，代表已經用滿了可以用的記憶體了。
 
-    (因為每一次 malloc 佔用了 sizeof(int) *3 的大小，即 =12 bytes=, 因此 my_malloc() 呼叫 3 次，會用掉 36 bytes 空間，此時 =sbrk()= 會失敗)
+    (因為每一次 malloc 佔用了 sizeof(int) *3 的大小，即 =12 bytes=, 因此 my_malloc() 呼叫 3 次，會用掉 36 bytes 空間，此時 =my_sbrk()= 會失敗)
 
     #+BEGIN_SRC C :tangle no :noweb-ref q3-malloc1-main
       int main(int argc, char *argv[])
@@ -886,7 +886,7 @@
       }
     #+END_SRC
 
-    那要怎樣尋找可以使用的區塊位址呢? 我們可以先透過 =sbrk(0)= 檢查當前的位址，如果和 =brkp= 相同的話，則直接透過 =sbrk()= 進行配置。
+    那要怎樣尋找可以使用的區塊位址呢? 我們可以先透過 =my_sbrk(0)= 檢查當前的位址，如果和 =brkp= 相同的話，則直接透過 =my_sbrk()= 進行配置。
 
     反之，透過每一個記憶體區塊的大小找尋下一組可以使用的記憶體區塊，並返回位址。
 
