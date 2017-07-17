@@ -12,7 +12,7 @@
 
 * 關於這份文件                                                     :noexport:
 
-[[https://circleci.com/gh/coldnew/embedded-summer-2017][https://circleci.com/gh/coldnew/embedded-summer-2017.svg?style=svg]]
+#+HTML: <a href="https://circleci.com/gh/coldnew/embedded-summer-2017" ><img src="https://circleci.com/gh/coldnew/embedded-summer-2017.svg?style=svg"> </a>
 
 這份文件是我個人針對 [[https://hackmd.io/s/BJRtkreHW][2017 年暑期系統軟體課程]] 所進行的筆記，採用 [[http://orgmode.org/][org-mode]] 進行撰寫，並透過 [[https://github.com/fniessen/org-html-themes][org-html-themes]] 產生出 HTML 檔案，您可以在 [[https://coldnew.github.io/embedded-summer-2017/][這邊]] 看到產生出來的結果。
 
