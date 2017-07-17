@@ -1042,6 +1042,8 @@
 
     - [[https://hackmd.io/s/B1SRlfeee][Memory Allocation]]
 
+    - [[https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/][Understanding glibc malloc]]
+
 ** TODO Q4
 
    考慮以下 C 程式在 GNU/Linux 中，透過 linked list 來實作動態記憶體管理 (malloc 和 free)，虛擬記憶體的使用如下圖，初步的程式如下方，要注意到程式碼並不完整，也不能在多執行緒環境安全運用。
