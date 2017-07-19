@@ -645,6 +645,10 @@
       #+END_SRC
 
 
+*** 延伸閱讀
+
+    - [[https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-only-bit-shifting-and-adding][How can I multiply and divide using only bit shifting and adding? - Stack Overflow]]
+
 ** DONE Q3
 
    思考以下 C 程式的用途，以及在什麼場合用得到 (提示: 記憶體管理常式)，探討應用場合時，需要一併列出最小可編譯和運作的 C 程式碼。
