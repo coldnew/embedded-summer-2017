@@ -1048,6 +1048,8 @@
 
     - [[https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/][Understanding glibc malloc]]
 
+    - [[http://web.engr.illinois.edu/~maplant2/gc.html][Writing a Simple Garbage Collector in C]]
+
     - [[https://www.cs.princeton.edu/courses/archive/spr11/cos217/lectures/20DynamicMemory2.pdf][Optimizing Dynamic Memory Management]] :: 這份講解了 k&r 的 Heap Manager
 
 ** TODO Q4
