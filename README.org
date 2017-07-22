@@ -1198,6 +1198,65 @@
 
     - [[https://unix.stackexchange.com/questions/155017/does-fork-immediately-copy-the-entire-process-heap-in-linux][Does fork() immediately copy the entire process heap in Linux?]]
 
+* TODO 課堂醒腦題
+
+  這邊題目是在上課前用來醒腦用的
+
+** TODO 課前題目
+
+   Q: 在 C 語言程式裡面，如果這樣執行會得到什麼結果
+
+   #+BEGIN_SRC C
+     1 << 2 + 3 << 4
+   #+END_SRC
+
+   A: =512=
+
+*** 想法 & 解答
+
+    答案是 =512= ，這題在考運算式的優先權。
+
+    為什麼 C 語言要這這樣設計?
+
+    C 語言 設計是 1972 ~ 1974, 但是一直到 1989 才標準化
+
+** TODO 課前題目
+
+   在邏輯上你有個 ~x==y~ 的運算子，請不使用任何比較器做出一樣的成果
+
+   #+BEGIN_SRC C
+     x == y
+   #+END_SRC
+*** 答案
+
+    !(x ^ y)
+
+
+*** 想法
+
+    從邏輯設計上學到的， =XOR= 的結果
+
+    x ^ y
+
+    010
+    010 = 0
+    011 = 001
+
+
+* TODO 臨時筆記
+** TODO 題目
+
+  #+BEGIN_SRC C
+    size_t strlen(char *s);
+
+    int longer(char *a, char *b) {
+	    return strlen(a) - strlen(b) > 0;
+    }
+  #+END_SRC
+
+  - (a) 何時不正確? 正確版本為何?
+  - (b)) 如何修正
+
 * Google Analytics                                                 :no_title:
 
   #+BEGIN_EXPORT html
