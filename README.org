@@ -644,10 +644,27 @@
 	}
       #+END_SRC
 
+    Overflow 怎辦?
+
+    #+BEGIN_SRC C
+      int32_t mult(int32_t x, int32_t y)
+      {
+	      unsigned int reg = 0;
+
+	      while (y != 0) {
+		      if (y & 1)
+			      reg += x;
+		      x <<= 1;
+		      y >>= 1;
+	      }
+	      return reg;
+      }
+    #+END_SRC
 
 *** 延伸閱讀
 
     - [[https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-only-bit-shifting-and-adding][How can I multiply and divide using only bit shifting and adding? - Stack Overflow]]
+    - [[https://www.fefe.de/intof.html][Catching Integer Overflows in C]]
 
 ** DONE Q3
 
@@ -1240,7 +1257,6 @@
     010 = 0
     011 = 001
 
-
 * TODO 臨時筆記
 
 ** TODO 21 世紀的系統軟體
@@ -1320,6 +1336,8 @@ ARM Cortex-M4 可以做到 sdiv (軟體除法)並且可以在 2cycle 完成 (過
 	      return strlen(a) > strlen(b);
       }
     #+END_SRC
+
+    如果 strlen(a) - strlne(b) 為負的, 那應該是 unsigned 還是 signed ?
 
 *** TODO
 
@@ -1425,7 +1443,6 @@ linux kernel: //sound/sparc/dbri.c
 
 =ISM= 波段，給一般人可以用的 2.4 ~ 2.5GHx
 
-
 ** TODO 軟體缺失導致的危害
 
    Barr Group 是世界上有名的諮詢公司
@@ -1477,6 +1494,59 @@ linux kernel: //sound/sparc/dbri.c
     CertiKOS
 
     Promela consumer
+
+** TODO 重新理解數值
+
+   =IOTA=
+
+   tango 本質是 DAG, 不尋換，有方向
+
+   https://iota.org/IOTA_Whitepaper.pdf
+
+   程式碼執行順序改變，結果一樣，稱為  =code motion=
+
+   Koopman 教授有一本書, 為業界問題的 case study
+
+** TODO carryless
+
+   Galois (和人決鬥而死，死前把數學遺稿寫出  FIXME: 來源)
+
+   五次方程式不存在公式解 (啊貝爾)
+
+   美國/加拿大很多東西禁止出口: ex: 高可靠性的加密方法
+
+   jitter: 找出數值分布
+
+** TODO Modern Microprocessors
+
+   1. 簡單定義: 你我身邊每天在用的東西
+
+   numa
+
+   intel 佔領 server CPU, 要從 .com 泡沫化開始說起 (90 年代末期)
+
+   浮點數當時在 server CPU 有一個很重要的應用: 股票 (現在也是)
+
+   你用 benchmarking 才可以知道一個系統的特性
+
+   ILP (Instruction-Level Parallelism)
+
+   CPI (Cycle per instruction)
+
+   以前統計一個程式有 7% ~ 13% 在做 branching
+
+   dispatch 也是成本，現在 CPU 會想辦法減少這邊的成本 => ARM DynamIQ
+
+   dynamiq multiple issue => [[https://community.arm.com/processors/b/blog/posts/where-does-big-little-fit-in-the-world-of-dynamiq][Where does big.LITTLE fit in the world of DynamIQ?]]
+
+   dynamiq multiple dispatch => [[http://www.anandtech.com/show/11441/dynamiq-and-arms-new-cpus-cortex-a75-a55/3][Exploring DynamIQ and ARM’s New CPUs: Cortex-A75, Cortex-A55]]
+
+   IF: 4
+   ID: 1
+
+   Rename: 1
+   Dispatch: 1
+
 
 
 
