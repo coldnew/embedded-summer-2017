@@ -1325,6 +1325,36 @@ ARM Cortex-M4 可以做到 sdiv (軟體除法)並且可以在 2cycle 完成 (過
 
     有號數  無號數
 
+** TODO 課中題目 Q2
+
+   (用硬體思考, 實作倍數)
+
+   | 倍數 | shift | add/sub | Expr    LEA         |
+   |------+-------+---------+---------------------|
+   |   31 |     1 |       1 | (x <<5) - (x)       |
+   |   -6 |     2 |       1 | (x << 1) - (x << 3) |
+
+   用這種狀況來看，11 和 55 要怎作 ?
+
+   | 倍數 | shift | add/sub | Expr    LEA             |
+   |------+-------+---------+-------------------------|
+   |   11 |     3 |       2 | (x << 3) + (x << 2)+ x  |
+   |   11 |     2 |       2 | (x << 4) - (x << 2) - x |
+
+
+   | 倍數 | shift | add/sub | Expr    LEA                |
+   |------+-------+---------+----------------------------|
+   |   55 |     2 |       1 | (x << 6) - (x << 3)  - (x) |
+
+   這東西重要在哪呢？像是 INTEL CPU 有一個指令 [[https://c9x.me/x86/html/file_module_x86_id_153.html][LEA]]
+Intel 的 addressing model 搭配 LEA (CSIC 風格的指令) 很好用，透過這樣的處理可以得到一個帖定的數值，而不用透過複雜的數學運算
+
+ARM 相對的是 Barrel Shifter
+
+http://www.davespace.co.uk/arm/introduction-to-arm/barrel-shifter.html
+
+https://stackoverflow.com/questions/1658294/whats-the-purpose-of-the-lea-instruction
+
 
 * Google Analytics                                                 :no_title:
 
