@@ -1355,6 +1355,76 @@ http://www.davespace.co.uk/arm/introduction-to-arm/barrel-shifter.html
 
 https://stackoverflow.com/questions/1658294/whats-the-purpose-of-the-lea-instruction
 
+** TODO 作業 reverse bit 討論
+
+   注意到題目輸入值域很大 0 ~ 2^32 - 1, 要怎樣檢驗?
+
+   這樣的程式的問題: =執行時間不固定=, 某些形式可以得到很短的時間
+
+   你只要追蹤花費的時間，就可以推敲出數值的分布
+
+   #+BEGIN_SRC C
+     uint32_t reverse_bits_32(uint32_t x)
+     {
+	     uint32_t reverse_x = 0;
+	     for (int i = 0; i < 32; i++) {
+		     if((x & (1 << i)))
+			     reverse_x |= 1 << ((32 - 1) - i);
+	     }
+	     return reverse_x;
+     }
+   #+END_SRC
+
+   這也是為何這種方式比較好:
+
+   #+BEGIN_SRC C
+     #include <stdint.h>
+     uint32_t func(uint32_t x) {
+	 uint32_t n = x;
+	 n = ((n & 0xffff0000) >> 16) | ((n & 0x0000ffff) << 16);
+	 n = ((n & 0xff00ff00) >>  8) | ((n & 0x00ff00ff) <<  8);
+	 n = ((n & 0xf0f0f0f0) >>  4) | ((n & 0x0f0f0f0f) <<  4);
+	 n = ((n & 0xcccccccc) >>  2) | ((n & 0x33333333) <<  2);
+	 n = ((n & 0xaaaaaaaa) >>  1) | ((n & 0x55555555) <<  1);
+	 return n;
+     }
+   #+END_SRC
+
+   在 linux/gcc 下，有一個 macro 叫做 byte order __BYTE_ORDER__
+
+   https://gcc.gnu.org/onlinedocs/cpp/Common-Predefined-Macros.html
+
+   讀 GCC 手冊可以得到很多歷史梗
+
+   #+BEGIN_EXAMPLE
+   __BYTE_ORDER__ is defined to one of the values __ORDER_LITTLE_ENDIAN__, __ORDER_BIG_ENDIAN__, or __ORDER_PDP_ENDIAN__ to reflect the layout of multi-byte and multi-word quantities in memory. If __BYTE_ORDER__ is equal to __ORDER_LITTLE_ENDIAN__ or __ORDER_BIG_ENDIAN__, then multi-byte and multi-word quantities are laid out identically: the byte (word) at the lowest address is the least significant or most significant byte (word) of the quantity, respectively. If __BYTE_ORDER__ is equal to __ORDER_PDP_ENDIAN__, then bytes in 16-bit words are laid out in a little-endian fashion, whereas the 16-bit subwords of a 32-bit quantity are laid out in big-endian fashion.
+   #+END_EXAMPLE
+
+You should use these macros for testing like this:
+
+   #+BEGIN_SRC C
+  /* Test for a little-endian machine */
+   #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+   #+END_SRC
+
+   ARM 處理器在開機的時候，會檢查 endian bit, 但是編碼是固定的 (always big, or always little (instruction encoding))
+
+為何 UART baud rate 不是 2^n 次方? 最早的 baud rate 用在電報，是 75 baud
+後來每次擴充都是兩倍, 75 -> 150 -> 300 -> 600 -> 1200...
+
+
+--
+
+linux kernel: //sound/sparc/dbri.c
+
+用 switch case, 不加上 break:  =duff's device=
+
+=loop unrolling= :CPU predictor 做的在好也還是有機會出錯
+
+--
+
+=ISM= 波段，給一般人可以用的 2.4 ~ 2.5GHx
+
 
 * Google Analytics                                                 :no_title:
 
