@@ -1571,13 +1571,19 @@ linux kernel: //sound/sparc/dbri.c
 
    object -> 抽象詞 (連帶著的東西)
 
+   Rob Pike 現在在 Google 工作, 在 google 帳號是 =r@google.com=, 是 Go 語言的主力成員
+
+   聯發科 7?775 晶片, 多核因為問題關掉剩下一核
+
+   Red Hat 很大的客戶來自 銀行業 和 醫院相關, 因此 Java 在 concurrency 上實作比較完散 (資料很多)
+
+   LOCK-FREE <- 預習
+
 ** TODO 其他
 
    L2 lock down
 
    __vdso_clock_get_time
-
-
 
 
 * Google Analytics                                                 :no_title:
