@@ -1426,6 +1426,24 @@ linux kernel: //sound/sparc/dbri.c
 =ISM= 波段，給一般人可以用的 2.4 ~ 2.5GHx
 
 
+** TODO 軟體缺失導致的危害
+
+   Barr Group 是世界上有名的諮詢公司
+
+** TODO 形式化驗證
+
+   透過數學來定義行為、開發、驗證
+
+   從硬體攝計開始普及
+
+   CompCert
+
+    形式化驗證行情價  1000USD (每行)
+
+    台灣很少軟體品質產業
+
+    你怎確保你的無人機是可靠的?
+
 * Google Analytics                                                 :no_title:
 
   #+BEGIN_EXPORT html
