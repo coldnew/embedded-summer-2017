@@ -1202,15 +1202,13 @@
 
   這邊題目是在上課前用來醒腦用的
 
-** TODO 課前題目
+** TODO Q1
 
-   Q: 在 C 語言程式裡面，如果這樣執行會得到什麼結果
+   在 C 語言程式裡面，如果這樣執行會得到什麼結果
 
    #+BEGIN_SRC C
      1 << 2 + 3 << 4
    #+END_SRC
-
-   A: =512=
 
 *** 想法 & 解答
 
@@ -1256,6 +1254,28 @@
 
   - (a) 何時不正確? 正確版本為何?
   - (b)) 如何修正
+
+** TODO 其他
+
+   21 世紀的系統軟體 => 程式碼夠美嗎?
+
+   unix 原始程式馬 註解:
+
+   [[https://www.google.com.tw/search?client=safari&rls=en&q=you+are+not+expected+to+understand+this&ie=UTF-8&oe=UTF-8&gfe_rd=cr&ei=p7FyWbbcDeT88wfZoZP4CQ][You are Not expected to understand this]]
+
+   unix 最早是開發在 PDP-7 上，後來移植到 PDP-11 (16bit) (具有 virtual memory)
+
+   virtual memory -> swapper (扮演 disk 和 memory 之間的資料切換處理者)
+
+   BlackDuck 是個  blabla, 提到了大部分的公司都是採用 opensource
+
+   我們既然採用別人的成果，是否有想過一件很可怕的事情? Linux 自從 4.1 版本，程式碼超過 2000 萬行，假設你工作到退休，人生只有 1w 天，linux kernel 只有 2000 萬行，你會讀不完
+
+   更可怕的是，linux 每小時修改 8 次(一次可能幾千行)，改版非常快，我們需要一個有效的方法來檢驗我們看到的東西對不對
+
+
+
+
 
 * Google Analytics                                                 :no_title:
 
