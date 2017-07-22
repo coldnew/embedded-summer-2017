@@ -20,7 +20,7 @@
 
 如果想要在 [[http://orgmode.org][org-mode]] 下使用 babel 功能的話，則可以參考: [[http://orgmode.org/worg/org-contrib/babel/languages/ob-doc-C.html][C, C++, D Source Code Blocks in Org Mode]]。
 
-此筆記亦有一個 HackMD 版本，非同步更新在 https://hackmd.io/s/rk1c0TOrZ。
+此筆記亦有一個 HackMD 版本， *非同步* 更新在 https://hackmd.io/s/rk1c0TOrZ。
 
 ( 註: 由於 GitHub 對 [[http://orgmode.org][org-mode]] 的支援有待加強，建議在 [[https://coldnew.github.io/embedded-summer-2017/][網頁版]] 觀看 )
 
