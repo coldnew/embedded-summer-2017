@@ -1275,8 +1275,28 @@
 
    更可怕的是，linux 每小時修改 8 次(一次可能幾千行)，改版非常快，我們需要一個有效的方法來檢驗我們看到的東西對不對
 
+ARM Cortex-M4 可以做到 sdiv (軟體除法)並且可以在 2cycle 完成 (過去用的查表能辦到嗎?)
+
+手機裡面會有 CPU, GPU 和 DSP, 分工是個很大的問題
+
+比如說 [[https://en.wikipedia.org/wiki/Font_rasterization][Font rasterization]] , 這部份是交給 CPU 運算, 我們知道文字本身是數學方程式，要透過運算轉成點陣圖
+
+如果我們先用 CPU 把繪圖指令丟給 GPU, GPU 再把東西丟給 CPU, 這樣一來一往很吃時間，所以更多是 CPU 先把字處理好後，再把圖片送給 GPU (你要能散用 GPU 支援是非常困難的)
 
 
+人寫出來的東西要和 compiler PK 是非常困難的事情
+
+[[file:images/tmp/s1.png]]
+
+(投影片:  [[https://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works][From source to binary]])
+
+** TODO 深入理解 CPU 和異構計算蕊片
+
+   ASIC: 完全針對應用特化的晶片
+
+   識別鈔票的方法會改，因此驗鈔機面有很大比例是用 FPGA (可以更新韌體) 但是速度又快
+
+   DSP: 數位訊號處理
 
 
 * Google Analytics                                                 :no_title:
