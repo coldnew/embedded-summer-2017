@@ -1242,18 +1242,6 @@
 
 
 * TODO 臨時筆記
-** TODO 題目
-
-  #+BEGIN_SRC C
-    size_t strlen(char *s);
-
-    int longer(char *a, char *b) {
-	    return strlen(a) - strlen(b) > 0;
-    }
-  #+END_SRC
-
-  - (a) 何時不正確? 正確版本為何?
-  - (b)) 如何修正
 
 ** TODO 21 世紀的系統軟體
 
@@ -1297,6 +1285,43 @@ ARM Cortex-M4 可以做到 sdiv (軟體除法)並且可以在 2cycle 完成 (過
    識別鈔票的方法會改，因此驗鈔機面有很大比例是用 FPGA (可以更新韌體) 但是速度又快
 
    DSP: 數位訊號處理
+
+** TODO 課中題目 Q1
+
+  #+BEGIN_SRC C
+    size_t strlen(char *s);
+
+    int longer(char *a, char *b) {
+	    return strlen(a) - strlen(b) > 0;
+    }
+  #+END_SRC
+
+  - (a) 何時不正確? 正確版本為何?
+  - (b) 如何修正
+
+    =提示: 考慮極端狀況=
+
+*** TODO 思考 & 想法
+
+    這樣的程式何時會不正確呢?
+
+    man strlen
+
+    =超過 maxlen 時行為就不對了= ? <--- 有號數  無號數?
+
+    如何修正?
+
+    #+BEGIN_SRC C
+      size_t strlen(char *s);
+
+      int longer(char *a, char *b) {
+	      return strlen(a) > strlen(b);
+      }
+    #+END_SRC
+
+*** TODO
+
+    有號數  無號數
 
 
 * Google Analytics                                                 :no_title:
