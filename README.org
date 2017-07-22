@@ -1286,6 +1286,8 @@ ARM Cortex-M4 可以做到 sdiv (軟體除法)並且可以在 2cycle 完成 (過
 
    DSP: 數位訊號處理
 
+   bitcoin 用 GPU 是在算 hash, 每秒可以達到  萬億次 (每秒)
+
 ** TODO 課中題目 Q1
 
   #+BEGIN_SRC C
