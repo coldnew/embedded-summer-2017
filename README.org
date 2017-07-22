@@ -1444,6 +1444,42 @@ linux kernel: //sound/sparc/dbri.c
 
     你怎確保你的無人機是可靠的?
 
+    台灣用的比較多還是 IC 設計公司
+
+    台灣有哪些軟體公司出了錯會造成人命?
+
+    車用 ADAS 系統 mobileye, mediatek
+
+    COSCUP: Piko/RT linuk like real time kernel
+
+    形式化驗證要先寫 lemma
+
+    echronos RTOS 證明 scheduling interrupt *需要上網查* , 手段叫做 =OG=
+
+    數學導論
+
+    linux kernel 把 BKL 移除掉 (big kernel lock)
+
+    製作智慧卡很厲害的公司: NXP, 曾經有 1/4 營收來自智慧卡
+
+    eal7 smart card
+
+    CC: Common Criteria (安全等級)
+
+    [[https://en.wikipedia.org/wiki/Evaluation_Assurance_Level][EAL CC]] 有七個等級, EAL5 以上都是軍事等級
+
+    有產值: 前後左右都沒有在做的事情
+
+    現在形式化驗證在 IC 設計已經是顯學: google: arm formal verifcation
+
+    EAL7 之所以難，就是因為要包山包海都懂
+
+    CertiKOS
+
+    Promela consumer
+
+
+
 * Google Analytics                                                 :no_title:
 
   #+BEGIN_EXPORT html
