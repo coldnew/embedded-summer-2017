@@ -1579,12 +1579,13 @@ linux kernel: //sound/sparc/dbri.c
 
    LOCK-FREE <- 預習
 
+   memory barrier -> 白算盤用 fence
+
 ** TODO 其他
 
    L2 lock down
 
    __vdso_clock_get_time
-
 
 * Google Analytics                                                 :no_title:
 
