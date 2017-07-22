@@ -1356,7 +1356,7 @@ ARM Cortex-M4 可以做到 sdiv (軟體除法)並且可以在 2cycle 完成 (過
 
    | 倍數 | shift | add/sub | Expr                    |
    |------+-------+---------+-------------------------|
-   |   11 |     3 |       2 | (x << 3) + (x << 2) + x |
+   |   11 |     2 |       2 | (x << 3) + (x << 2) + x |
    |   11 |     2 |       2 | (x << 4) - (x << 2) - x |
 
 
@@ -1546,6 +1546,36 @@ linux kernel: //sound/sparc/dbri.c
 
    Rename: 1
    Dispatch: 1
+
+   echo cancellation (回音消除, 抗噪耳機)
+
+   AEC (聽覺迴聲消除) -> 運算量很大 -> 用 DSP 處理
+
+   ARM64 -> Aarch64 (架構名字, instruction encoding 還是 32bit)
+
+   VOIP 因為 CPU 效能提升，可以不需要額外硬體來作 AEC
+
+   branch prediction 和 machine learning 有關 ( [[https://www.google.com.tw/search?client=safari&rls=en&q=branch+predction+machine+learning&ie=UTF-8&oe=UTF-8&gfe_rd=cr&ei=zxNzWez3Neum8wekp6bwDg][google]])
+
+   OOO (out of order execution) <-- 對效能提升有限，但是功耗增加 （A72 有這功能，但是 A73 關掉了）
+
+   compiler: auto vectorization, specularization
+
+   hadoop 裡面排序用 merge sort (穩定) 原本的排列順序是固定的
+
+** TODO Concurrency
+
+   基本上讀文章都要非常小心，尤其是和 CPU 架構相關的
+
+   hyperthreading: 硬體上的 thread
+
+   object -> 抽象詞 (連帶著的東西)
+
+** TODO 其他
+
+   L2 lock down
+
+   __vdso_clock_get_time
 
 
 
