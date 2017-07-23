@@ -1257,7 +1257,7 @@
     010 = 0
     011 = 001
 
-* TODO 臨時筆記
+* TODO 臨時筆記 (第一天)
 
 ** TODO 21 世紀的系統軟體
 
@@ -1587,6 +1587,7 @@ linux kernel: //sound/sparc/dbri.c
 
    __vdso_clock_get_time
 
+* TODO 臨時筆記 (第二天)
 * Google Analytics                                                 :no_title:
 
   #+BEGIN_EXPORT html
