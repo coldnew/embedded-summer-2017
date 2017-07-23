@@ -1599,7 +1599,7 @@ linux kernel: //sound/sparc/dbri.c
 
   NaN 應該怎樣表示? 如果我應用一個數值來表示 NaN, 那我是不是佔用了一個位置? 那這樣不同位元的 NaN 又該如何表示? 32bit 和 64bit 的 NaN 是不是一樣? 是否應該要不一樣?
 
-x** TODO QUIZ
+** TODO QUIZ
 
    Q6: 考慮以下程式碼:
 
@@ -1712,6 +1712,41 @@ The 0x20 is the offset, which is added to the effective address. There is no bit
 
     可以少掉存取某段記憶體空間的先前準備, 這邊把乘法變成了加法 (省掉時間)
 
+** TODO concurrency
+
+   =atomic instruction= 在硬體怎樣實作? ex: Exclusive monitor
+
+   純軟體實作: Dekker's algorithm (正確的，問題是太慢)
+
+   RMW (Read-modify-write):
+   A [0] += 1;
+
+   讀取 A[0] 的數值 => + 1 => 寫回去 (RMW) , 中間可能被打斷? 當然(考慮多核狀況)
+
+   =transaction=
+
+   關鍵: 我們要了解我們的行為，否則作不出合適的程式碼
+
+   ARM 指令:  =ldrex= , =strex=
+
+   CAS: (Compare And Swap)
+   TAS: (Test And Set)
+
+   我用 C 語言產生直接對應的組合語言 ->  [[https://stackoverflow.com/questions/7633899/converting-inline-asm-to-intrinsic][intrinsic]]
+
+   C11 加入 atomic (注意到不是所有 compiler 都支援)
+
+   #+BEGIN_SRC C
+     _Atomic const int *p1;
+   #+END_SRC
+
+   C++20 gcc 已經支援 (~-std=c++2a~)
+
+   mutex 可不可以重複 lock ? =>   [[https://stackoverflow.com/questions/187761/recursive-lock-mutex-vs-non-recursive-lock-mutex][mutex recursive lock]]
+
+   priority inheritance
+
+** TODO 編譯器和最佳化原理
 
 * Google Analytics                                                 :no_title:
 
