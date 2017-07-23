@@ -1979,6 +1979,48 @@ The 0x20 is the offset, which is added to the effective address. There is no bit
 
    mutex 在 linux 不是單純的 lock , 而是一系列實作
 
+   priority inversion => 優先權會倒轉
+
+   priority inversion => 是個協定
+
+   我們之所以要發展 mutex -> 希望保護共享資源
+
+   很常見的解法叫做 PI => priority inheritance
+
+   futex 在 userspace 實作 => scalable
+
+   能在 userspace 作愈多 => 在 SMP 情況下更容易 migrate
+
+   linux 作為管理硬體的執行單元 => 本質上是不可數
+
+   每個 CPU 核心都有一個獨立的 register file (r0, r1, r2 ....etc)
+
+   (有獨立的 PC (point counter))
+
+   L1 cache 是完全獨立
+
+   sync 在確保 IO 的一致性 (有沒有可能被別人搶佔?)
+
+   其實要做到完全的 preemptive 是很困難的
+
+   ARM code density 很高
+
+   ARM 因為 virtualization 做的比較慢，所以可以避開許多問題 (效能還可以)
+
+   ARM server 的存在不是為了和 Intel 打對比 (不是一對一競爭，是商品競爭)
+
+   目前地表最快的 ARM 版本: Cortex-A75
+
+   500 大超級電腦 -> 10% 在做金融機構 (避險基金的高頻交易)
+
+   real-time kvm
+
+   ARMv8.3a <- 改變很大
+
+   [[https://community.arm.com/processors/b/blog/posts/armv8-a-architecture-2016-additions][ARMv8-A architecture – 2016 additions]]
+
+   可以針對 ARM 方向的改版，可以推測出市場方向在哪裡
+
 
 * Google Analytics                                                 :no_title:
 
