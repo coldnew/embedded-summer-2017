@@ -1748,6 +1748,60 @@ The 0x20 is the offset, which is added to the effective address. There is no bit
 
 ** TODO 編譯器和最佳化原理
 
+   [[https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending][Alpha blending]]
+
+   SQL 有一個很重要的東西叫做 [[http://knowledgebase.progress.com/articles/Article/P20617][stored procedure (sql92)]]
+   sqlite : =explain= 可以把 opcode 印出來
+
+   [[http://www.brendangregg.com/blog/2015-05-15/ebpf-one-small-step.html][eBPF]]
+
+   為何模擬器不使用 GPU? 因為我們不知道執行的環境是否有 GPU, 以及 GPU 是否夠強 (GPU 不夠強甚至可能模擬器跑得比 CPU 慢)
+
+   邏輯哲學論 - 維根斯坦
+
+   能否用任意的 REGEXP 解析 HTML? 答: 用標準的 REGEXP 辦不到 (HTML 可以容許錯誤，深度是無窮的)
+
+   PCRE (perl 修改過的 RE) 就可以解析 HTML
+
+   討厭的數學 -> hoare logic
+
+   [[http://isabelle.in.tum.de/library/HOL/HOL-Hoare_Parallel/document.pdf][hoare logic parell]]
+
+   man atexit
+
+   C runtim 要能夠處理返回直，也要可以處理 atexit 的介入
+
+   1996 年 doom 開發者: C is what you see is what you get
+
+   libgcceh (作必要的例外處理 setjmp/longjmp)
+
+   典型的 UNIX 有些東西很難實作: exec, signal (典型 UNIX: 很多操作是同步的)
+
+   setjmp/longjmp 和 ABI 有關係
+
+   馮紐曼(John von Neumann): 怎麼會有人需要寫組合語言，查表就好了
+
+   c99 引入關鍵字 restrict
+
+   開 /usr/include/string.h 找 memcpy
+
+   #+BEGIN_SRC C
+     /* Copy N bytes of SRC to DEST.  */
+     extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+			  size_t __n) __THROW __nonnull ((1, 2));
+
+     /* Copy N bytes of SRC to DEST, guaranteeing
+	correct behavior for overlapping strings.  */
+     extern void *memmove (void *__dest, const void *__src, size_t __n)
+	  __THROW __nonnull ((1, 2));
+   #+END_SRC
+
+   memcpy src 和 dst 不可以 overlap, 要 overlap 要用 memmove
+
+
+
+
+
 * Google Analytics                                                 :no_title:
 
   #+BEGIN_EXPORT html
