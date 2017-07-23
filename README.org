@@ -1915,6 +1915,70 @@ The 0x20 is the offset, which is added to the effective address. There is no bit
 
    Linux 用 =clone= 去建立 =thread= (而不是 fork, clone 和 fork 不同)
 
+   如果以現代 Linux 實作，要對 process 和 thread 進行區分是很困難
+
+   Android 的 bionic 和 glibc 有很大的相容，但是像是 pthread 就是不一樣
+   : https://android.googlesource.com/platform/bionic/+/ics-mr1-release/libc/docs/OVERVIEW.TXT#148
+
+   #+BEGIN_EXAMPLE
+     pthread_cancel():
+
+	pthread_cancel() will *not* be supported in Bionic, because doing this would
+	involve making the C library significantly bigger for very little benefit.
+   #+END_EXAMPLE
+
+** TODO MicroKernel
+
+   EJBOSS (Enterprise Java Bean Open Source) -> JBoss (梗)
+
+   Source Enclave coprocessor
+
+   khttpd -> tux web server
+
+   為何 userspace 的 nginx 效能甚至比 khttpd 好，關鍵是在 io 的部分 (epoll)
+
+   linux kernel 的發展有點像是 microkernel 的風格 (不會把東西都塞進在 kernel)
+
+   比如 kernel 實作 epoll, nginx 就可以透過 epoll 實現良好效率的 http server
+
+   ceph-fuse 雲端檔案系統
+
+   dragonflybsd filesystem 也是執行在 userspace => 有很多原本是 monolithic kernel, 慢慢的把很多元素搬到 userspace 來
+
+   可以從 =task_struct= 來看 linux 還是屬於 monolithic kernel
+
+   Linux thread state trasnsition
+
+   scheuled 在選出下一個要執行的任務, 發生 preeemption 時會將任務放回 ready queue
+
+   preempt (搶佔, 動詞)
+
+   perrmptive (形容詞)  premmptible
+
+   =preemptive process scheduling=
+
+   [[https://events.linuxfoundation.org/sites/events/files/slides/rtmux_1.pdf][Making Linux do Hard (Real-)Time]]
+
+   Linux 本質上以機可以做到 software real-time, 但是距離 hard-realtime 是需要時間
+
+   http://concurrent-rt.com 可以做到 3 ~ 5us response time (RTOS 一般都是 < 10us)
+
+   Real-time linux 賣點是效能要接近
+
+   pagefault 所花的時間就是 10us
+
+   priority inheritance (PI)
+
+   threaded interrupt
+
+** TODO Semaphore 與 mutex
+
+   p.38
+
+   能否 lock 一個 mutex 好幾次 => resurive lock
+
+   mutex 在 linux 不是單純的 lock , 而是一系列實作
+
 
 * Google Analytics                                                 :no_title:
 
