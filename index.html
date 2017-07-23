@@ -1,0 +1,3589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-07-23 Sun 18:37 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2017 年暑期系統軟體課程：台北場次 - coldnew's 筆記</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="coldnew" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://www.pirilampo.org/styles/bigblow/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://www.pirilampo.org/styles/bigblow/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="https://www.pirilampo.org/styles/bigblow/css/hideshow.css"/>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/bigblow/js/hideshow.js"></script>
+<script type="text/javascript" src="https://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+<script type="text/javascript" src="assets/js/bigblow.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">2017 年暑期系統軟體課程：台北場次 - coldnew's 筆記</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org26c276b">課程資訊</a></li>
+<li><a href="#org1eff7d1">操作說明</a></li>
+<li><a href="#orgd883b17"><span class="todo TODO">TODO</span> 課前測驗題</a>
+<ul>
+<li><a href="#org216ac2b"><span class="done DONE">DONE</span> Q1</a>
+<ul>
+<li><a href="#orgda25d1c">想法 &amp; 思考</a></li>
+<li><a href="#org510df45">for/while 迴圈版本</a></li>
+<li><a href="#org8e5cc0e">uint16_t 版本: 目標為 32-bit 系統或是以上</a></li>
+<li><a href="#org17003b8">uint16_t 版本: 目標為 16-bit 系統</a></li>
+<li><a href="#org04ac837">uint16_t 版本: 目標為 16-bit 系統 (迴圈)</a></li>
+<li><a href="#org191fc8a">使用到的場合: 加解密運算</a></li>
+<li><a href="#orgff56593">使用到的場合: CRC-32 運算</a></li>
+<li><a href="#orgeb017cd">使用到的場合: Linux Kernel</a></li>
+<li><a href="#orgf9c930d">使用到的場合: 快速傅利葉轉換</a></li>
+<li><a href="#org46885c6">開源專案與位元反轉</a></li>
+<li><a href="#org72fe231">補充: Clang 與 GCC 支援</a></li>
+<li><a href="#org2deb76b">補充: C 語言實作 2 進制的 print 函式</a></li>
+<li><a href="#orgc938790">延伸閱讀</a></li>
+</ul>
+</li>
+<li><a href="#org9f2032b"><span class="todo TODO">TODO</span> Q2</a>
+<ul>
+<li><a href="#org594cc3f">想法 &amp; 思考</a></li>
+<li><a href="#orga2fd07e">延伸閱讀</a></li>
+</ul>
+</li>
+<li><a href="#orge492638"><span class="done DONE">DONE</span> Q3</a>
+<ul>
+<li><a href="#orgfd08bbf">思考 &amp; 想法</a></li>
+<li><a href="#org3c99ab7">實作 1 - 最簡單的 malloc</a></li>
+<li><a href="#orga06634d">實作 2 - 實作 1 改良版</a></li>
+<li><a href="#org3133fae"><span class="todo TODO">TODO</span> 實作 3 - 實作 2 改良版</a></li>
+<li><a href="#org84be211">使用情境</a></li>
+<li><a href="#org8dc325b">延伸閱讀</a></li>
+</ul>
+</li>
+<li><a href="#org4ebb24e"><span class="todo TODO">TODO</span> Q4</a></li>
+<li><a href="#orgcb9182b"><span class="done DONE">DONE</span> Q5</a>
+<ul>
+<li><a href="#orgc7307bb">思考 &amp; 想法</a></li>
+<li><a href="#org5ab073e">延伸閱讀</a></li>
+</ul>
+</li>
+<li><a href="#org0cfb9a2">參考解答</a></li>
+</ul>
+</li>
+<li><a href="#org6b24c3d"><span class="todo TODO">TODO</span> 課堂醒腦題</a>
+<ul>
+<li><a href="#org80a5d07"><span class="todo TODO">TODO</span> Q1</a>
+<ul>
+<li><a href="#orgb157982">想法 &amp; 解答</a></li>
+</ul>
+</li>
+<li><a href="#org8c409e0"><span class="todo TODO">TODO</span> 課前題目</a>
+<ul>
+<li><a href="#org12f8c11">答案</a></li>
+<li><a href="#org8ef5069">想法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge85475d"><span class="todo TODO">TODO</span> 臨時筆記 (第一天)</a>
+<ul>
+<li><a href="#orgd757a5d"><span class="todo TODO">TODO</span> 21 世紀的系統軟體</a></li>
+<li><a href="#org6e75947"><span class="todo TODO">TODO</span> 深入理解 CPU 和異構計算蕊片</a></li>
+<li><a href="#orgd696a7a"><span class="todo TODO">TODO</span> 課中題目 Q1</a>
+<ul>
+<li><a href="#org4a67218"><span class="todo TODO">TODO</span> 思考 &amp; 想法</a></li>
+<li><a href="#orgba0f19d"><span class="todo TODO">TODO</span> </a></li>
+</ul>
+</li>
+<li><a href="#org6ed3dba"><span class="todo TODO">TODO</span> 課中題目 Q2</a></li>
+<li><a href="#org7878842"><span class="todo TODO">TODO</span> 作業 reverse bit 討論</a></li>
+<li><a href="#orgdf2253c"><span class="todo TODO">TODO</span> 軟體缺失導致的危害</a></li>
+<li><a href="#org4a4eae0"><span class="todo TODO">TODO</span> 形式化驗證</a></li>
+<li><a href="#orgfe5099e"><span class="todo TODO">TODO</span> 重新理解數值</a></li>
+<li><a href="#org113354a"><span class="todo TODO">TODO</span> carryless</a></li>
+<li><a href="#orged4bedc"><span class="todo TODO">TODO</span> Modern Microprocessors</a></li>
+<li><a href="#orgf79e58f"><span class="todo TODO">TODO</span> Concurrency</a></li>
+<li><a href="#org9201a63"><span class="todo TODO">TODO</span> 其他</a></li>
+</ul>
+</li>
+<li><a href="#org8ef6405"><span class="todo TODO">TODO</span> 臨時筆記 (第二天)</a>
+<ul>
+<li><a href="#orge20733b"><span class="todo TODO">TODO</span> QUIZ</a>
+<ul>
+<li><a href="#orgc289418"><span class="todo TODO">TODO</span> 思考 &amp; 想法</a></li>
+<li><a href="#orga2ad09b"><span class="todo TODO">TODO</span> CFI</a></li>
+</ul>
+</li>
+<li><a href="#org17e9580"><span class="todo TODO">TODO</span> concurrency</a></li>
+<li><a href="#org1860fcf"><span class="todo TODO">TODO</span> 編譯器和最佳化原理</a></li>
+<li><a href="#orgc8797e6"><span class="todo TODO">TODO</span> QUIZ Q7</a>
+<ul>
+<li><a href="#org927911c">think</a></li>
+<li><a href="#org82c092c">延伸閱讀</a></li>
+</ul>
+</li>
+<li><a href="#org771f814"><span class="todo TODO">TODO</span> 編譯器和最佳化原理</a></li>
+<li><a href="#orga10a9a0"><span class="todo TODO">TODO</span> 虛擬機設計與實作</a></li>
+<li><a href="#orgaa8356a"><span class="todo TODO">TODO</span> 以 Linux 為分析對象</a></li>
+<li><a href="#org859992a"><span class="todo TODO">TODO</span> MicroKernel</a></li>
+<li><a href="#org254dd38"><span class="todo TODO">TODO</span> Semaphore 與 mutex</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+( 返回 <a href="https://hackmd.io/s/BJRtkreHW">2017 年暑期系統軟體課程：台北場次</a> )<br />
+( 返回 <a href="https://hackmd.io/s/rk1c0TOrZ">2017 年暑期系統軟體課程：台北場次 - coldnew's 筆記 HackMD 版</a> )<br />
+</p>
+
+<div id="outline-container-org26c276b" class="outline-2">
+<h2 id="org26c276b">課程資訊</h2>
+<div class="outline-text-2" id="text-org26c276b">
+<p>
+連結: <a href="https://hackmd.io/s/BJRtkreHW">https://hackmd.io/s/BJRtkreHW</a><br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1eff7d1" class="outline-2">
+<h2 id="org1eff7d1">操作說明</h2>
+<div class="outline-text-2" id="text-org1eff7d1">
+<p>
+這篇文章是透過 <a href="https://orgmode.org">org-mode</a> 以及 <a href="https://github.com/fniessen/org-html-themes">org-html-themes</a> 製作出來，可以使用的快捷鍵資訊如下:<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">快捷鍵</th>
+<th scope="col" class="org-left">用途</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">快捷鍵</th>
+<th scope="col" class="org-left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>?</code> 或 <code>h</code></td>
+<td class="org-left">進入到 <b>dashboard</b></td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>-</code></td>
+<td class="org-left">收起所有項目</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>n</code></td>
+<td class="org-left">移動到 <b>下一個</b> 標題</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>+</code></td>
+<td class="org-left">展開所有項目</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>p</code></td>
+<td class="org-left">移動到 <b>前一個</b> 標題</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>r</code></td>
+<td class="org-left">移動到下一個在清單的工作項目</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>b</code></td>
+<td class="org-left">向上滾動</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>R</code></td>
+<td class="org-left">移動到前一個在清單的工作項目</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&lt;</code></td>
+<td class="org-left">向上滾動到最上面</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>q</code></td>
+<td class="org-left">離開清單列表</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&gt;</code></td>
+<td class="org-left">向下滾動到最下面</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><code>g</code></td>
+<td class="org-left">重新載入頁面</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgd883b17" class="outline-2">
+<h2 id="orgd883b17"><span class="todo TODO">TODO</span> 課前測驗題</h2>
+<div class="outline-text-2" id="text-orgd883b17">
+<p>
+從下方至少選 3 題來作答，不僅要提供程式碼，也該描述思路。作答方式為建立「新的」HackMD 頁面，在「標題」提及自己的姓名或可資識別的代號，內文則應標註原題號，如 Q1:，隨後將新建的 HackMD 連結貼入報名表格，課程工作人員會逐一通知。<br />
+</p>
+
+<p>
+參考: <a href="https://hackmd.io/s/Bk-1zqIte">HackMD 教學和作業原則</a><br />
+示範: <a href="https://github.com/coldnew/2015-embedded-summber-note">coldnew</a><br />
+</p>
+</div>
+
+<div id="outline-container-org216ac2b" class="outline-3">
+<h3 id="org216ac2b"><span class="done DONE">DONE</span> Q1</h3>
+<div class="outline-text-3" id="text-org216ac2b">
+<p>
+考慮以下 C99 程式，解釋其具體作用，並用 for/while 迴圈改寫，隨後提供 uint16_t 的版本。在什麼場合會用到下方的程式碼？<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">func</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span> = x;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xffff0000<span style="color: #aaccff;">)</span> &gt;&gt; 16<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0000ffff<span style="color: #aaccff;">)</span> &lt;&lt; 16<span style="color: #81d4fa;">)</span>;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xff00ff00<span style="color: #aaccff;">)</span> &gt;&gt;  8<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x00ff00ff<span style="color: #aaccff;">)</span> &lt;&lt;  8<span style="color: #81d4fa;">)</span>;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xf0f0f0f0<span style="color: #aaccff;">)</span> &gt;&gt;  4<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0f0f0f0f<span style="color: #aaccff;">)</span> &lt;&lt;  4<span style="color: #81d4fa;">)</span>;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xcccccccc<span style="color: #aaccff;">)</span> &gt;&gt;  2<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x33333333<span style="color: #aaccff;">)</span> &lt;&lt;  2<span style="color: #81d4fa;">)</span>;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xaaaaaaaa<span style="color: #aaccff;">)</span> &gt;&gt;  1<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x55555555<span style="color: #aaccff;">)</span> &lt;&lt;  1<span style="color: #81d4fa;">)</span>;
+    <span style="color: #aaffaa;">return</span> n;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgda25d1c" class="outline-4">
+<h4 id="orgda25d1c">想法 &amp; 思考</h4>
+<div class="outline-text-4" id="text-orgda25d1c">
+<p>
+一開始看到這樣的題目可能不知道怎樣解，所以我們可以套用個數值 <code>0x12345678</code> 進去一行一行的測試:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span> = 0x12345678;
+n = <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0xffff0000<span style="color: #81d4fa;">)</span> &gt;&gt; 16<span style="color: #aadddd;">)</span> | <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0x0000ffff<span style="color: #81d4fa;">)</span> &lt;&lt; 16<span style="color: #aadddd;">)</span>;
+printf<span style="color: #aadddd;">(</span><span style="color: #aadddd;">"0x%x\n"</span>, n<span style="color: #aadddd;">)</span>;
+</pre>
+</div>
+
+<pre class="example">
+0x56781234
+
+</pre>
+
+<p>
+可以發現到第一行是前後 2byte 進行對換的動作，即 <code>0xAABBCCDD =&gt; 0xCCDDAABB</code> 。<br />
+</p>
+
+<p>
+接下來讓我們看第二組:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span> = 0x56781234;
+n = <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0xff00ff00<span style="color: #81d4fa;">)</span> &gt;&gt;  8<span style="color: #aadddd;">)</span> | <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0x00ff00ff<span style="color: #81d4fa;">)</span> &lt;&lt;  8<span style="color: #aadddd;">)</span>;
+printf<span style="color: #aadddd;">(</span><span style="color: #aadddd;">"0x%x\n"</span>, n<span style="color: #aadddd;">)</span>;
+</pre>
+</div>
+
+<pre class="example">
+0x78563412
+
+</pre>
+
+<p>
+可以注意到這一組命令，會做出 <code>0xAABBCCDD</code> =&gt; <code>0xBBAADDCC</code> 這樣的運作，也就是對兩個兩個 byte 進行 swap。<br />
+</p>
+
+<p>
+接下來看第三組，這一組則是將 4 位元 (半個 byte, 英文為 <code>nibble</code> ) 進行了 swap。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span> = 0x78563412;
+n = <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0xf0f0f0f0<span style="color: #81d4fa;">)</span> &gt;&gt;  4<span style="color: #aadddd;">)</span> | <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0x0f0f0f0f<span style="color: #81d4fa;">)</span> &lt;&lt;  4<span style="color: #aadddd;">)</span>;
+printf<span style="color: #aadddd;">(</span><span style="color: #aadddd;">"0x%x\n"</span>, n<span style="color: #aadddd;">)</span>;
+</pre>
+</div>
+
+<pre class="example">
+0x87654321
+
+</pre>
+
+<p>
+到此，我們已經將原本的 <code>0x12345678</code> 轉換成 <code>0x87654321</code> 了。<br />
+</p>
+
+<p>
+接下來這一組直接看看不懂<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span> = 0x87654321;
+n = <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0xcccccccc<span style="color: #81d4fa;">)</span> &gt;&gt;  2<span style="color: #aadddd;">)</span> | <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0x33333333<span style="color: #81d4fa;">)</span> &lt;&lt;  2<span style="color: #aadddd;">)</span>;
+printf<span style="color: #aadddd;">(</span><span style="color: #aadddd;">"0x%x\n"</span>, n<span style="color: #aadddd;">)</span>;
+</pre>
+</div>
+
+<pre class="example">
+0x2d951c84
+
+</pre>
+
+<p>
+因為看不懂，所以我們用二進制來觀察<br />
+</p>
+
+<pre class="example">
+      從: 0x87654321 =&gt; 1000 0111 0110 0101 0100 0011 0010 0001
+      到: 0x2d951c84 =&gt; 0010 1101 1001 0101 0001 1100 1000 0100
+</pre>
+
+<p>
+可以看到是對續的兩個 bit 進行對調，用這樣的圖來看就比較好懂了:<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/swap_consecutive_pairs.png" alt="swap_consecutive_pairs.png" /><br />
+</p>
+</div>
+
+<p>
+終於到了最後一組，來跑看看<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span> = 0x2d951c84;
+n = <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0xaaaaaaaa<span style="color: #81d4fa;">)</span> &gt;&gt;  1<span style="color: #aadddd;">)</span> | <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>n &amp; 0x55555555<span style="color: #81d4fa;">)</span> &lt;&lt;  1<span style="color: #aadddd;">)</span>;
+printf<span style="color: #aadddd;">(</span><span style="color: #aadddd;">"0x%x\n"</span>, n<span style="color: #aadddd;">)</span>;
+</pre>
+</div>
+
+<pre class="example">
+0x1e6a2c48
+
+</pre>
+
+<p>
+因為看不懂，所以我們一樣用二進制來觀察<br />
+</p>
+
+<pre class="example">
+      ？: 0xaaaaaaaa =&gt; 1010 1010 1010 1010 1010 1010 1010 1010
+      ？: 0x55555555 =&gt; 0101 0101 0101 0101 0101 0101 0101 0101
+
+      從: 0x2d951c84 =&gt; 0010 1101 1001 0101 0001 1100 1000 0100
+      到: 0x1e6a2c48 =&gt; 0001 1110 0110 1010 0010 1100 0100 1000
+
+      原: 0x12345678 =&gt; 0001 0010 0011 0100 0101 0110 0111 1000
+</pre>
+
+<p>
+在這邊，我們可以透過 <code>0xaaaaaaaa</code> 和 <code>0x55555555</code> 發現到這邊的運算是對奇數/偶數的位元進行 swap 的動作。<br />
+</p>
+
+<p>
+此外，如果仔細看可以看出，原本的 <code>0x12345678</code> 經過這一系列的運作，變成了 <code>0x1e6a2c48</code> ，而從 2 進制來看， <code>0x12345678</code> 將所有的 bit 進行反轉，就會得到 <code>0x1e6a2c48</code> 。<br />
+</p>
+
+<p>
+於是我們知道了這個函式用途是作位元的反轉，我們可以整理前面的分析並將註解加回原始題目去:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_bits_32</span> <span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap 2-byte long pairs  0xAABBCCDD =&gt; 0xCCDDAABB </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xffff0000<span style="color: #aaccff;">)</span> &gt;&gt; 16<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0000ffff<span style="color: #aaccff;">)</span> &lt;&lt; 16<span style="color: #81d4fa;">)</span>;
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap bytes              0xAABBCCDD =&gt; 0xBBAADDCC </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xff00ff00<span style="color: #aaccff;">)</span> &gt;&gt;  8<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x00ff00ff<span style="color: #aaccff;">)</span> &lt;&lt;  8<span style="color: #81d4fa;">)</span>;
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap nibbles            0x12345678 =&gt; 0x21436587</span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xf0f0f0f0<span style="color: #aaccff;">)</span> &gt;&gt;  4<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0f0f0f0f<span style="color: #aaccff;">)</span> &lt;&lt;  4<span style="color: #81d4fa;">)</span>;
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap consecutive pairs </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xcccccccc<span style="color: #aaccff;">)</span> &gt;&gt;  2<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x33333333<span style="color: #aaccff;">)</span> &lt;&lt;  2<span style="color: #81d4fa;">)</span>;
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap odd/even bits </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xaaaaaaaa<span style="color: #aaccff;">)</span> &gt;&gt;  1<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x55555555<span style="color: #aaccff;">)</span> &lt;&lt;  1<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> n;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org510df45" class="outline-4">
+<h4 id="org510df45">for/while 迴圈版本</h4>
+<div class="outline-text-4" id="text-org510df45">
+<p>
+先建立函式原型<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_bits_32</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #ff3333; font-weight: bold;">FIXME</span><span style="color: #9ac; font-style: italic;">: return the reverse_bits result </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+接下來需要一個暫存用的變數，我命名為 <code>reverse_x</code> (輸入到這函式的變數為 x)<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_x</span> = 0;
+</pre>
+</div>
+
+<p>
+那要怎樣處理我們的迴圈呢? 我們知道要進行反轉的目標字元數是 <code>32</code> , 因此這個迴圈要跑 <code>32</code> 次, 所以作個簡單的雛形如下:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #aaffaa;">for</span> <span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 32; i++<span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #ff3333; font-weight: bold;">FIXME</span><span style="color: #9ac; font-style: italic;">: How to do ? </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+在這個迴圈裡面，我們檢查每一次要被處理的位元，假設他是 <code>1</code> 的話，再去更新 <code>reverse_x</code> 的內容。(reverse_x 預設是 0)<br />
+</p>
+
+<p>
+更新的方法很簡單，透過 <code>or</code> 運算子 <code>|</code> 來進行處理，由於我們要做的是字元反轉，因此假如我們 bit[3] 是 1 的話，則<br />
+</p>
+
+<pre class="example">
+      從: 0000 0000 0000 0000 0000 0000 0000 1000  &lt;- bit[3]  = 1
+      到: 0001 0000 0000 0000 0000 0000 0000 0000  &lt;- bit[28] = 1, bit[32 - 1 - 3]
+
+      從: 0000 0000 0000 0000 0000 1000 0000 0000  &lt;- bit[11]  = 1
+      到: 0000 0000 0001 0000 0000 0000 0000 0000  &lt;- bit[20] = 1, bit[32 - 1 - 11]
+</pre>
+
+<p>
+所以可以知道，當要被處理的位元為 <code>1</code> 的時候，我們要這樣處理:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #aaffaa;">for</span> <span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 32; i++<span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #aaffaa;">if</span><span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; <span style="color: #aaeecc;">(</span>1 &lt;&lt; i<span style="color: #aaeecc;">)</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span>
+                reverse_x |= 1 &lt;&lt; <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>32 - 1<span style="color: #aaccff;">)</span> - i<span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+因此最後的程式如下:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+
+<span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_bits_32</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_x</span> = 0;
+        <span style="color: #aaffaa;">for</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 32; i++<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                <span style="color: #aaffaa;">if</span><span style="color: #aaccff;">(</span><span style="color: #aaeecc;">(</span>x &amp; <span style="color: #ccaaff;">(</span>1 &lt;&lt; i<span style="color: #ccaaff;">)</span><span style="color: #aaeecc;">)</span><span style="color: #aaccff;">)</span>
+                        reverse_x |= 1 &lt;&lt; <span style="color: #aaccff;">(</span><span style="color: #aaeecc;">(</span>32 - 1<span style="color: #aaeecc;">)</span> - i<span style="color: #aaccff;">)</span>;
+        <span style="color: #81d4fa;">}</span>
+        <span style="color: #aaffaa;">return</span> reverse_x;
+<span style="color: #aadddd;">}</span>
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">argc</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">argv</span><span style="color: #81d4fa;">[]</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse1</span> = reverse_bits_32<span style="color: #81d4fa;">(</span> 0x12345678 <span style="color: #81d4fa;">)</span>;
+        <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse2</span> = reverse_bits_32<span style="color: #81d4fa;">(</span> reverse1   <span style="color: #81d4fa;">)</span>;
+
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"0x12345678 -&gt; 0x%x -&gt; 0x%x\n"</span>, reverse1, reverse2<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+而這程式其實可以再簡化，省掉 <code>if</code> 的判斷:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+
+<span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_bits_32</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_x</span> = 0;
+        <span style="color: #aaffaa;">for</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 32; i++<span style="color: #81d4fa;">){</span>
+                reverse_x |= <span style="color: #aaccff;">(</span> x &gt;&gt; <span style="color: #aaeecc;">(</span> <span style="color: #ccaaff;">(</span> 32 - 1 <span style="color: #ccaaff;">)</span> - i <span style="color: #aaeecc;">)</span> &amp; 1 <span style="color: #aaccff;">)</span> &lt;&lt; i;
+        <span style="color: #81d4fa;">}</span>
+        <span style="color: #aaffaa;">return</span> reverse_x;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e5cc0e" class="outline-4">
+<h4 id="org8e5cc0e">uint16_t 版本: 目標為 32-bit 系統或是以上</h4>
+<div class="outline-text-4" id="text-org8e5cc0e">
+<p>
+假如目標平台本身就是 32-bit 系統或是更高位元 (64-bit, 128-bit ... etc)，則我們可以直接使用題目的版本作點 shift 就可以得到 <code>uint16_t</code> 的版本:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+
+<span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_bits_32</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xffff0000<span style="color: #aaccff;">)</span> &gt;&gt; 16<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0000ffff<span style="color: #aaccff;">)</span> &lt;&lt; 16<span style="color: #81d4fa;">)</span>;
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xff00ff00<span style="color: #aaccff;">)</span> &gt;&gt;  8<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x00ff00ff<span style="color: #aaccff;">)</span> &lt;&lt;  8<span style="color: #81d4fa;">)</span>;
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xf0f0f0f0<span style="color: #aaccff;">)</span> &gt;&gt;  4<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0f0f0f0f<span style="color: #aaccff;">)</span> &lt;&lt;  4<span style="color: #81d4fa;">)</span>;
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xcccccccc<span style="color: #aaccff;">)</span> &gt;&gt;  2<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x33333333<span style="color: #aaccff;">)</span> &lt;&lt;  2<span style="color: #81d4fa;">)</span>;
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xaaaaaaaa<span style="color: #aaccff;">)</span> &gt;&gt;  1<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x55555555<span style="color: #aaccff;">)</span> &lt;&lt;  1<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> n;
+<span style="color: #aadddd;">}</span>
+
+<span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">reverse_bits_16</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #aaffaa;">return</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">uint16_t</span><span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">(</span>reverse_bits_32<span style="color: #aaccff;">(</span>x<span style="color: #aaccff;">)</span> &gt;&gt; 16<span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+這樣子的程式，一樣是可以順利運作的:<br />
+</p>
+
+<pre class="example">
+      從:  0x1234 =&gt; 0001 0010 0011 0100
+      到:  0x3c48 =&gt; 0010 1100 0100 1000
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org17003b8" class="outline-4">
+<h4 id="org17003b8">uint16_t 版本: 目標為 16-bit 系統</h4>
+<div class="outline-text-4" id="text-org17003b8">
+<p>
+假設今天的目標為 16-bit 系統，我們就不能用 <code>uint32_t</code> 的版本，因為系統最大的位元數是 <code>16-bit</code> ，如果要用軟體先做到模擬 32-bit 系統，在將其轉換回來這中間的損耗是划不來的。<br />
+</p>
+
+<p>
+因此我們要考慮自己改寫 <code>uint32_t</code> 的版本成 <code>uint16_t</code>, 其結果如下: (其實大部分都可以直接套用 32-bit 版本的算法)<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">reverse_bits_16</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">n</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap bytes </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xff00<span style="color: #aaccff;">)</span> &gt;&gt; 8<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x00ff<span style="color: #aaccff;">)</span> &lt;&lt; 8<span style="color: #81d4fa;">)</span>;
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap nibbles </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xf0f0<span style="color: #aaccff;">)</span> &gt;&gt; 4<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0f0f<span style="color: #aaccff;">)</span> &lt;&lt; 4<span style="color: #81d4fa;">)</span>;
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap bit pairs </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xcccc<span style="color: #aaccff;">)</span> &gt;&gt; 2<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x3333<span style="color: #aaccff;">)</span> &lt;&lt; 2<span style="color: #81d4fa;">)</span>;
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">swap odd/even bits </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xaaaa<span style="color: #aaccff;">)</span> &gt;&gt; 1<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x5555<span style="color: #aaccff;">)</span> &lt;&lt; 1<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> n;
+<span style="color: #aadddd;">}</span>
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">argc</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">argv</span><span style="color: #81d4fa;">[]</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">reverse1</span> = reverse_bits_16<span style="color: #81d4fa;">(</span> 0x1234   <span style="color: #81d4fa;">)</span>;
+        <span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">reverse2</span> = reverse_bits_16<span style="color: #81d4fa;">(</span> reverse1 <span style="color: #81d4fa;">)</span>;
+
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"0x1234 -&gt; 0x%x -&gt; 0x%x\n"</span>, reverse1, reverse2<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+0x1234 -&gt; 0x2c48 -&gt; 0x1234
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org04ac837" class="outline-4">
+<h4 id="org04ac837">uint16_t 版本: 目標為 16-bit 系統 (迴圈)</h4>
+<div class="outline-text-4" id="text-org04ac837">
+<p>
+承上，目標一樣是 16-bit 的系統，這時候我們的迴圈版本就變成這樣了 (其實和 <a href="#org510df45">for/while 迴圈版本</a> 差不多):<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+
+<span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">reverse_bits_16</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">reverse_x</span> = 0;
+        <span style="color: #aaffaa;">for</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 16; i++<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                reverse_x |= <span style="color: #aaccff;">(</span> x &gt;&gt; <span style="color: #aaeecc;">(</span> <span style="color: #ccaaff;">(</span> 16 - 1 <span style="color: #ccaaff;">)</span> - i<span style="color: #aaeecc;">)</span> &amp; 1 <span style="color: #aaccff;">)</span> &lt;&lt; i;
+        <span style="color: #81d4fa;">}</span>
+        <span style="color: #aaffaa;">return</span> reverse_x;
+<span style="color: #aadddd;">}</span>
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">argc</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">argv</span><span style="color: #81d4fa;">[]</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">reverse1</span> = reverse_bits_16<span style="color: #81d4fa;">(</span> 0x1234 <span style="color: #81d4fa;">)</span>;
+        <span style="color: #fff59d;">uint16_t</span> <span style="color: #aaccff;">reverse2</span> = reverse_bits_16<span style="color: #81d4fa;">(</span> reverse1 <span style="color: #81d4fa;">)</span>;
+
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"0x1234 -&gt; 0x%x -&gt; 0x%x\n"</span>, reverse1, reverse2<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+0x1234 -&gt; 0x2c48 -&gt; 0x1234
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org191fc8a" class="outline-4">
+<h4 id="org191fc8a">使用到的場合: 加解密運算</h4>
+<div class="outline-text-4" id="text-org191fc8a">
+<p>
+透過本題的程式，可以將 <code>0x12345678</code> 轉變成 <code>0x1e6a2c48</code> ，而這動作是可以反向的, 我們一樣可以將此函式套用在 <code>0x1e6a2c48</code> 從而得到 <code>0x12345678</code> 這樣的答案，也就是說將東西丟給這個函式，再把結果丟給這函式，可以得到原本的輸入:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c">0x12345678 == reverse_bits<span style="color: #aadddd;">(</span> reverse_bits<span style="color: #81d4fa;">(</span>0x12345678<span style="color: #81d4fa;">)</span> <span style="color: #aadddd;">)</span> <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">&#20841;&#32773;&#30456;&#31561; </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+</pre>
+</div>
+
+<p>
+利用這種特性，我們可以實作簡單的加解密程式 <code>rcf.c</code> ，如下:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdio.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdlib.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+
+<span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_bit</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        x = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0xffff0000<span style="color: #aaccff;">)</span> &gt;&gt; 16<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0x0000ffff<span style="color: #aaccff;">)</span> &lt;&lt; 16<span style="color: #81d4fa;">)</span>;
+        x = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0xff00ff00<span style="color: #aaccff;">)</span> &gt;&gt;  8<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0x00ff00ff<span style="color: #aaccff;">)</span> &lt;&lt;  8<span style="color: #81d4fa;">)</span>;
+        x = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0xf0f0f0f0<span style="color: #aaccff;">)</span> &gt;&gt;  4<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0x0f0f0f0f<span style="color: #aaccff;">)</span> &lt;&lt;  4<span style="color: #81d4fa;">)</span>;
+        x = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0xcccccccc<span style="color: #aaccff;">)</span> &gt;&gt;  2<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0x33333333<span style="color: #aaccff;">)</span> &lt;&lt;  2<span style="color: #81d4fa;">)</span>;
+        x = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0xaaaaaaaa<span style="color: #aaccff;">)</span> &gt;&gt;  1<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>x &amp; 0x55555555<span style="color: #aaccff;">)</span> &lt;&lt;  1<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> x;
+<span style="color: #aadddd;">}</span>
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">argc</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">argv</span><span style="color: #81d4fa;">[]</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span>argc &lt; 3<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                printf<span style="color: #aaccff;">(</span> <span style="color: #aadddd;">"\nUsage:"</span>
+                        <span style="color: #aadddd;">"\t %s input.txt output.txt\n\n"</span>
+                        <span style="color: #aadddd;">"This is a simple encrypt/decrypt app "</span>
+                        <span style="color: #aadddd;">"based on reverse_bit algorithm.\n\n"</span>
+                        , argv<span style="color: #aaeecc;">[</span>0<span style="color: #aaeecc;">]</span><span style="color: #aaccff;">)</span>;
+                <span style="color: #aaffaa;">return</span> 0;
+        <span style="color: #81d4fa;">}</span>
+
+        <span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">input_path</span> = argv<span style="color: #81d4fa;">[</span>1<span style="color: #81d4fa;">]</span>;
+        <span style="color: #fff59d;">FILE</span> *<span style="color: #aaccff;">fin</span> = fopen<span style="color: #81d4fa;">(</span>input_path, <span style="color: #aadddd;">"rb"</span><span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span><span style="color: #ff3333;">!</span>fin<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                fprintf<span style="color: #aaccff;">(</span>stderr,
+                        <span style="color: #aadddd;">"ERROR: failed to open input file %s\n"</span>, input_path<span style="color: #aaccff;">)</span>;
+                exit<span style="color: #aaccff;">(</span>-1<span style="color: #aaccff;">)</span>;
+        <span style="color: #81d4fa;">}</span>
+
+        <span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">output_path</span> = argv<span style="color: #81d4fa;">[</span>2<span style="color: #81d4fa;">]</span>;
+        <span style="color: #fff59d;">FILE</span> *<span style="color: #aaccff;">fout</span> = fopen<span style="color: #81d4fa;">(</span>output_path, <span style="color: #aadddd;">"wb"</span><span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span><span style="color: #ff3333;">!</span>fout<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                fclose<span style="color: #aaccff;">(</span>fin<span style="color: #aaccff;">)</span>;
+                fprintf<span style="color: #aaccff;">(</span>stderr,
+                        <span style="color: #aadddd;">"ERROR: failed to open output file %s\n"</span>, output_path<span style="color: #aaccff;">)</span>;
+                exit<span style="color: #aaccff;">(</span>-1<span style="color: #aaccff;">)</span>;
+        <span style="color: #81d4fa;">}</span>
+
+        <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">ch</span>;
+        <span style="color: #fff59d;">int</span> <span style="color: #aaccff;">nread</span>;
+        <span style="color: #aaffaa;">while</span><span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>nread = fread<span style="color: #aaeecc;">(</span>&amp;ch, 1, <span style="color: #aaffaa;">sizeof</span><span style="color: #ccaaff;">(</span>uint32_t<span style="color: #ccaaff;">)</span>, fin<span style="color: #aaeecc;">)</span><span style="color: #aaccff;">)</span> &gt; 0<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">if read size less than sizeof(uint32_t), just write it </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+                <span style="color: #aaffaa;">if</span> <span style="color: #aaccff;">(</span>nread &lt; <span style="color: #aaffaa;">sizeof</span><span style="color: #aaeecc;">(</span>uint32_t<span style="color: #aaeecc;">)</span><span style="color: #aaccff;">)</span> <span style="color: #aaccff;">{</span>
+                        fwrite<span style="color: #aaeecc;">(</span>&amp;ch, 1, nread, fout<span style="color: #aaeecc;">)</span>;
+                <span style="color: #aaccff;">}</span>
+                <span style="color: #aaffaa;">else</span> <span style="color: #aaccff;">{</span>
+                        <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">chn</span> = reverse_bit<span style="color: #aaeecc;">(</span>ch<span style="color: #aaeecc;">)</span>;
+                        fwrite<span style="color: #aaeecc;">(</span>&amp;chn, 1, nread, fout<span style="color: #aaeecc;">)</span>;
+                <span style="color: #aaccff;">}</span>
+        <span style="color: #81d4fa;">}</span>
+
+        fclose<span style="color: #81d4fa;">(</span>fin<span style="color: #81d4fa;">)</span>;
+        fclose<span style="color: #81d4fa;">(</span>fout<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+這個程式可以使用以下命令進行編譯:<br />
+</p>
+
+<pre class="example">
+gcc rcf.c -o rcf
+
+</pre>
+
+<p>
+那要如何使用呢? 我們可以建立一個名為 <code>hello.txt</code> 的文字檔，有以下內容:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">hello, this is a test
+</pre>
+</div>
+
+<p>
+接下來使用這隻加密程式產生新的檔案叫做 <code>hello_enc.txt</code><br />
+</p>
+
+<pre class="example">
+./rcf hello.txt hello_enc.txt
+
+</pre>
+
+<p>
+打開可以看到內容如下: (是不是成功加密了!)<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">66&#166;^V.^D4&#246;^D&#206;&lt;96&gt;^V&lt;86&gt;^D&#206;&lt;96&gt;&#206;&#166;.^Dt
+</pre>
+</div>
+
+<p>
+而這個檔案我們一樣可以透過這隻程式進行解密成 <code>hello_dec.txt</code><br />
+</p>
+
+<pre class="example">
+./rcf hello_enc.txt hello_dec.txt
+
+</pre>
+
+<p>
+打開 <code>hello_dec.txt</code> 看看，內容是不是和原來的一樣 ?<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text">hello, this is a test
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgff56593" class="outline-4">
+<h4 id="orgff56593">使用到的場合: CRC-32 運算</h4>
+<div class="outline-text-4" id="text-orgff56593">
+<p>
+從 <a href="#org191fc8a">使用到的場合: 加解密運算</a> 這邊可以知道僅僅只是反轉一下位元就可以製作加解密程式，<a href="https://zh.wikipedia.org/zh-tw/%E5%BE%AA%E7%92%B0%E5%86%97%E9%A4%98%E6%A0%A1%E9%A9%97">循環冗餘校驗 (CRC)</a> 的實作也可以用到 位元反轉 (bit reverse) 的部分。<br />
+</p>
+
+<p>
+具體實作可以參考:<br />
+</p>
+
+<ul class="org-ul">
+<li><a href="http://www.hackersdelight.org/hdcodetxt/crc.c.txt">Hacker's Delight - crc.c</a><br /></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgeb017cd" class="outline-4">
+<h4 id="orgeb017cd">使用到的場合: Linux Kernel</h4>
+<div class="outline-text-4" id="text-orgeb017cd">
+<p>
+Linux kernel 裡面有實作 <code>bitrev32</code> 等位元反轉的命令，可以在 <a href="http://elixir.free-electrons.com/linux/v4.12/source/include/linux/bitrev.h">bitrev.h</a> 看到，最常用到的用途，則是在 <code>ether_crc()</code> 這個函式上:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #5f5f5f; font-style: italic;">/*</span>
+<span style="color: #9ac; font-style: italic;"> * Helpers for hash table generation of ethernet nics:</span>
+<span style="color: #9ac; font-style: italic;"> *</span>
+<span style="color: #9ac; font-style: italic;"> * Ethernet sends the least significant bit of a byte first, thus crc32_le</span>
+<span style="color: #9ac; font-style: italic;"> * is used. The output of crc32_le is bit reversed [most significant bit</span>
+<span style="color: #9ac; font-style: italic;"> * is in bit nr 0], thus it must be reversed before use. Except for</span>
+<span style="color: #9ac; font-style: italic;"> * nics that bit swap the result internally...</span>
+<span style="color: #9ac; font-style: italic;"> </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+<span style="color: #ff8888;">#define</span> <span style="color: #aaccff;">ether_crc</span><span style="color: #aadddd;">(</span><span style="color: #aaccff;">length</span>, <span style="color: #aaccff;">data</span><span style="color: #aadddd;">)</span>    bitrev32<span style="color: #aadddd;">(</span>crc32_le<span style="color: #81d4fa;">(</span>~0, data, length<span style="color: #81d4fa;">)</span><span style="color: #aadddd;">)</span>
+<span style="color: #ff8888;">#define</span> <span style="color: #aaccff;">ether_crc_le</span><span style="color: #aadddd;">(</span><span style="color: #aaccff;">length</span>, <span style="color: #aaccff;">data</span><span style="color: #aadddd;">)</span> crc32_le<span style="color: #aadddd;">(</span>~0, data, length<span style="color: #aadddd;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf9c930d" class="outline-4">
+<h4 id="orgf9c930d">使用到的場合: 快速傅利葉轉換</h4>
+<div class="outline-text-4" id="text-orgf9c930d">
+<p>
+在進行快速傅利葉轉換(Fast Fourier Transform, FFT)之前，我們會需要進行位元反轉 (bit reverse)，從 <a href="http://www.idi.ntnu.no/~elster/pubs/elster-bit-rev-1989.pdf">FAST BIT-REVERSAL ALGORITHM</a> 論文一開頭的描述來看:<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/fast-bit-reversal-algorithm.png" alt="fast-bit-reversal-algorithm.png" /><br />
+</p>
+</div>
+
+<p>
+足以知道位元反轉 (bit reverse) 對於快速傅利葉轉換(FFT)的重要性。<br />
+</p>
+
+<p>
+(註: <a href="http://ieeexplore.ieee.org/document/1631/?denied">Unscrambling for fast DFT algorithms</a> 我沒找到電子檔)<br />
+</p>
+
+<p>
+此外，在 <a href="http://www.hpl.hp.com/techreports/93/HPL-93-89.pdf">Bit Reversal on Uniprocessors</a> 這篇文章也列舉了 30 種用來作位元反轉(bit reverse)的演算法，用來測試在不同硬體上面的效能比較。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org46885c6" class="outline-4">
+<h4 id="org46885c6">開源專案與位元反轉</h4>
+<div class="outline-text-4" id="text-org46885c6">
+<p>
+以下列出有使用 reverse bits 函式的知名開源專案以及程式碼位置 (點擊可以找到 GitHub 上的原始碼):<br />
+</p>
+
+<ul class="org-ul">
+<li><a href="http://elixir.free-electrons.com/linux/v4.12/source/include/linux/bitrev.h">linux kernel</a><br /></li>
+
+<li><a href="https://github.com/antirez/redis/blob/3.0/src/dict.c#L755">redis</a><br /></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org72fe231" class="outline-4">
+<h4 id="org72fe231">補充: Clang 與 GCC 支援</h4>
+<div class="outline-text-4" id="text-org72fe231">
+<p>
+Clang 是有內建 <a href="http://clang.llvm.org/docs/LanguageExtensions.html#builtin-bitreverse">字元反轉</a> 的函式的，然而根據 <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=50481">BUG 50481</a> 來看 GCC 是尚未支援內建這功能。<br />
+</p>
+
+<p>
+以下為 Clang 內建的版本說明如下:<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/clang_bitrev.png" alt="clang_bitrev.png" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2deb76b" class="outline-4">
+<h4 id="org2deb76b">補充: C 語言實作 2 進制的 print 函式</h4>
+<div class="outline-text-4" id="text-org2deb76b">
+<p>
+在撰寫這一題的時候，順手寫了一個可以將 <code>uint32_t</code> 型別的輸入，以二進制的形式顯示出來的函式，這樣也可以比較方便的測試這一個題目:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+
+<span style="color: #fff59d;">void</span> <span style="color: #aaccff;">print_binary</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">unsigned</span> <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">p</span> = <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">unsigned</span> <span style="color: #fff59d;">char</span> *<span style="color: #81d4fa;">)</span> &amp;x;
+        <span style="color: #fff59d;">unsigned</span> <span style="color: #fff59d;">char</span> <span style="color: #aaccff;">byte</span>;
+
+        <span style="color: #aaffaa;">for</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = <span style="color: #aaffaa;">sizeof</span><span style="color: #aaccff;">(</span>uint32_t<span style="color: #aaccff;">)</span> -1; i &gt;= 0; i--<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                <span style="color: #aaffaa;">for</span> <span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">j</span> = 7; j &gt;= 0; j--<span style="color: #aaccff;">)</span> <span style="color: #aaccff;">{</span>
+                        byte = <span style="color: #aaeecc;">(</span>p<span style="color: #ccaaff;">[</span>i<span style="color: #ccaaff;">]</span> &gt;&gt; j<span style="color: #aaeecc;">)</span> &amp; 1;
+                        printf<span style="color: #aaeecc;">(</span><span style="color: #aadddd;">"%u"</span>, byte<span style="color: #aaeecc;">)</span>;
+                        <span style="color: #aaffaa;">if</span> <span style="color: #aaeecc;">(</span>0 == <span style="color: #ccaaff;">(</span>j % 4<span style="color: #ccaaff;">)</span><span style="color: #aaeecc;">)</span>
+                                printf<span style="color: #aaeecc;">(</span><span style="color: #aadddd;">" "</span><span style="color: #aaeecc;">)</span>;
+                <span style="color: #aaccff;">}</span>
+        <span style="color: #81d4fa;">}</span>
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"\n"</span><span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">argc</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">argv</span><span style="color: #81d4fa;">[]</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        print_binary<span style="color: #81d4fa;">(</span>0x12345678<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+0001 0010 0011 0100 0101 0110 0111 1000
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc938790" class="outline-4">
+<h4 id="orgc938790">延伸閱讀</h4>
+<div class="outline-text-4" id="text-orgc938790">
+<ul class="org-ul">
+<li><a href="https://stackoverflow.com/questions/746171/best-algorithm-for-bit-reversal-from-msb-lsb-to-lsb-msb-in-c">Best Algorithm for Bit Reversal ( from MSB-&gt;LSB to LSB-&gt;MSB) in C - Stack Overflow</a><br /></li>
+
+<li><a href="https://stackoverflow.com/questions/2602823/in-c-c-whats-the-simplest-way-to-reverse-the-order-of-bits-in-a-byte">In C/C++ what's the simplest way to reverse the order of bits in a byte? - Stack Overflow</a><br /></li>
+
+<li><a href="http://graphics.stanford.edu/~seander/bithacks.html#BitReverseObvious">Bit Twiddling Hacks -  Reverse an N-bit quantity in parallel in 5 * lg(N) operations</a><br /></li>
+
+<li><a href="http://aggregate.org/MAGIC/#Bit%20Reversal">The Aggregate Magic Algorithms - Bit Reversal</a><br /></li>
+
+<li><a href="http://bsmartt13.github.io/blog/2012/01/05/reversing-bits-and-bytes/">Reversing Bits and Bytes</a><br /></li>
+
+<li><a href="http://www.hpl.hp.com/techreports/93/HPL-93-89.pdf">Bit Reversal on Uniprocessors</a><br /></li>
+
+<li><a href="http://acm.nudt.edu.cn/~twcourse/BitwiseOperation.html">演算法筆記 - Bitwise Operation</a><br /></li>
+
+<li><a href="https://www.ptt.cc/bbs/C_and_CPP/M.1221326572.A.43C.html">Re: 什麼是快速傅立葉轉換 - 看板 C_and_CPP - 批踢踢實業坊</a><br /></li>
+
+<li><a href="http://eshare.stust.edu.tw/EshareFile/2010_6/2010_6_a78298c9.pdf">一般信號處理，常用快速傅立葉轉換（FFT）來求得信所對應的頻譜</a><br /></li>
+
+<li><a href="https://ccjou.wordpress.com/2012/05/25/%E5%BF%AB%E9%80%9F%E5%82%85%E7%AB%8B%E8%91%89%E8%BD%89%E6%8F%9B/">快速傅立葉轉換 | 線代啟示錄</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9f2032b" class="outline-3">
+<h3 id="org9f2032b"><span class="todo TODO">TODO</span> Q2</h3>
+<div class="outline-text-3" id="text-org9f2032b">
+<p>
+在 C 程式中，使用遞迴和 bit-wise operator 來實作乘法運算，請參考以下提示:<br />
+</p>
+
+<ul class="org-ul">
+<li>加法器是用於執行加法的電路元件，通常由 AND 閘、OR 閘 和 XOR 閘構成<br />
+
+<ul class="org-ul">
+<li>也可用加法器實作減法，只要將減數轉成二補數，並注意溢位即可<br /></li>
+</ul></li>
+
+<li><p>
+半加器：將兩個一位二進位數相加 (input: A, B) (output: S, C)<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/HRN0c1D.png" alt="HRN0c1D.png" /><br />
+</p>
+</div></li>
+
+<li><p>
+全加器：將兩個一位二進位數相加 (input: A, B, Cin) (output: S, Cout)<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/cypKq1H.png" alt="cypKq1H.png" /><br />
+</p>
+</div></li>
+
+<li><p>
+波紋進位加法器：使用多個一位全加器構成 N 位加法器<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/X5fQcYn.png" alt="X5fQcYn.png" /><br />
+</p>
+</div></li>
+
+<li><p>
+半加器可用以下 C 程式來實作:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">half_add</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">a</span>, <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">b</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span>b == 0<span style="color: #81d4fa;">)</span> <span style="color: #aaffaa;">return</span> a;
+    <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">sum</span> = a ^ b;             <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">&#30456;&#21152;&#20294;&#19981;&#36914;&#20301; </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+    <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">carry</span> = <span style="color: #81d4fa;">(</span>a &amp; b<span style="color: #81d4fa;">)</span> &lt;&lt; 1;    <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">&#36914;&#20301;&#20294;&#19981;&#30456;&#21152; </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+    <span style="color: #aaffaa;">return</span> half_add<span style="color: #81d4fa;">(</span>sum, carry<span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div></li>
+</ul>
+</div>
+<div id="outline-container-org594cc3f" class="outline-4">
+<h4 id="org594cc3f">想法 &amp; 思考</h4>
+<div class="outline-text-4" id="text-org594cc3f">
+<p>
+題目提供了半加器的實作方式，我們在列一次, 並先實作全加器<br />
+</p>
+
+<ul class="org-ul">
+<li><p>
+半加器<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/HRN0c1D.png" alt="HRN0c1D.png" /><br />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">half_add</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">a</span>, <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">b</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span>b == 0<span style="color: #81d4fa;">)</span> <span style="color: #aaffaa;">return</span> a;
+    <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">sum</span> = a ^ b;             <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">&#30456;&#21152;&#20294;&#19981;&#36914;&#20301; </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+    <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">carry</span> = <span style="color: #81d4fa;">(</span>a &amp; b<span style="color: #81d4fa;">)</span> &lt;&lt; 1;    <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">&#36914;&#20301;&#20294;&#19981;&#30456;&#21152; </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+    <span style="color: #aaffaa;">return</span> half_add<span style="color: #81d4fa;">(</span>sum, carry<span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div></li>
+
+<li><p>
+全加器<br />
+</p>
+
+<p>
+一個全加器可以透過兩個半加器實作，如下圖:<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/full_add.png" alt="full_add.png" /><br />
+</p>
+</div>
+
+<p>
+因此我們的實作是這樣的:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">full_add</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">a</span>, <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">b</span>, <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">c</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">s1</span> = half_add<span style="color: #81d4fa;">(</span>a, b<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> half_add<span style="color: #81d4fa;">(</span>c, s1<span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div></li>
+</ul>
+
+<p>
+Overflow 怎辦?<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">int32_t</span> <span style="color: #aaccff;">mult</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int32_t</span> <span style="color: #aaccff;">x</span>, <span style="color: #fff59d;">int32_t</span> <span style="color: #aaccff;">y</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">unsigned</span> <span style="color: #fff59d;">int</span> <span style="color: #aaccff;">reg</span> = 0;
+
+        <span style="color: #aaffaa;">while</span> <span style="color: #81d4fa;">(</span>y != 0<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                <span style="color: #aaffaa;">if</span> <span style="color: #aaccff;">(</span>y &amp; 1<span style="color: #aaccff;">)</span>
+                        reg += x;
+                x &lt;&lt;= 1;
+                y &gt;&gt;= 1;
+        <span style="color: #81d4fa;">}</span>
+        <span style="color: #aaffaa;">return</span> reg;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga2fd07e" class="outline-4">
+<h4 id="orga2fd07e">延伸閱讀</h4>
+<div class="outline-text-4" id="text-orga2fd07e">
+<ul class="org-ul">
+<li><a href="https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-only-bit-shifting-and-adding">How can I multiply and divide using only bit shifting and adding? - Stack Overflow</a><br /></li>
+<li><a href="https://www.fefe.de/intof.html">Catching Integer Overflows in C</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge492638" class="outline-3">
+<h3 id="orge492638"><span class="done DONE">DONE</span> Q3</h3>
+<div class="outline-text-3" id="text-orge492638">
+<p>
+思考以下 C 程式的用途，以及在什麼場合用得到 (提示: 記憶體管理常式)，探討應用場合時，需要一併列出最小可編譯和運作的 C 程式碼。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">p</span>;
+<span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">...</span>
+*p = <span style="color: #aadddd;">(</span>*p<span style="color: #aadddd;">)</span> &amp; ~1;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfd08bbf" class="outline-4">
+<h4 id="orgfd08bbf">思考 &amp; 想法</h4>
+<div class="outline-text-4" id="text-orgfd08bbf">
+<p>
+要看這一題，先把 <code>~1</code> 轉換成 <code>0xfffffffe</code> 這樣會比較好想，一般來說這種的用途是用在設定某個 bit (flag) 用的，也就是題目其實在問在記憶體管理函式中，怎樣的狀況會用到下面這個：<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">*p &amp;= 0xfffffffe;
+<span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">0xfffffffe =&gt;</span>
+<span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1110</span>
+</pre>
+</div>
+
+<p>
+從上面可以看出，執行這行程式時會將 bit[0] 歸零。<br />
+</p>
+
+<p>
+那這樣的東西要怎樣和記憶體管理常式扯到邊呢? 前面提到了這種作法是在設定某個 bit (flag) 用的，也就是說我們可以這樣想:<br />
+</p>
+
+<ul class="org-ul">
+<li>設定為 1 -&gt; 該段記憶體使用中<br /></li>
+<li><p>
+設定為 0 -&gt; 該段記憶體尚未被使用<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/mem_header.png" alt="mem_header.png" /><br />
+</p>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3c99ab7" class="outline-4">
+<h4 id="org3c99ab7">實作 1 - 最簡單的 malloc</h4>
+<div class="outline-text-4" id="text-org3c99ab7">
+<p>
+從上面的想法，可以想到每次進行 malloc 的時候，其實我們是這樣佔用記憶體的 (payload 為實際存放資料的區塊)<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/mem1.png" alt="mem1.png" /><br />
+</p>
+</div>
+
+<p>
+為了方便理解，我們首先定義自己的記憶體區塊來製作我們的記憶體管理程式，其中 <code>MY_MEMORY_SIZE</code> 決定了我們可以索取的記憶體大小。<br />
+</p>
+
+<p>
+在主程式開始之前，則需要呼叫 <code>my_init()</code> 來確保這個記憶體管理方式是有正確初始化的。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#define</span> <span style="color: #aaccff;">MY_MEMORY_SIZE</span> 37
+
+<span style="color: #aaffaa;">static</span> <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">memory</span><span style="color: #aadddd;">[</span>MY_MEMORY_SIZE<span style="color: #aadddd;">]</span> = <span style="color: #aadddd;">{</span> <span style="color: #ccaaff;">NULL</span> <span style="color: #aadddd;">}</span>;
+
+<span style="color: #aaffaa;">static</span> <span style="color: #fff59d;">uint32_t</span> *<span style="color: #aaccff;">brkp</span>;
+<span style="color: #aaffaa;">static</span> <span style="color: #fff59d;">uint32_t</span> *<span style="color: #aaccff;">endp</span>;
+
+<span style="color: #fff59d;">void</span> <span style="color: #aaccff;">my_init</span><span style="color: #aadddd;">()</span>
+<span style="color: #aadddd;">{</span>
+        brkp = memory;
+        endp = brkp + MY_MEMORY_SIZE;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+接著定義我們的 <code>sbrk()</code> 函式，可以從 <code>manpage</code> 看到 <code>sbrk()</code> 的描述是這樣的<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/sbrk.png" alt="sbrk.png" /><br />
+</p>
+</div>
+
+<p>
+所以我們可以這樣實作他<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">my_sbrk</span><span style="color: #aadddd;">(</span><span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">size</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span>0 == size<span style="color: #81d4fa;">)</span>
+                <span style="color: #aaffaa;">return</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #81d4fa;">)</span> memory;
+
+        <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">free</span> = <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #81d4fa;">)</span> brkp;
+        brkp += size;
+
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span>brkp &gt;= endp<span style="color: #81d4fa;">)</span>
+                <span style="color: #aaffaa;">return</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #81d4fa;">)</span> -1;
+
+        <span style="color: #aaffaa;">return</span> free;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+有了 <code>sbrk()</code> 後，就可以透過他製作最簡單的 <code>malloc()</code> 了，在這邊我們對要到的記憶體標頭進行設定，將 flag 設定為 1 代表該區塊記憶體正在使用中。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">my_malloc</span><span style="color: #aadddd;">(</span><span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">size</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">blk_size = header + payload + footer</span>
+        <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">blk_size</span> = 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span><span style="color: #81d4fa;">)</span> + size + 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span><span style="color: #81d4fa;">)</span>;
+
+        <span style="color: #fff59d;">size_t</span> *<span style="color: #aaccff;">header</span> = my_sbrk<span style="color: #81d4fa;">(</span>blk_size<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span>header == -1<span style="color: #81d4fa;">)</span>
+                <span style="color: #aaffaa;">return</span> <span style="color: #ccaaff;">NULL</span>;
+
+        *header = <span style="color: #81d4fa;">(</span>blk_size &lt;&lt; 1<span style="color: #81d4fa;">)</span> | 1;  <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">mark allocated bit</span>
+
+        <span style="color: #aaffaa;">return</span> header + 1;      <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">return payload address</span>
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+相對於 <code>my_malloc()</code> 會將 header 的尾巴設定 <code>1</code> 來代表該區塊被使用，當要進行 <code>free()</code> 的動作的時候，我們就把 header 的尾巴設定回 <code>0</code> 。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> <span style="color: #aaccff;">my_free</span><span style="color: #aadddd;">(</span><span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">ptr</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">size_t</span> *<span style="color: #aaccff;">header</span> = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">size_t</span> *<span style="color: #aaccff;">)</span> ptr<span style="color: #81d4fa;">)</span> - 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span><span style="color: #81d4fa;">)</span>;
+        *header &amp;= ~1; <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">unmark allocated bit</span>
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+最後在搭配一個簡單的測試程式，假如上面的 <code>MY_MEMORY_SIZE</code> 設定小於 <code>36</code> 就會遇到 <code>assertion failed</code> 的錯誤，代表已經用滿了可以用的記憶體了。<br />
+</p>
+
+<p>
+(因為每一次 malloc 佔用了 sizeof(int) *3 的大小，即 <code>12 bytes</code>, 因此 my_malloc() 呼叫 3 次，會用掉 36 bytes 空間，此時 <code>my_sbrk()</code> 會失敗)<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">argc</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">argv</span><span style="color: #81d4fa;">[]</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        my_init<span style="color: #81d4fa;">()</span>;
+
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">a1</span> = my_malloc<span style="color: #81d4fa;">(</span> 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span>;
+        assert<span style="color: #81d4fa;">(</span>a1<span style="color: #81d4fa;">)</span>;
+
+        *a1 = 1;
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"a1: %p, *a1 = %d\n"</span>, a1, *a1<span style="color: #81d4fa;">)</span>;
+
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">a2</span> = my_malloc<span style="color: #81d4fa;">(</span> 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span>;
+        assert<span style="color: #81d4fa;">(</span>a2<span style="color: #81d4fa;">)</span>;
+        *a2 = 2;
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"a2: %p, *a2 = %d\n"</span>, a2, *a2<span style="color: #81d4fa;">)</span>;
+
+        my_free<span style="color: #81d4fa;">(</span>a2<span style="color: #81d4fa;">)</span>;    <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">try to free a2</span>
+
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">a3</span> = my_malloc<span style="color: #81d4fa;">(</span> 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span>;
+        assert<span style="color: #81d4fa;">(</span>a3<span style="color: #81d4fa;">)</span>;
+
+        *a3= 3;
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"a3: %p, *a3 = %d\n"</span>, a3, *a3<span style="color: #81d4fa;">)</span>;
+
+        <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+正常情況會得到這樣的結果:<br />
+</p>
+
+<pre class="example">
+a1: 0x10b6d9028, *a1 = 1
+a2: 0x10b6d9058, *a2 = 2
+a3: 0x10b6d9088, *a3 = 3
+</pre>
+
+<p>
+假如 <code>MY_MEMORY_SIZE</code> 設定為 <code>30</code> 的話，則會變成這樣，代表可用的記憶體已經用完了，無法進行配置。 (沒用 <code>assert()</code> 的話就會遇到 <code>segmentfault</code>)<br />
+</p>
+
+<pre class="example">
+a1: 0x10acf4028, *a1 = 1
+a2: 0x10acf4058, *a2 = 2
+Assertion failed: (a3), function main, file b.c, line 69.
+Abort trap: 6
+</pre>
+
+<p>
+這是一個非常簡單的 <code>malloc()</code> 實作，從這實作可以發現到我們並沒有作真的 <code>free()</code> 的動作，也因此如果一直呼叫 <code>my_malloc()</code> 會遇到記憶體爆掉的狀況。<br />
+</p>
+
+<p>
+接下來就講講如何透過 header 的尾巴那個 flag 來作閒置記憶體區塊的判斷。<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga06634d" class="outline-4">
+<h4 id="orga06634d">實作 2 - 實作 1 改良版</h4>
+<div class="outline-text-4" id="text-orga06634d">
+<p>
+在 <a href="#org3c99ab7">實作 1 - 最簡單的 malloc</a> 裡面，雖然我們有對使用中/不使用的記憶體區塊設定好了 flag, 然而我們並沒有使用他，也因此當呼叫 <code>my_free()</code> 的時候會發現其實他並沒有實質的作用。<br />
+</p>
+
+<p>
+這個實作將沿用 <a href="#org3c99ab7">實作 1 - 最簡單的 malloc</a> 的想法，製作出一個實際上可以用的 <code>my_free()</code> 函式。<br />
+</p>
+
+<p>
+(當然這個東西會有問題，比如記憶體碎片化的狀況)<br />
+</p>
+
+<p>
+因為是沿用前面的程式，基本的部分都差不多，差別在這次 <code>MY_MEMORY_SIZE</code> 設定為 <code>30</code>, 在前面的例子中這個數值在執行 <code>a3 = my_malloc()</code> 的時候就會爆掉了。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#define</span> <span style="color: #aaccff;">MY_MEMORY_SIZE</span> 30
+
+<span style="color: #aaffaa;">static</span> <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">memory</span><span style="color: #aadddd;">[</span>MY_MEMORY_SIZE<span style="color: #aadddd;">]</span> = <span style="color: #aadddd;">{</span> <span style="color: #ccaaff;">NULL</span> <span style="color: #aadddd;">}</span>;
+
+<span style="color: #aaffaa;">static</span> <span style="color: #fff59d;">uint32_t</span> *<span style="color: #aaccff;">brkp</span>;
+<span style="color: #aaffaa;">static</span> <span style="color: #fff59d;">uint32_t</span> *<span style="color: #aaccff;">endp</span>;
+
+<span style="color: #fff59d;">void</span> <span style="color: #aaccff;">my_init</span><span style="color: #aadddd;">()</span>
+<span style="color: #aadddd;">{</span>
+        brkp = memory;
+        endp = brkp + MY_MEMORY_SIZE;
+<span style="color: #aadddd;">}</span>
+
+<span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">my_sbrk</span><span style="color: #aadddd;">(</span><span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">size</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span>0 == size<span style="color: #81d4fa;">)</span>
+                <span style="color: #aaffaa;">return</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #81d4fa;">)</span> memory;
+
+        <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">free</span> = <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #81d4fa;">)</span> brkp;
+        brkp += size;
+
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span>brkp &gt;= endp<span style="color: #81d4fa;">)</span>
+                <span style="color: #aaffaa;">return</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #81d4fa;">)</span> -1;
+
+        <span style="color: #aaffaa;">return</span> free;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+這次我們的 <code>my_malloc()</code> 則長得有點不一樣，他會透過 <code>find_free_block()</code> 去找尋可以使用的區塊位址。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">my_malloc</span><span style="color: #aadddd;">(</span><span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">size</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">blk_size = header + payload + footer</span>
+        <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">blk_size</span> = 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span><span style="color: #81d4fa;">)</span> + size + 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span><span style="color: #81d4fa;">)</span>;
+
+        <span style="color: #fff59d;">size_t</span> *<span style="color: #aaccff;">header</span> = find_free_block<span style="color: #81d4fa;">(</span>size<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span>header == -1<span style="color: #81d4fa;">)</span>
+                <span style="color: #aaffaa;">return</span> <span style="color: #ccaaff;">NULL</span>;
+
+        *header = <span style="color: #81d4fa;">(</span>blk_size &lt;&lt; 1<span style="color: #81d4fa;">)</span> | 1;  <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">mark allocated bit</span>
+
+        <span style="color: #aaffaa;">return</span> header + 1;      <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">return payload address</span>
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+那要怎樣尋找可以使用的區塊位址呢? 我們可以先透過 <code>my_sbrk(0)</code> 檢查當前的位址，如果和 <code>brkp</code> 相同的話，則直接透過 <code>my_sbrk()</code> 進行配置。<br />
+</p>
+
+<p>
+反之，透過每一個記憶體區塊的大小找尋下一組可以使用的記憶體區塊，並返回位址。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">find_free_block</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">size</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">check if we are at top of heap </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span>my_sbrk<span style="color: #aaccff;">(</span>0<span style="color: #aaccff;">)</span> == brkp<span style="color: #81d4fa;">)</span>
+                <span style="color: #aaffaa;">return</span> my_sbrk<span style="color: #81d4fa;">(</span>size<span style="color: #81d4fa;">)</span>;
+
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">ptr</span> = my_sbrk<span style="color: #81d4fa;">(</span>0<span style="color: #81d4fa;">)</span>;
+
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">find free block which also has enough size </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        <span style="color: #aaffaa;">while</span> <span style="color: #81d4fa;">(</span>1<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">if memory is in used, skip it </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+                <span style="color: #aaffaa;">if</span> <span style="color: #aaccff;">(</span> *ptr &amp; 1 <span style="color: #aaccff;">)</span> <span style="color: #aaccff;">{</span>
+                        ptr += 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #aaeecc;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaeecc;">)</span> + <span style="color: #aaeecc;">(</span>*ptr &gt;&gt; 1<span style="color: #aaeecc;">)</span> + 1 *<span style="color: #aaffaa;">sizeof</span><span style="color: #aaeecc;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaeecc;">)</span>;
+                        <span style="color: #aaffaa;">continue</span>;
+                <span style="color: #aaccff;">}</span>
+                <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">if size is enough, use this block </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+                <span style="color: #aaffaa;">if</span> <span style="color: #aaccff;">(</span><span style="color: #aaeecc;">(</span><span style="color: #ccaaff;">(</span> *ptr &gt;&gt; 1 <span style="color: #ccaaff;">)</span> &gt;= size<span style="color: #aaeecc;">)</span> || *ptr == <span style="color: #ccaaff;">NULL</span><span style="color: #aaccff;">)</span>
+                        <span style="color: #aaffaa;">break</span>;
+
+                <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">oops, we search to end of the memory </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+                <span style="color: #aaffaa;">if</span> <span style="color: #aaccff;">(</span>ptr &gt;= endp<span style="color: #aaccff;">)</span> <span style="color: #aaccff;">{</span>
+                        <span style="color: #aaffaa;">return</span> <span style="color: #aaeecc;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaeecc;">)</span> -1;
+                <span style="color: #aaccff;">}</span>
+        <span style="color: #81d4fa;">}</span>
+
+        <span style="color: #aaffaa;">return</span> ptr;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+<code>my_free()</code> 則維持和原本的一樣，當需要 free 的時候，設定好 flag 就行了。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> <span style="color: #aaccff;">my_free</span><span style="color: #aadddd;">(</span><span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">ptr</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">size_t</span> *<span style="color: #aaccff;">header</span> = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">size_t</span> *<span style="color: #aaccff;">)</span> ptr<span style="color: #81d4fa;">)</span> - 1;
+        *header &amp;= ~1; <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">unmark allocated bit</span>
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+最後就是我們的測試，透過記憶體位置可以看到基本的 <code>my_free()</code> 有作用了。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">argc</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">argv</span><span style="color: #81d4fa;">[]</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        my_init<span style="color: #81d4fa;">()</span>;
+
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">a1</span> = my_malloc<span style="color: #81d4fa;">(</span> 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span>;
+        assert<span style="color: #81d4fa;">(</span>a1<span style="color: #81d4fa;">)</span>;
+
+        *a1 = 1;
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"a1: %p, *a1 = %d\n"</span>, a1, *a1<span style="color: #81d4fa;">)</span>;
+
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">a2</span> = my_malloc<span style="color: #81d4fa;">(</span> 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span>;
+        assert<span style="color: #81d4fa;">(</span>a2<span style="color: #81d4fa;">)</span>;
+
+        *a2 = 2;
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"a2: %p, *a2 = %d\n"</span>, a2, *a2<span style="color: #81d4fa;">)</span>;
+        my_free<span style="color: #81d4fa;">(</span>a2<span style="color: #81d4fa;">)</span>;            <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">try to free a2</span>
+
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">a3</span> = my_malloc<span style="color: #81d4fa;">(</span> 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span>;
+        assert<span style="color: #81d4fa;">(</span>a3<span style="color: #81d4fa;">)</span>;
+
+        *a3= 3;
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"a3: %p, *a3 = %d\n"</span>, a3, *a3<span style="color: #81d4fa;">)</span>;
+        my_free<span style="color: #81d4fa;">(</span>a3<span style="color: #81d4fa;">)</span>;            <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">try to free a3</span>
+
+        my_free<span style="color: #81d4fa;">(</span>a1<span style="color: #81d4fa;">)</span>;            <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">try to free a1</span>
+
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">a4</span> = my_malloc<span style="color: #81d4fa;">(</span> 1 * <span style="color: #aaffaa;">sizeof</span><span style="color: #aaccff;">(</span><span style="color: #fff59d;">int</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span>;
+        assert<span style="color: #81d4fa;">(</span>a4<span style="color: #81d4fa;">)</span>;
+
+        *a4 = 4;
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"a4: %p, *a4 = %d\n"</span>, a4, *a4<span style="color: #81d4fa;">)</span>;
+
+        <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<pre class="example">
+a1: 0x10644f028  *a1 = 1
+a2: 0x10644f078  *a2 = 2
+a3: 0x10644f078  *a3 = 3
+a4: 0x10644f028  *a4 = 4
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3133fae" class="outline-4">
+<h4 id="org3133fae"><span class="todo TODO">TODO</span> 實作 3 - 實作 2 改良版</h4>
+<div class="outline-text-4" id="text-org3133fae">
+<p>
+TODO: 避免碎片化<br />
+</p>
+
+<p>
+需要實作碎片合併<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org84be211" class="outline-4">
+<h4 id="org84be211">使用情境</h4>
+<div class="outline-text-4" id="text-org84be211">
+<p>
+實作記憶體管理常式的方法有很多，在 <a href="http://www.inf.udec.cl/~leo/Malloc_tutorial.pdfo">A Malloc Tutorial</a> 裡面有講解到更完整的資訊。<br />
+</p>
+
+<p>
+此題目的應用場合應該是在有限的程式空間 (flash size 很小)的情況下，需要簡單的記憶體管理機制，使用這種方式來管理記憶體雖然性能不好，但是也可能夠用。<br />
+</p>
+
+<p>
+舉例: FreeRTOS 的記憶體管理機制中， <a href="https://github.com/coldnew/FreeRTOS-mirror/blob/master/FreeRTOS/Source/portable/MemMang/heap_1.c">heap_1.c</a> 就是一種很簡單的記憶體管理方式，他描述是這樣的:<br />
+</p>
+
+<pre class="example">
+The simplest possible implementation of pvPortMalloc().  Note that this
+implementation does NOT allow allocated memory to be freed again.
+
+See heap_2.c, heap_3.c and heap_4.c for alternative implementations, and the
+memory management pages of http://www.FreeRTOS.org for more information.
+</pre>
+
+<p>
+而和此題實作比較接近的，則是 FreeRTOS 的 <a href="https://github.com/coldnew/FreeRTOS-mirror/blob/master/FreeRTOS/Source/portable/MemMang/heap_2.c">heap_2.c</a><br />
+</p>
+
+<pre class="example">
+A sample implementation of pvPortMalloc() and vPortFree() that permits
+allocated blocks to be freed, but does not combine adjacent free blocks
+into a single larger block (and so will fragment memory).  See heap_4.c for
+an equivalent that does combine adjacent blocks into single larger blocks.
+
+See heap_1.c, heap_3.c and heap_4.c for alternative implementations, and the
+memory management pages of http://www.FreeRTOS.org for more information.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8dc325b" class="outline-4">
+<h4 id="org8dc325b">延伸閱讀</h4>
+<div class="outline-text-4" id="text-org8dc325b">
+<ul class="org-ul">
+<li><a href="http://arcs.skku.edu/pmwiki/uploads/Courses/ProgrammingLanguages/p2.memManage.pdf">Dynamic memory Management</a><br /></li>
+
+<li><a href="https://www.cs.cmu.edu/~guna/15-123S11/Lectures/Lecture08.pdf">Lecture 08 - Dynamic memory Allocation</a><br /></li>
+
+<li><a href="https://courses.engr.illinois.edu/cs241/fa2012/lectures/08-MemoryMalloc.pdf">08-MemoryMalloc</a><br /></li>
+
+<li><a href="http://www.inf.udec.cl/~leo/Malloc_tutorial.pdfo">A Malloc Tutorial</a><br /></li>
+
+<li><a href="https://s3.amazonaws.com/iedu-attachments-question/38edd7d5a7535016c8f914a7a871ad0d_feb9cc6ba00f1fc42cbe607593cf02c1.pdf">Project 3: A Custom malloc() and free()</a><br /></li>
+
+<li><a href="https://danluu.com/malloc-tutorial/">A quick tutorial on implementing and debugging malloc, free, calloc, and realloc</a><br /></li>
+
+<li><a href="https://people.kth.se/~johanmon/courses/id2206/assignments/maplloc.pdf">My mallock using mmap</a><br /></li>
+
+<li><a href="https://stackoverflow.com/questions/6988487/what-does-brk-system-call-do">What does brk( ) system call do?</a><br /></li>
+
+<li><a href="https://github.com/angrave/SystemProgramming/wiki/Memory%2C-Part-2%3A-Implementing-a-Memory-Allocator">SystemProgramming - Memory, Part 2: Implementing a Memory Allocator</a><br /></li>
+
+<li><a href="http://moss.cs.iit.edu/cs351/slides/slides-malloc.pdf">Implementing malloc</a><br /></li>
+
+<li><a href="https://hackmd.io/s/B1SRlfeee">Memory Allocation</a><br /></li>
+
+<li><a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/">Understanding glibc malloc</a><br /></li>
+
+<li><a href="http://web.engr.illinois.edu/~maplant2/gc.html">Writing a Simple Garbage Collector in C</a><br /></li>
+
+<li id="<a href="https://www.cs.princeton.edu/courses/archive/spr11/cos217/lectures/20DynamicMemory2.pdf">Optimizing Dynamic Memory Management</a>">這份講解了 k&amp;r 的 Heap Manager<br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4ebb24e" class="outline-3">
+<h3 id="org4ebb24e"><span class="todo TODO">TODO</span> Q4</h3>
+<div class="outline-text-3" id="text-org4ebb24e">
+<p>
+考慮以下 C 程式在 GNU/Linux 中，透過 linked list 來實作動態記憶體管理 (malloc 和 free)，虛擬記憶體的使用如下圖，初步的程式如下方，要注意到程式碼並不完整，也不能在多執行緒環境安全運用。<br />
+請改寫 <code>malloc</code> 程式碼使其正確運作，並提供對應的 <code>free</code> 實作。<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/NC8J0Hv.png" alt="NC8J0Hv.png" /><br />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stddef.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">unistd.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">pthread.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #aaffaa;">struct</span> <span style="color: #fff59d;">header_t</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">size</span>;
+    <span style="color: #fff59d;">unsigned</span> <span style="color: #aaccff;">is_free</span>;
+    <span style="color: #aaffaa;">struct</span> <span style="color: #fff59d;">header_t</span> *<span style="color: #aaccff;">next</span>;
+<span style="color: #aadddd;">}</span> *<span style="color: #aaccff;">head</span>, *<span style="color: #aaccff;">tail</span>;
+
+<span style="color: #aaffaa;">static</span> <span style="color: #aaffaa;">struct</span> <span style="color: #fff59d;">header_t</span> *
+<span style="color: #aaccff;">get_free_block</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">size</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #aaffaa;">struct</span> <span style="color: #fff59d;">header_t</span> *<span style="color: #aaccff;">curr</span> = head;
+    <span style="color: #aaffaa;">while</span> <span style="color: #81d4fa;">(</span>curr<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+        <span style="color: #aaffaa;">if</span> <span style="color: #aaccff;">(</span>curr-&gt;is_free &amp;&amp; curr-&gt;size &gt;= size<span style="color: #aaccff;">)</span> <span style="color: #aaffaa;">return</span> curr;
+        curr = curr-&gt;next;
+    <span style="color: #81d4fa;">}</span>
+    <span style="color: #aaffaa;">return</span> <span style="color: #ccaaff;">NULL</span>;
+<span style="color: #aadddd;">}</span>
+
+<span style="color: #fff59d;">pthread_mutex_t</span> <span style="color: #aaccff;">global_malloc_lock</span>;
+
+<span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">malloc</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">size</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">total_size</span>;
+    <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">block</span>;
+    <span style="color: #aaffaa;">struct</span> <span style="color: #fff59d;">header_t</span> *<span style="color: #aaccff;">header</span>;
+    <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span><span style="color: #ff3333;">!</span>size<span style="color: #81d4fa;">)</span> <span style="color: #aaffaa;">return</span> <span style="color: #ccaaff;">NULL</span>;
+    <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>header = get_free_block<span style="color: #aaeecc;">(</span>size<span style="color: #aaeecc;">)</span><span style="color: #aaccff;">)</span><span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+        header-&gt;is_free = 0;
+        <span style="color: #aaffaa;">return</span> ? <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #ff3333; font-weight: bold;">FIXME</span><span style="color: #9ac; font-style: italic;">: </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+    <span style="color: #81d4fa;">}</span>
+
+    total_size = <span style="color: #aaffaa;">sizeof</span><span style="color: #81d4fa;">(</span><span style="color: #aaffaa;">struct</span> <span style="color: #fff59d;">header_t</span><span style="color: #81d4fa;">)</span> + size;
+    <span style="color: #aaffaa;">if</span> <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>block = sbrk<span style="color: #aaeecc;">(</span>total_size<span style="color: #aaeecc;">)</span><span style="color: #aaccff;">)</span> == <span style="color: #aaccff;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">)</span> -1<span style="color: #81d4fa;">)</span>
+        <span style="color: #aaffaa;">return</span> <span style="color: #ccaaff;">NULL</span>;
+
+    header = block;
+    header-&gt;size = size;
+    header-&gt;is_free = 0;
+    header-&gt;next = <span style="color: #ccaaff;">NULL</span>;
+<span style="color: #5f5f5f; font-style: italic;">//    </span><span style="color: #9ac; font-style: italic;">... /* </span><span style="color: #ff3333; font-weight: bold;">FIXME</span><span style="color: #9ac; font-style: italic;">: */</span>
+    <span style="color: #aaffaa;">return</span> ? <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #ff3333; font-weight: bold;">FIXME</span><span style="color: #9ac; font-style: italic;">: </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcb9182b" class="outline-3">
+<h3 id="orgcb9182b"><span class="done DONE">DONE</span> Q5</h3>
+<div class="outline-text-3" id="text-orgcb9182b">
+<p>
+假設下方 C 程式檔名為 <code>fork.c</code> ，在 GNU/Linux 上編譯得到名為 <code>fork</code> 的執行檔，我們可用 <code>./fork | wc -c</code> 計算輸出的 <code>-</code> 字元，請解釋程式行為和輸出的 <code>-</code> 字元數量的關聯。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdio.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">sys/types.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">sys/wait.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">unistd.h</span><span style="color: #aadddd;">&gt;</span>
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">()</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #aaffaa;">for</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 3; i++<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+        fork<span style="color: #aaccff;">()</span>;
+        printf<span style="color: #aaccff;">(</span><span style="color: #aadddd;">"-"</span><span style="color: #aaccff;">)</span>;
+   <span style="color: #81d4fa;">}</span>
+   wait<span style="color: #81d4fa;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #81d4fa;">)</span>; wait<span style="color: #81d4fa;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #81d4fa;">)</span>; wait<span style="color: #81d4fa;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #81d4fa;">)</span>;
+   <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc7307bb" class="outline-4">
+<h4 id="orgc7307bb">思考 &amp; 想法</h4>
+<div class="outline-text-4" id="text-orgc7307bb">
+<p>
+這題乍看之下應該是要產生出 <code>14</code> 個 <code>-</code> 符號，然而實際執行卻是生出了 <code>24</code> 個，從 <a href="http://coolshell.cn/articles/945.html">C 语言的谜题</a> 可以注意到， <code>printf()</code> 呼叫的時候，並不會馬上把資料寫入到 <code>stdout</code> 去，而是會先暫存到一個緩衝區中，也許問題就在這邊。<br />
+</p>
+
+<p>
+讓我們加入 <code>fflush()</code> 強迫 <code>printf()</code> 將資料從緩衝區寫到 <code>stdout</code> 看看。<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #aaffaa;">for</span> <span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 3; i++<span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">pid_t</span> <span style="color: #aaccff;">pid</span> = fork<span style="color: #81d4fa;">()</span>;
+        printf<span style="color: #81d4fa;">(</span><span style="color: #aadddd;">"-"</span><span style="color: #81d4fa;">)</span>;
+        fflush<span style="color: #81d4fa;">(</span>stdout<span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+wait<span style="color: #aadddd;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #aadddd;">)</span>; wait<span style="color: #aadddd;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #aadddd;">)</span>; wait<span style="color: #aadddd;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #aadddd;">)</span>;
+</pre>
+</div>
+
+<p>
+這樣的執行結果，就是我們想要的 <code>14 個 -</code> ，可見問題的確出在 <code>printf()</code> 沒有立即將緩衝區的資料寫入到 <code>stdout</code> 而導致 fork 的時候連緩衝區的資料一起 fork 一份了。<br />
+</p>
+
+<p>
+要了解整個程式的 fork 流程，我們可以把原本程式稍微改成下面這樣，再透過 <code>pstree</code> 去顯示<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdio.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">sys/types.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">sys/wait.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">unistd.h</span><span style="color: #aadddd;">&gt;</span>
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">main</span><span style="color: #aadddd;">()</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #aaffaa;">for</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 3; i++<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                fork<span style="color: #aaccff;">()</span>;
+                printf<span style="color: #aaccff;">(</span><span style="color: #aadddd;">"-"</span><span style="color: #aaccff;">)</span>;
+        <span style="color: #81d4fa;">}</span>
+        wait<span style="color: #81d4fa;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #81d4fa;">)</span>; wait<span style="color: #81d4fa;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #81d4fa;">)</span>; wait<span style="color: #81d4fa;">(</span><span style="color: #ccaaff;">NULL</span><span style="color: #81d4fa;">)</span>;
+        sleep<span style="color: #81d4fa;">(</span>10<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">return</span> 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+將檔案編譯成 <code>fork.out</code> 並透過 <code>pstree</code> 去觀察 fork 的狀況 (n 個迴圈總共會出現 2^n - 1 個 process, 此例來看就是有 8 個 process)<br />
+</p>
+
+<pre class="example">
+./fork.out &amp; pstree -p | grep fork.out
+
+</pre>
+
+<pre class="example">
+|-fork.out(14759)-+-fork.out(14762)-+-fork.out(14766)---fork.out(+
+|                 |                 `-fork.out(14767)
+|                 |-fork.out(14763)---fork.out(14765)
+|                 `-fork.out(14764)
+</pre>
+
+<p>
+可以看到此題迴圈跑 3 次的狀況，共出現了 8 個 process，用圖片表達的話就是這樣。<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/q5_1.png" alt="q5_1.png" /><br />
+</p>
+</div>
+
+<p>
+當我們的 <code>printf()</code> 有把透過 <code>fflush()</code> 把緩衝區清乾淨的狀況下，就會像上圖一樣，最終印出 14 個 <code>-</code> 。<br />
+</p>
+
+<p>
+那緩衝區沒弄乾淨的情況呢? 就會變成這樣了，在 <code>fork()</code> 下面的 <code>-</code> 就是被複製走而多出來的傢伙。<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/q5_2.png" alt="q5_2.png" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5ab073e" class="outline-4">
+<h4 id="org5ab073e">延伸閱讀</h4>
+<div class="outline-text-4" id="text-org5ab073e">
+<ul class="org-ul">
+<li><a href="https://www.quora.com/For-int-i-0-i-10-i++-fork-how-many-process-will-be-created">For (int i=0;i&lt;10;i++) fork(); how many process will be created?</a><br /></li>
+
+<li><a href="https://stackoverflow.com/questions/26793402/visually-what-happens-to-fork-in-a-for-loop">Visually what happens to fork() in a For Loop</a><br /></li>
+
+<li><a href="http://www.cnblogs.com/ittinybird/p/4492098.html">一個 fork 的面試題</a><br /></li>
+
+<li><a href="http://coolshell.cn/articles/945.html">C 语言的谜题</a><br /></li>
+
+<li><a href="https://www.nowcoder.com/questionTerminal/1f6cc9c0ef354f86b1727c6c030a1a19">请问下面的程序一共输出多少个“-”？</a><br /></li>
+
+<li><a href="https://unix.stackexchange.com/questions/155017/does-fork-immediately-copy-the-entire-process-heap-in-linux">Does fork() immediately copy the entire process heap in Linux?</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0cfb9a2" class="outline-3">
+<h3 id="org0cfb9a2">參考解答</h3>
+<div class="outline-text-3" id="text-org0cfb9a2">
+<ul class="org-ul">
+<li><a href="https://hackmd.io/s/ByzoiggIb">Q1: bit-reverse</a><br /></li>
+
+<li><a href="https://hackmd.io/s/r1Z_zPx8">Q2: multiplier</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6b24c3d" class="outline-2">
+<h2 id="org6b24c3d"><span class="todo TODO">TODO</span> 課堂醒腦題</h2>
+<div class="outline-text-2" id="text-org6b24c3d">
+<p>
+這邊題目是在上課前用來醒腦用的<br />
+</p>
+</div>
+
+<div id="outline-container-org80a5d07" class="outline-3">
+<h3 id="org80a5d07"><span class="todo TODO">TODO</span> Q1</h3>
+<div class="outline-text-3" id="text-org80a5d07">
+<p>
+在 C 語言程式裡面，如果這樣執行會得到什麼結果<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">1 &lt;&lt; 2 + 3 &lt;&lt; 4
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb157982" class="outline-4">
+<h4 id="orgb157982">想法 &amp; 解答</h4>
+<div class="outline-text-4" id="text-orgb157982">
+<p>
+答案是 <code>512</code> ，這題在考運算式的優先權。<br />
+</p>
+
+<p>
+為什麼 C 語言要這這樣設計?<br />
+</p>
+
+<p>
+C 語言 設計是 1972 ~ 1974, 但是一直到 1989 才標準化<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8c409e0" class="outline-3">
+<h3 id="org8c409e0"><span class="todo TODO">TODO</span> 課前題目</h3>
+<div class="outline-text-3" id="text-org8c409e0">
+<p>
+在邏輯上你有個 <code>x==y</code> 的運算子，請不使用任何比較器做出一樣的成果<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">x == y
+</pre>
+</div>
+</div>
+<div id="outline-container-org12f8c11" class="outline-4">
+<h4 id="org12f8c11">答案</h4>
+<div class="outline-text-4" id="text-org12f8c11">
+<p>
+!(x ^ y)<br />
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org8ef5069" class="outline-4">
+<h4 id="org8ef5069">想法</h4>
+<div class="outline-text-4" id="text-org8ef5069">
+<p>
+從邏輯設計上學到的， <code>XOR</code> 的結果<br />
+</p>
+
+<p>
+x ^ y<br />
+</p>
+
+<p>
+010<br />
+010 = 0<br />
+011 = 001<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge85475d" class="outline-2">
+<h2 id="orge85475d"><span class="todo TODO">TODO</span> 臨時筆記 (第一天)</h2>
+<div class="outline-text-2" id="text-orge85475d">
+</div><div id="outline-container-orgd757a5d" class="outline-3">
+<h3 id="orgd757a5d"><span class="todo TODO">TODO</span> 21 世紀的系統軟體</h3>
+<div class="outline-text-3" id="text-orgd757a5d">
+<p>
+課程連結: <a href="https://hackmd.io/s/BkeL-hLtg">https://hackmd.io/s/BkeL-hLtg</a><br />
+</p>
+
+<p>
+21 世紀的系統軟體 =&gt; 程式碼夠美嗎?<br />
+</p>
+
+<p>
+unix 原始程式馬 註解:<br />
+</p>
+
+<p>
+<a href="https://www.google.com.tw/search?client=safari&amp;rls=en&amp;q=you+are+not+expected+to+understand+this&amp;ie=UTF-8&amp;oe=UTF-8&amp;gfe_rd=cr&amp;ei=p7FyWbbcDeT88wfZoZP4CQ">You are Not expected to understand this</a><br />
+</p>
+
+<p>
+unix 最早是開發在 PDP-7 上，後來移植到 PDP-11 (16bit) (具有 virtual memory)<br />
+</p>
+
+<p>
+virtual memory -&gt; swapper (扮演 disk 和 memory 之間的資料切換處理者)<br />
+</p>
+
+<p>
+BlackDuck 是個  blabla, 提到了大部分的公司都是採用 opensource<br />
+</p>
+
+<p>
+我們既然採用別人的成果，是否有想過一件很可怕的事情? Linux 自從 4.1 版本，程式碼超過 2000 萬行，假設你工作到退休，人生只有 1w 天，linux kernel 只有 2000 萬行，你會讀不完<br />
+</p>
+
+<p>
+更可怕的是，linux 每小時修改 8 次(一次可能幾千行)，改版非常快，我們需要一個有效的方法來檢驗我們看到的東西對不對<br />
+</p>
+
+<p>
+ARM Cortex-M4 可以做到 sdiv (軟體除法)並且可以在 2cycle 完成 (過去用的查表能辦到嗎?)<br />
+</p>
+
+<p>
+手機裡面會有 CPU, GPU 和 DSP, 分工是個很大的問題<br />
+</p>
+
+<p>
+比如說 <a href="https://en.wikipedia.org/wiki/Font_rasterization">Font rasterization</a> , 這部份是交給 CPU 運算, 我們知道文字本身是數學方程式，要透過運算轉成點陣圖<br />
+</p>
+
+<p>
+如果我們先用 CPU 把繪圖指令丟給 GPU, GPU 再把東西丟給 CPU, 這樣一來一往很吃時間，所以更多是 CPU 先把字處理好後，再把圖片送給 GPU (你要能散用 GPU 支援是非常困難的)<br />
+</p>
+
+
+<p>
+人寫出來的東西要和 compiler PK 是非常困難的事情<br />
+</p>
+
+
+<div class="figure">
+<p><img src="images/tmp/s1.png" alt="s1.png" /><br />
+</p>
+</div>
+
+<p>
+(投影片:  <a href="https://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works">From source to binary</a>)<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6e75947" class="outline-3">
+<h3 id="org6e75947"><span class="todo TODO">TODO</span> 深入理解 CPU 和異構計算蕊片</h3>
+<div class="outline-text-3" id="text-org6e75947">
+<p>
+ASIC: 完全針對應用特化的晶片<br />
+</p>
+
+<p>
+識別鈔票的方法會改，因此驗鈔機面有很大比例是用 FPGA (可以更新韌體) 但是速度又快<br />
+</p>
+
+<p>
+DSP: 數位訊號處理<br />
+</p>
+
+<p>
+bitcoin 用 GPU 是在算 hash, 每秒可以達到  萬億次 (每秒)<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd696a7a" class="outline-3">
+<h3 id="orgd696a7a"><span class="todo TODO">TODO</span> 課中題目 Q1</h3>
+<div class="outline-text-3" id="text-orgd696a7a">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">strlen</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">s</span><span style="color: #aadddd;">)</span>;
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">longer</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">a</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">b</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #aaffaa;">return</span> strlen<span style="color: #81d4fa;">(</span>a<span style="color: #81d4fa;">)</span> - strlen<span style="color: #81d4fa;">(</span>b<span style="color: #81d4fa;">)</span> &gt; 0;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>(a) 何時不正確? 正確版本為何?<br /></li>
+<li><p>
+(b) 如何修正<br />
+</p>
+
+<p>
+<code>提示: 考慮極端狀況</code><br />
+</p></li>
+</ul>
+</div>
+
+<div id="outline-container-org4a67218" class="outline-4">
+<h4 id="org4a67218"><span class="todo TODO">TODO</span> 思考 &amp; 想法</h4>
+<div class="outline-text-4" id="text-org4a67218">
+<p>
+這樣的程式何時會不正確呢?<br />
+</p>
+
+<p>
+man strlen<br />
+</p>
+
+<p>
+<code>超過 maxlen 時行為就不對了</code> ? &lt;--- 有號數  無號數?<br />
+</p>
+
+<p>
+如何修正?<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">strlen</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">s</span><span style="color: #aadddd;">)</span>;
+
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">longer</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">a</span>, <span style="color: #fff59d;">char</span> *<span style="color: #aaccff;">b</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #aaffaa;">return</span> strlen<span style="color: #81d4fa;">(</span>a<span style="color: #81d4fa;">)</span> &gt; strlen<span style="color: #81d4fa;">(</span>b<span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+如果 strlen(a) - strlne(b) 為負的, 那應該是 unsigned 還是 signed ?<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba0f19d" class="outline-4">
+<h4 id="orgba0f19d"><span class="todo TODO">TODO</span> </h4>
+<div class="outline-text-4" id="text-orgba0f19d">
+<p>
+有號數  無號數<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ed3dba" class="outline-3">
+<h3 id="org6ed3dba"><span class="todo TODO">TODO</span> 課中題目 Q2</h3>
+<div class="outline-text-3" id="text-org6ed3dba">
+<p>
+(用硬體思考, 實作倍數)<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">倍數</th>
+<th scope="col" class="org-right">shift</th>
+<th scope="col" class="org-right">add/sub</th>
+<th scope="col" class="org-left">Expr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">31</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">(x &lt;&lt;5) - (x)</td>
+</tr>
+
+<tr>
+<td class="org-right">-6</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">(x &lt;&lt; 1) - (x &lt;&lt; 3)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+用這種狀況來看，11 和 55 要怎作 ?<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">倍數</th>
+<th scope="col" class="org-right">shift</th>
+<th scope="col" class="org-right">add/sub</th>
+<th scope="col" class="org-left">Expr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">11</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-left">(x &lt;&lt; 3) + (x &lt;&lt; 2) + x</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-left">(x &lt;&lt; 4) - (x &lt;&lt; 2) - x</td>
+</tr>
+</tbody>
+</table>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">倍數</th>
+<th scope="col" class="org-right">shift</th>
+<th scope="col" class="org-right">add/sub</th>
+<th scope="col" class="org-left">Expr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">55</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">(x &lt;&lt; 6) - (x &lt;&lt; 3)  - (x)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+   這東西重要在哪呢？像是 INTEL CPU 有一個指令 <a href="https://c9x.me/x86/html/file_module_x86_id_153.html">LEA</a><br />
+Intel 的 addressing model 搭配 LEA (CSIC 風格的指令) 很好用，透過這樣的處理可以得到一個帖定的數值，而不用透過複雜的數學運算<br />
+</p>
+
+<p>
+ARM 相對的是 Barrel Shifter<br />
+</p>
+
+<p>
+<a href="http://www.davespace.co.uk/arm/introduction-to-arm/barrel-shifter.html">http://www.davespace.co.uk/arm/introduction-to-arm/barrel-shifter.html</a><br />
+</p>
+
+<p>
+<a href="https://stackoverflow.com/questions/1658294/whats-the-purpose-of-the-lea-instruction">https://stackoverflow.com/questions/1658294/whats-the-purpose-of-the-lea-instruction</a><br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7878842" class="outline-3">
+<h3 id="org7878842"><span class="todo TODO">TODO</span> 作業 reverse bit 討論</h3>
+<div class="outline-text-3" id="text-org7878842">
+<p>
+注意到題目輸入值域很大 0 ~ 2^32 - 1, 要怎樣檢驗?<br />
+</p>
+
+<p>
+這樣的程式的問題: <code>執行時間不固定</code>, 某些形式可以得到很短的時間<br />
+</p>
+
+<p>
+你只要追蹤花費的時間，就可以推敲出數值的分布<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_bits_32</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span>
+<span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">reverse_x</span> = 0;
+        <span style="color: #aaffaa;">for</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">i</span> = 0; i &lt; 32; i++<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                <span style="color: #aaffaa;">if</span><span style="color: #aaccff;">(</span><span style="color: #aaeecc;">(</span>x &amp; <span style="color: #ccaaff;">(</span>1 &lt;&lt; i<span style="color: #ccaaff;">)</span><span style="color: #aaeecc;">)</span><span style="color: #aaccff;">)</span>
+                        reverse_x |= 1 &lt;&lt; <span style="color: #aaccff;">(</span><span style="color: #aaeecc;">(</span>32 - 1<span style="color: #aaeecc;">)</span> - i<span style="color: #aaccff;">)</span>;
+        <span style="color: #81d4fa;">}</span>
+        <span style="color: #aaffaa;">return</span> reverse_x;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+這也是為何這種方式比較好:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#include</span> <span style="color: #aadddd;">&lt;</span><span style="color: #aadddd;">stdint.h</span><span style="color: #aadddd;">&gt;</span>
+<span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">func</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">x</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #fff59d;">uint32_t</span> <span style="color: #aaccff;">n</span> = x;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xffff0000<span style="color: #aaccff;">)</span> &gt;&gt; 16<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0000ffff<span style="color: #aaccff;">)</span> &lt;&lt; 16<span style="color: #81d4fa;">)</span>;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xff00ff00<span style="color: #aaccff;">)</span> &gt;&gt;  8<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x00ff00ff<span style="color: #aaccff;">)</span> &lt;&lt;  8<span style="color: #81d4fa;">)</span>;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xf0f0f0f0<span style="color: #aaccff;">)</span> &gt;&gt;  4<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x0f0f0f0f<span style="color: #aaccff;">)</span> &lt;&lt;  4<span style="color: #81d4fa;">)</span>;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xcccccccc<span style="color: #aaccff;">)</span> &gt;&gt;  2<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x33333333<span style="color: #aaccff;">)</span> &lt;&lt;  2<span style="color: #81d4fa;">)</span>;
+    n = <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0xaaaaaaaa<span style="color: #aaccff;">)</span> &gt;&gt;  1<span style="color: #81d4fa;">)</span> | <span style="color: #81d4fa;">(</span><span style="color: #aaccff;">(</span>n &amp; 0x55555555<span style="color: #aaccff;">)</span> &lt;&lt;  1<span style="color: #81d4fa;">)</span>;
+    <span style="color: #aaffaa;">return</span> n;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+在 linux/gcc 下，有一個 macro 叫做 byte order <span class="underline"><span class="underline">BYTE_ORDER</span></span><br />
+</p>
+
+<p>
+<a href="https://gcc.gnu.org/onlinedocs/cpp/Common-Predefined-Macros.html">https://gcc.gnu.org/onlinedocs/cpp/Common-Predefined-Macros.html</a><br />
+</p>
+
+<p>
+讀 GCC 手冊可以得到很多歷史梗<br />
+</p>
+
+<pre class="example">
+__BYTE_ORDER__ is defined to one of the values __ORDER_LITTLE_ENDIAN__, __ORDER_BIG_ENDIAN__, or __ORDER_PDP_ENDIAN__ to reflect the layout of multi-byte and multi-word quantities in memory. If __BYTE_ORDER__ is equal to __ORDER_LITTLE_ENDIAN__ or __ORDER_BIG_ENDIAN__, then multi-byte and multi-word quantities are laid out identically: the byte (word) at the lowest address is the least significant or most significant byte (word) of the quantity, respectively. If __BYTE_ORDER__ is equal to __ORDER_PDP_ENDIAN__, then bytes in 16-bit words are laid out in a little-endian fashion, whereas the 16-bit subwords of a 32-bit quantity are laid out in big-endian fashion.
+</pre>
+
+<p>
+You should use these macros for testing like this:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">Test for a little-endian machine </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+<span style="color: #ff8888;"> #if</span> __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+</pre>
+</div>
+
+<p>
+ARM 處理器在開機的時候，會檢查 endian bit, 但是編碼是固定的 (always big, or always little (instruction encoding))<br />
+</p>
+
+<p>
+為何 UART baud rate 不是 2^n 次方? 最早的 baud rate 用在電報，是 75 baud<br />
+後來每次擴充都是兩倍, 75 -&gt; 150 -&gt; 300 -&gt; 600 -&gt; 1200...<br />
+</p>
+
+
+<p>
+--<br />
+</p>
+
+<p>
+linux kernel: //sound/sparc/dbri.c<br />
+</p>
+
+<p>
+用 switch case, 不加上 break:  <code>duff's device</code><br />
+</p>
+
+<p>
+<code>loop unrolling</code> :CPU predictor 做的在好也還是有機會出錯<br />
+</p>
+
+<p>
+--<br />
+</p>
+
+<p>
+<code>ISM</code> 波段，給一般人可以用的 2.4 ~ 2.5GHx<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdf2253c" class="outline-3">
+<h3 id="orgdf2253c"><span class="todo TODO">TODO</span> 軟體缺失導致的危害</h3>
+<div class="outline-text-3" id="text-orgdf2253c">
+<p>
+Barr Group 是世界上有名的諮詢公司<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4a4eae0" class="outline-3">
+<h3 id="org4a4eae0"><span class="todo TODO">TODO</span> 形式化驗證</h3>
+<div class="outline-text-3" id="text-org4a4eae0">
+<p>
+透過數學來定義行為、開發、驗證<br />
+</p>
+
+<p>
+從硬體攝計開始普及<br />
+</p>
+
+<p>
+CompCert<br />
+</p>
+
+<p>
+形式化驗證行情價  1000USD (每行)<br />
+</p>
+
+<p>
+台灣很少軟體品質產業<br />
+</p>
+
+<p>
+你怎確保你的無人機是可靠的?<br />
+</p>
+
+<p>
+台灣用的比較多還是 IC 設計公司<br />
+</p>
+
+<p>
+台灣有哪些軟體公司出了錯會造成人命?<br />
+</p>
+
+<p>
+車用 ADAS 系統 mobileye, mediatek<br />
+</p>
+
+<p>
+COSCUP: Piko/RT linuk like real time kernel<br />
+</p>
+
+<p>
+形式化驗證要先寫 lemma<br />
+</p>
+
+<p>
+echronos RTOS 證明 scheduling interrupt <b>需要上網查</b> , 手段叫做 <code>OG</code><br />
+</p>
+
+<p>
+數學導論<br />
+</p>
+
+<p>
+linux kernel 把 BKL 移除掉 (big kernel lock)<br />
+</p>
+
+<p>
+製作智慧卡很厲害的公司: NXP, 曾經有 1/4 營收來自智慧卡<br />
+</p>
+
+<p>
+eal7 smart card<br />
+</p>
+
+<p>
+CC: Common Criteria (安全等級)<br />
+</p>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Evaluation_Assurance_Level">EAL CC</a> 有七個等級, EAL5 以上都是軍事等級<br />
+</p>
+
+<p>
+有產值: 前後左右都沒有在做的事情<br />
+</p>
+
+<p>
+現在形式化驗證在 IC 設計已經是顯學: google: arm formal verifcation<br />
+</p>
+
+<p>
+EAL7 之所以難，就是因為要包山包海都懂<br />
+</p>
+
+<p>
+CertiKOS<br />
+</p>
+
+<p>
+Promela consumer<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfe5099e" class="outline-3">
+<h3 id="orgfe5099e"><span class="todo TODO">TODO</span> 重新理解數值</h3>
+<div class="outline-text-3" id="text-orgfe5099e">
+<p>
+<code>IOTA</code><br />
+</p>
+
+<p>
+tango 本質是 DAG, 不尋換，有方向<br />
+</p>
+
+<p>
+<a href="https://iota.org/IOTA_Whitepaper.pdf">https://iota.org/IOTA_Whitepaper.pdf</a><br />
+</p>
+
+<p>
+程式碼執行順序改變，結果一樣，稱為  <code>code motion</code><br />
+</p>
+
+<p>
+Koopman 教授有一本書, 為業界問題的 case study<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org113354a" class="outline-3">
+<h3 id="org113354a"><span class="todo TODO">TODO</span> carryless</h3>
+<div class="outline-text-3" id="text-org113354a">
+<p>
+Galois (和人決鬥而死，死前把數學遺稿寫出  FIXME: 來源)<br />
+</p>
+
+<p>
+五次方程式不存在公式解 (啊貝爾)<br />
+</p>
+
+<p>
+美國/加拿大很多東西禁止出口: ex: 高可靠性的加密方法<br />
+</p>
+
+<p>
+jitter: 找出數值分布<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orged4bedc" class="outline-3">
+<h3 id="orged4bedc"><span class="todo TODO">TODO</span> Modern Microprocessors</h3>
+<div class="outline-text-3" id="text-orged4bedc">
+<ol class="org-ol">
+<li>簡單定義: 你我身邊每天在用的東西<br /></li>
+</ol>
+
+<p>
+numa<br />
+</p>
+
+<p>
+intel 佔領 server CPU, 要從 .com 泡沫化開始說起 (90 年代末期)<br />
+</p>
+
+<p>
+浮點數當時在 server CPU 有一個很重要的應用: 股票 (現在也是)<br />
+</p>
+
+<p>
+你用 benchmarking 才可以知道一個系統的特性<br />
+</p>
+
+<p>
+ILP (Instruction-Level Parallelism)<br />
+</p>
+
+<p>
+CPI (Cycle per instruction)<br />
+</p>
+
+<p>
+以前統計一個程式有 7% ~ 13% 在做 branching<br />
+</p>
+
+<p>
+dispatch 也是成本，現在 CPU 會想辦法減少這邊的成本 =&gt; ARM DynamIQ<br />
+</p>
+
+<p>
+dynamiq multiple issue =&gt; <a href="https://community.arm.com/processors/b/blog/posts/where-does-big-little-fit-in-the-world-of-dynamiq">Where does big.LITTLE fit in the world of DynamIQ?</a><br />
+</p>
+
+<p>
+dynamiq multiple dispatch =&gt; <a href="http://www.anandtech.com/show/11441/dynamiq-and-arms-new-cpus-cortex-a75-a55/3">Exploring DynamIQ and ARM’s New CPUs: Cortex-A75, Cortex-A55</a><br />
+</p>
+
+<p>
+IF: 4<br />
+ID: 1<br />
+</p>
+
+<p>
+Rename: 1<br />
+Dispatch: 1<br />
+</p>
+
+<p>
+echo cancellation (回音消除, 抗噪耳機)<br />
+</p>
+
+<p>
+AEC (聽覺迴聲消除) -&gt; 運算量很大 -&gt; 用 DSP 處理<br />
+</p>
+
+<p>
+ARM64 -&gt; Aarch64 (架構名字, instruction encoding 還是 32bit)<br />
+</p>
+
+<p>
+VOIP 因為 CPU 效能提升，可以不需要額外硬體來作 AEC<br />
+</p>
+
+<p>
+branch prediction 和 machine learning 有關 ( <a href="https://www.google.com.tw/search?client=safari&amp;rls=en&amp;q=branch+predction+machine+learning&amp;ie=UTF-8&amp;oe=UTF-8&amp;gfe_rd=cr&amp;ei=zxNzWez3Neum8wekp6bwDg">google</a>)<br />
+</p>
+
+<p>
+OOO (out of order execution) &lt;-- 對效能提升有限，但是功耗增加 （A72 有這功能，但是 A73 關掉了）<br />
+</p>
+
+<p>
+compiler: auto vectorization, specularization<br />
+</p>
+
+<p>
+hadoop 裡面排序用 merge sort (穩定) 原本的排列順序是固定的<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf79e58f" class="outline-3">
+<h3 id="orgf79e58f"><span class="todo TODO">TODO</span> Concurrency</h3>
+<div class="outline-text-3" id="text-orgf79e58f">
+<p>
+基本上讀文章都要非常小心，尤其是和 CPU 架構相關的<br />
+</p>
+
+<p>
+hyperthreading: 硬體上的 thread<br />
+</p>
+
+<p>
+object -&gt; 抽象詞 (連帶著的東西)<br />
+</p>
+
+<p>
+Rob Pike 現在在 Google 工作, 在 google 帳號是 <code>r@google.com</code>, 是 Go 語言的主力成員<br />
+</p>
+
+<p>
+聯發科 7?775 晶片, 多核因為問題關掉剩下一核<br />
+</p>
+
+<p>
+Red Hat 很大的客戶來自 銀行業 和 醫院相關, 因此 Java 在 concurrency 上實作比較完散 (資料很多)<br />
+</p>
+
+<p>
+LOCK-FREE &lt;- 預習<br />
+</p>
+
+<p>
+memory barrier -&gt; 白算盤用 fence<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9201a63" class="outline-3">
+<h3 id="org9201a63"><span class="todo TODO">TODO</span> 其他</h3>
+<div class="outline-text-3" id="text-org9201a63">
+<p>
+L2 lock down<br />
+</p>
+
+<p>
+__vdso_clock_get_time<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8ef6405" class="outline-2">
+<h2 id="org8ef6405"><span class="todo TODO">TODO</span> 臨時筆記 (第二天)</h2>
+<div class="outline-text-2" id="text-org8ef6405">
+<p>
+<a href="https://www.gnu.org/software/libc/manual/html_node/Infinity-and-NaN.html">C99 NaN</a><br />
+</p>
+
+<p>
+NaN 應該怎樣表示? 如果我應用一個數值來表示 NaN, 那我是不是佔用了一個位置? 那這樣不同位元的 NaN 又該如何表示? 32bit 和 64bit 的 NaN 是不是一樣? 是否應該要不一樣?<br />
+</p>
+</div>
+
+<div id="outline-container-orge20733b" class="outline-3">
+<h3 id="orge20733b"><span class="todo TODO">TODO</span> QUIZ</h3>
+<div class="outline-text-3" id="text-orge20733b">
+<p>
+Q6: 考慮以下程式碼:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #ff8888;">#define</span> <span style="color: #aaccff;">N</span> 1024
+<span style="color: #fff59d;">void</span> <span style="color: #aaccff;">diag</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">A</span><span style="color: #81d4fa;">[</span>4<span style="color: #81d4fa;">][</span>4<span style="color: #81d4fa;">]</span>, <span style="color: #fff59d;">int</span> <span style="color: #aaccff;">val</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+    <span style="color: #aaffaa;">for</span> <span style="color: #81d4fa;">(</span><span style="color: #fff59d;">long</span> <span style="color: #aaccff;">i</span> = 0; i &lt; N; i++<span style="color: #81d4fa;">)</span>
+        A<span style="color: #81d4fa;">[</span>i<span style="color: #81d4fa;">][</span>i<span style="color: #81d4fa;">]</span> = val;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+當用 <code>gcc -O2 -S</code> 編譯可得以下組合語言輸出:<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nasm">        <span style="color: #aaccff;">.globl</span>  diag
+        <span style="color: #aaccff;">.type</span>   diag, @function
+<span style="color: #aaccff;">diag</span>:
+        leaq    <span style="color: #ccaaff;">20480</span><span style="color: #aadddd;">(</span>%rdi<span style="color: #aadddd;">)</span>, %rax
+<span style="color: #aaccff;">.L2</span>:
+        movl    %esi, <span style="color: #aadddd;">(</span>%rdi<span style="color: #aadddd;">)</span>
+        addq    <span style="color: #ccaaff;">$20</span>, %rdi
+        cmpq    %rax, %rdi
+        <span style="color: #ccaaff;">jne</span>     .L2
+        <span style="color: #ccaaff;">rep</span> <span style="color: #ccaaff;">ret</span>
+</pre>
+</div>
+
+<p>
+請試著從最佳化反推對應的 C 程式碼，並避免將 N 寫死。<br />
+</p>
+</div>
+
+<div id="outline-container-orgc289418" class="outline-4">
+<h4 id="orgc289418"><span class="todo TODO">TODO</span> 思考 &amp; 想法</h4>
+<div class="outline-text-4" id="text-orgc289418">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> <span style="color: #aaccff;">diag</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">A</span><span style="color: #81d4fa;">[</span>4<span style="color: #81d4fa;">][</span>4<span style="color: #81d4fa;">]</span>, <span style="color: #fff59d;">int</span> <span style="color: #aaccff;">val</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+<span style="color: #ccaaff;">L2</span>:
+<span style="color: #fff59d;">int</span> <span style="color: #aaccff;">N</span> = 1024;
+        <span style="color: #aaffaa;">if</span><span style="color: #81d4fa;">(</span>rax == N<span style="color: #81d4fa;">)</span>
+                <span style="color: #aaffaa;">goto</span> <span style="color: #ccaaff;">L2</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">%rax</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">%rbx</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">%rcx</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">%rdx</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">%rdi</td>
+<td class="org-left">20480</td>
+</tr>
+
+<tr>
+<td class="org-left">%rsi</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+leaq 0x020(%rcx,%rax,4), %rcx<br />
+</p>
+
+<p>
+The 0x20 is the offset, which is added to the effective address. There is no bit shifting, unless you count the *4 as a bit shift. (There is no + 4.) Essentially, this is performing the operation described in pseudocode by<br />
+</p>
+
+<pre class="example">
+RCX := RCX + RAX * 4 + 0x20
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga2ad09b" class="outline-4">
+<h4 id="orga2ad09b"><span class="todo TODO">TODO</span> CFI</h4>
+<div class="outline-text-4" id="text-orga2ad09b">
+<p>
+在 C 語言沒有數學上的 array, (都是一維)<br />
+</p>
+
+<p>
+<code>.cfi_startproc</code><br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nasm">        <span style="color: #aaccff;">.section</span>        __TEXT,__text,regular,pure_instructions
+        <span style="color: #aaccff;">.macosx_version_min</span> <span style="color: #ccaaff;">10</span>, <span style="color: #ccaaff;">12</span>
+        <span style="color: #aaccff;">.globl</span>  _diag
+        <span style="color: #aaccff;">.p2align</span>        <span style="color: #ccaaff;">4</span>, <span style="color: #ccaaff;">0x90</span>
+<span style="color: #aaccff;">_diag</span>:                                  ## @diag
+        <span style="color: #aaccff;">.cfi_startproc</span>
+## BB#<span style="color: #ccaaff;">0</span>:
+        pushq   %rbp
+<span style="color: #aaccff;">Ltmp0</span>:
+        <span style="color: #aaccff;">.cfi_def_cfa_offset</span> <span style="color: #ccaaff;">16</span>
+<span style="color: #aaccff;">Ltmp1</span>:
+        <span style="color: #aaccff;">.cfi_offset</span> %rbp, -<span style="color: #ccaaff;">16</span>
+        <span style="color: #ccaaff;">movq</span>    %rsp, %rbp
+<span style="color: #aaccff;">Ltmp2</span>:
+        <span style="color: #aaccff;">.cfi_def_cfa_register</span> %rbp
+        xorl    %eax, %eax
+        <span style="color: #aaccff;">.p2align</span>        <span style="color: #ccaaff;">4</span>, <span style="color: #ccaaff;">0x90</span>
+<span style="color: #aaccff;">LBB0_1</span>:                                 ## =&gt;This Inner <span style="color: #ccaaff;">Loop</span> Header: Depth=<span style="color: #ccaaff;">1</span>
+        movl    %esi, <span style="color: #aadddd;">(</span>%rdi,%rax<span style="color: #aadddd;">)</span>
+        movl    %esi, <span style="color: #ccaaff;">20</span><span style="color: #aadddd;">(</span>%rdi,%rax<span style="color: #aadddd;">)</span>
+        movl    %esi, <span style="color: #ccaaff;">40</span><span style="color: #aadddd;">(</span>%rdi,%rax<span style="color: #aadddd;">)</span>
+        movl    %esi, <span style="color: #ccaaff;">60</span><span style="color: #aadddd;">(</span>%rdi,%rax<span style="color: #aadddd;">)</span>
+        movl    %esi, <span style="color: #ccaaff;">80</span><span style="color: #aadddd;">(</span>%rdi,%rax<span style="color: #aadddd;">)</span>
+        movl    %esi, <span style="color: #ccaaff;">100</span><span style="color: #aadddd;">(</span>%rdi,%rax<span style="color: #aadddd;">)</span>
+        movl    %esi, <span style="color: #ccaaff;">120</span><span style="color: #aadddd;">(</span>%rdi,%rax<span style="color: #aadddd;">)</span>
+        movl    %esi, <span style="color: #ccaaff;">140</span><span style="color: #aadddd;">(</span>%rdi,%rax<span style="color: #aadddd;">)</span>
+        addq    <span style="color: #ccaaff;">$160</span>, %rax
+        cmpq    <span style="color: #ccaaff;">$20480</span>, %rax            ## imm = <span style="color: #ccaaff;">0x5000</span>
+        <span style="color: #ccaaff;">jne</span>     LBB0_<span style="color: #ccaaff;">1</span>
+## BB#<span style="color: #ccaaff;">2</span>:
+        popq    %rbp
+        retq
+        <span style="color: #aaccff;">.cfi_endproc</span>
+
+
+<span style="color: #aaccff;">.subsections_via_symbols</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> <span style="color: #aaccff;">diag</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">int</span> <span style="color: #aaccff;">A</span><span style="color: #81d4fa;">[</span>4<span style="color: #81d4fa;">][</span>4<span style="color: #81d4fa;">]</span>, <span style="color: #fff59d;">int</span> <span style="color: #aaccff;">val</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">int</span> *<span style="color: #aaccff;">Abase</span> = &amp;A<span style="color: #81d4fa;">[</span>0<span style="color: #81d4fa;">][</span>0<span style="color: #81d4fa;">]</span>;
+        <span style="color: #fff59d;">long</span> <span style="color: #aaccff;">i</span> = 0;
+        <span style="color: #fff59d;">long</span> <span style="color: #aaccff;">lend</span> = N * <span style="color: #81d4fa;">(</span>N + 1<span style="color: #81d4fa;">)</span>;
+        <span style="color: #aaffaa;">do</span> <span style="color: #81d4fa;">{</span>
+                Abase<span style="color: #aaccff;">[</span>i<span style="color: #aaccff;">]</span> = val;
+                i += <span style="color: #aaccff;">(</span>N + 1<span style="color: #aaccff;">)</span>;
+        <span style="color: #81d4fa;">}</span> <span style="color: #aaffaa;">while</span> <span style="color: #81d4fa;">(</span>i != lend<span style="color: #81d4fa;">)</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+
+<p>
+可以少掉存取某段記憶體空間的先前準備, 這邊把乘法變成了加法 (省掉時間)<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org17e9580" class="outline-3">
+<h3 id="org17e9580"><span class="todo TODO">TODO</span> concurrency</h3>
+<div class="outline-text-3" id="text-org17e9580">
+<p>
+<code>atomic instruction</code> 在硬體怎樣實作? ex: Exclusive monitor<br />
+</p>
+
+<p>
+純軟體實作: Dekker's algorithm (正確的，問題是太慢)<br />
+</p>
+
+<p>
+RMW (Read-modify-write):<br />
+A [0] += 1;<br />
+</p>
+
+<p>
+讀取 A[0] 的數值 =&gt; + 1 =&gt; 寫回去 (RMW) , 中間可能被打斷? 當然(考慮多核狀況)<br />
+</p>
+
+<p>
+<code>transaction</code><br />
+</p>
+
+<p>
+關鍵: 我們要了解我們的行為，否則作不出合適的程式碼<br />
+</p>
+
+<p>
+ARM 指令:  <code>ldrex</code> , <code>strex</code><br />
+</p>
+
+<p>
+CAS: (Compare And Swap)<br />
+TAS: (Test And Set)<br />
+</p>
+
+<p>
+我用 C 語言產生直接對應的組合語言 -&gt;  <a href="https://stackoverflow.com/questions/7633899/converting-inline-asm-to-intrinsic">intrinsic</a><br />
+</p>
+
+<p>
+C11 加入 atomic (注意到不是所有 compiler 都支援)<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">_Atomic</span> <span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">int</span> *p1;
+</pre>
+</div>
+
+<p>
+C++20 gcc 已經支援 (<code>-std=c++2a</code>)<br />
+</p>
+
+<p>
+mutex 可不可以重複 lock ? =&gt;   <a href="https://stackoverflow.com/questions/187761/recursive-lock-mutex-vs-non-recursive-lock-mutex">mutex recursive lock</a><br />
+</p>
+
+<p>
+priority inheritance<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1860fcf" class="outline-3">
+<h3 id="org1860fcf"><span class="todo TODO">TODO</span> 編譯器和最佳化原理</h3>
+<div class="outline-text-3" id="text-org1860fcf">
+<p>
+<a href="https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending">Alpha blending</a><br />
+</p>
+
+<p>
+SQL 有一個很重要的東西叫做 <a href="http://knowledgebase.progress.com/articles/Article/P20617">stored procedure (sql92)</a><br />
+sqlite : <code>explain</code> 可以把 opcode 印出來<br />
+</p>
+
+<p>
+<a href="http://www.brendangregg.com/blog/2015-05-15/ebpf-one-small-step.html">eBPF</a><br />
+</p>
+
+<p>
+為何模擬器不使用 GPU? 因為我們不知道執行的環境是否有 GPU, 以及 GPU 是否夠強 (GPU 不夠強甚至可能模擬器跑得比 CPU 慢)<br />
+</p>
+
+<p>
+邏輯哲學論 - 維根斯坦<br />
+</p>
+
+<p>
+能否用任意的 REGEXP 解析 HTML? 答: 用標準的 REGEXP 辦不到 (HTML 可以容許錯誤，深度是無窮的)<br />
+</p>
+
+<p>
+PCRE (perl 修改過的 RE) 就可以解析 HTML<br />
+</p>
+
+<p>
+討厭的數學 -&gt; hoare logic<br />
+</p>
+
+<p>
+<a href="http://isabelle.in.tum.de/library/HOL/HOL-Hoare_Parallel/document.pdf">hoare logic parell</a><br />
+</p>
+
+<p>
+man atexit<br />
+</p>
+
+<p>
+C runtim 要能夠處理返回直，也要可以處理 atexit 的介入<br />
+</p>
+
+<p>
+1996 年 doom 開發者: C is what you see is what you get<br />
+</p>
+
+<p>
+libgcceh (作必要的例外處理 setjmp/longjmp)<br />
+</p>
+
+<p>
+典型的 UNIX 有些東西很難實作: exec, signal (典型 UNIX: 很多操作是同步的)<br />
+</p>
+
+<p>
+setjmp/longjmp 和 ABI 有關係<br />
+</p>
+
+<p>
+馮紐曼(John von Neumann): 怎麼會有人需要寫組合語言，查表就好了<br />
+</p>
+
+<p>
+c99 引入關鍵字 restrict<br />
+</p>
+
+<p>
+開 /usr/include/string.h 找 memcpy<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">Copy N bytes of SRC to DEST.  </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+<span style="color: #aaffaa;">extern</span> <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">memcpy</span> <span style="color: #aadddd;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">__restrict</span> __dest, <span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">__restrict</span> __src,
+                     <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">__n</span><span style="color: #aadddd;">)</span> __THROW <span style="color: #fff59d;">__nonnull</span> <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>1, 2<span style="color: #81d4fa;">)</span><span style="color: #aadddd;">)</span>;
+
+<span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">Copy N bytes of SRC to DEST, guaranteeing</span>
+<span style="color: #9ac; font-style: italic;">   correct behavior for overlapping strings.  </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+<span style="color: #aaffaa;">extern</span> <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">memmove</span> <span style="color: #aadddd;">(</span><span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">__dest</span>, <span style="color: #aaffaa;">const</span> <span style="color: #fff59d;">void</span> *<span style="color: #aaccff;">__src</span>, <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">__n</span><span style="color: #aadddd;">)</span>
+     __THROW <span style="color: #fff59d;">__nonnull</span> <span style="color: #aadddd;">(</span><span style="color: #81d4fa;">(</span>1, 2<span style="color: #81d4fa;">)</span><span style="color: #aadddd;">)</span>;
+</pre>
+</div>
+
+<p>
+memcpy src 和 dst 不可以 overlap, 要 overlap 要用 memmove<br />
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgc8797e6" class="outline-3">
+<h3 id="orgc8797e6"><span class="todo TODO">TODO</span> QUIZ Q7</h3>
+<div class="outline-text-3" id="text-orgc8797e6">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #fff59d;">void</span> <span style="color: #aaccff;">merge</span><span style="color: #aadddd;">(</span><span style="color: #fff59d;">long</span> *<span style="color: #aaccff;">dst</span>, <span style="color: #fff59d;">ling</span> *<span style="color: #aaccff;">src1</span>, <span style="color: #fff59d;">ling</span> *<span style="color: #aaccff;">src2</span>, <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">n</span><span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">size_t</span> <span style="color: #aaccff;">i1</span> = 0. i2 = 0, <span style="color: #aaccff;">id</span> = 0;
+        <span style="color: #5f5f5f; font-style: italic;">/* </span><span style="color: #9ac; font-style: italic;">line 4 ~ 7 &#23565;&#25928;&#33021;&#24433;&#38911;&#27604;&#36611;&#22823; </span><span style="color: #5f5f5f; font-style: italic;">*/</span>
+        <span style="color: #aaffaa;">while</span><span style="color: #81d4fa;">(</span>i1 &lt; n &amp;&amp; i2 &lt; n<span style="color: #81d4fa;">)</span> <span style="color: #81d4fa;">{</span>
+                <span style="color: #aaffaa;">if</span> <span style="color: #aaccff;">(</span>src1<span style="color: #aaeecc;">[</span>i1<span style="color: #aaeecc;">]</span> &lt; src2<span style="color: #aaeecc;">[</span>i2<span style="color: #aaeecc;">]</span><span style="color: #aaccff;">)</span> <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">&lt;-- &#25928;&#33021;&#21839;&#38988; ?</span>
+                        dst<span style="color: #aaccff;">[</span>id++<span style="color: #aaccff;">]</span> = src1<span style="color: #aaccff;">[</span>i1++<span style="color: #aaccff;">]</span>;
+                <span style="color: #aaffaa;">else</span>
+                        dst<span style="color: #aaccff;">[</span>id++<span style="color: #aaccff;">]</span> = src2<span style="color: #aaccff;">[</span>i2++<span style="color: #aaccff;">]</span>; <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">&lt;-- predict</span>
+        <span style="color: #81d4fa;">}</span>
+        <span style="color: #aaffaa;">while</span><span style="color: #81d4fa;">(</span>i1 &lt; n<span style="color: #81d4fa;">)</span>
+                dst<span style="color: #81d4fa;">[</span>id++<span style="color: #81d4fa;">]</span> = src1<span style="color: #81d4fa;">[</span>i1++<span style="color: #81d4fa;">]</span>;
+
+        <span style="color: #aaffaa;">while</span><span style="color: #81d4fa;">(</span>i2 &lt; n<span style="color: #81d4fa;">)</span>
+                dst<span style="color: #81d4fa;">[</span>id++<span style="color: #81d4fa;">]</span> = src2<span style="color: #81d4fa;">[</span>i1++<span style="color: #81d4fa;">]</span>;
+<span style="color: #aadddd;">}</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org927911c" class="outline-4">
+<h4 id="org927911c">think</h4>
+<div class="outline-text-4" id="text-org927911c">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #aaffaa;">while</span><span style="color: #aadddd;">(</span>i1 &lt; n &amp;&amp; i2 &lt; n<span style="color: #aadddd;">)</span> <span style="color: #aadddd;">{</span>
+        <span style="color: #fff59d;">int</span> <span style="color: #aaccff;">cmp</span> = src1<span style="color: #81d4fa;">[</span>i<span style="color: #81d4fa;">]</span> &lt;= src2<span style="color: #81d4fa;">[</span>i<span style="color: #81d4fa;">]</span>; <span style="color: #5f5f5f; font-style: italic;">// </span><span style="color: #9ac; font-style: italic;">1, 0</span>
+        <span style="color: #fff59d;">long</span> <span style="color: #aaccff;">min</span> = min<span style="color: #81d4fa;">(</span>src1<span style="color: #aaccff;">[</span>i1<span style="color: #aaccff;">]</span>, src2<span style="color: #aaccff;">[</span>i2<span style="color: #aaccff;">]</span><span style="color: #81d4fa;">)</span>;
+
+        dst<span style="color: #81d4fa;">[</span>id++<span style="color: #81d4fa;">]</span> = min;
+
+        i1 += min;
+        i2 += <span style="color: #ff3333;">!</span>min;
+<span style="color: #aadddd;">}</span>
+
+</pre>
+</div>
+
+<p>
+用 perf 觀察 branch perdictor 行為<br />
+</p>
+
+<pre class="example">
+perf stat -e branches -e branch-misses -e cycles -e instructions ./mergesort 300000000 1
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org82c092c" class="outline-4">
+<h4 id="org82c092c">延伸閱讀</h4>
+<div class="outline-text-4" id="text-org82c092c">
+<ul class="org-ul">
+<li><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-172-performance-engineering-of-software-systems-fall-2010/video-lectures/lecture-5-performance-engineering-with-profiling-tools/MIT6_172F10_lec05.pdf">Performance Engineering with Profiling Tools</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org771f814" class="outline-3">
+<h3 id="org771f814"><span class="todo TODO">TODO</span> 編譯器和最佳化原理</h3>
+<div class="outline-text-3" id="text-org771f814">
+<p>
+C99 引入 restrict 讓編譯器最佳化有個依據<br />
+</p>
+
+<p>
+GIMPLE -&gt; GCC 的 IR<br />
+</p>
+
+<p>
+IPO (Inter-Procedural Optimization)<br />
+</p>
+
+<p>
+Android LTO<br />
+</p>
+
+<p>
+cortex-m 的存在是用來取代 arm7<br />
+</p>
+
+<p>
+<a href="http://events.linuxfoundation.org/sites/events/files/slides/optimize-uclinux.pdf">Optimize uClinux for ARM Cortex-M4</a><br />
+</p>
+
+<p>
+interrupt latency<br />
+</p>
+
+<p>
+kernel 有一個計畫: auto-reduce project<br />
+</p>
+
+<p>
+電腦很多詞彙來自數學, 比如程式的 function 就是來自數學的函數(function), 數學的 function 可以合成，但是 C 語言的 function 不能合成，function 裡面不能定義 function (但是數學的可以)<br />
+</p>
+
+<p>
+C 語言的 fucntion 本質上是 procedure<br />
+</p>
+
+
+<p>
+<a href="http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042f/IHI0042F_aapcs.pdf">ARM Procdefure Call Standard (AAPCS)</a><br />
+</p>
+
+<p>
+ATPCS (ARM 對 16 位元的 thumb)<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga10a9a0" class="outline-3">
+<h3 id="orga10a9a0"><span class="todo TODO">TODO</span> 虛擬機設計與實作</h3>
+<div class="outline-text-3" id="text-orga10a9a0">
+<p>
+<a href="https://blog.ledger.co/introducing-bolos-blockchain-open-ledger-operating-system-b9893d09f333">Introducing BOLOS: Blockchain Open Ledger Operating System</a><br />
+</p>
+
+<p>
+公司: Ledger 是由 <a href="https://bitcoincore.org">Bitcoin Core</a> (檢驗區塊練) 的人所創辦<br />
+</p>
+
+<p>
+產品: Ledger Blue (企業級的安全裝置)<br />
+</p>
+
+<p>
+bitcoin hard fork<br />
+</p>
+
+<p>
+MMU: Memory Management Unit (page fault 有三種: Major, Minor, invalid)<br />
+</p>
+
+<p>
+MPU: Memory Protection Unit<br />
+</p>
+
+<p>
+<a href="https://events.linuxfoundation.org/sites/events/files/slides/mbed-uvisor.pdf">uVisor Debugging Facility Improvements for ARM mbed</a><br />
+</p>
+
+<p>
+<a href="https://www.cs.umd.edu/class/spring2011/cmsc838g/lectures/Feb.22.SFI.pdf">SFI (software fault isolation)</a><br />
+</p>
+
+<p>
+<a href="https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html">instrumentation compiler</a><br />
+</p>
+
+<p>
+linux ftrace<br />
+</p>
+
+<p>
+TEE  (trust zone)<br />
+</p>
+
+<p>
+<a href="https://www.arm.com/products/processors/technologies/trustzone/tee-smc.php">https://www.arm.com/products/processors/technologies/trustzone/tee-smc.php</a><br />
+</p>
+
+<p>
+<a href="https://www.op-tee.org">https://www.op-tee.org</a><br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaa8356a" class="outline-3">
+<h3 id="orgaa8356a"><span class="todo TODO">TODO</span> 以 Linux 為分析對象</h3>
+<div class="outline-text-3" id="text-orgaa8356a">
+<p>
+Thread, Process, Task 沒有一個放諸四海的定義, 在不同作業系統用詞不一樣<br />
+</p>
+
+<p>
+ex: Android 的 Task (Thread + Process)<br />
+</p>
+
+<p>
+最早的 Linux 是沒有原生的 thread, 是後來才加入支援的<br />
+</p>
+
+<p>
+fork / clone<br />
+</p>
+
+<p>
+Q: fork 就是把 parent 的內容一模一樣複製給 child (這句話錯在哪?)<br />
+</p>
+
+<p>
+A: 實際是複製 <code>當下</code> (看 main 手冊) 但是很多東西是不會繼承自 parent process 的<br />
+</p>
+
+<p>
+LWP (Solaris 用語, linux 很多用語是學/仿效 Solaris 用語)<br />
+</p>
+
+<p>
+Linux 用 <code>clone</code> 去建立 <code>thread</code> (而不是 fork, clone 和 fork 不同)<br />
+</p>
+
+<p>
+如果以現代 Linux 實作，要對 process 和 thread 進行區分是很困難<br />
+</p>
+
+<p>
+Android 的 bionic 和 glibc 有很大的相容，但是像是 pthread 就是不一樣<br />
+</p>
+<pre class="example">
+https://android.googlesource.com/platform/bionic/+/ics-mr1-release/libc/docs/OVERVIEW.TXT#148
+
+</pre>
+
+<pre class="example">
+pthread_cancel():
+
+   pthread_cancel() will *not* be supported in Bionic, because doing this would
+   involve making the C library significantly bigger for very little benefit.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org859992a" class="outline-3">
+<h3 id="org859992a"><span class="todo TODO">TODO</span> MicroKernel</h3>
+<div class="outline-text-3" id="text-org859992a">
+<p>
+EJBOSS (Enterprise Java Bean Open Source) -&gt; JBoss (梗)<br />
+</p>
+
+<p>
+Source Enclave coprocessor<br />
+</p>
+
+<p>
+khttpd -&gt; tux web server<br />
+</p>
+
+<p>
+為何 userspace 的 nginx 效能甚至比 khttpd 好，關鍵是在 io 的部分 (epoll)<br />
+</p>
+
+<p>
+linux kernel 的發展有點像是 microkernel 的風格 (不會把東西都塞進在 kernel)<br />
+</p>
+
+<p>
+比如 kernel 實作 epoll, nginx 就可以透過 epoll 實現良好效率的 http server<br />
+</p>
+
+<p>
+ceph-fuse 雲端檔案系統<br />
+</p>
+
+<p>
+dragonflybsd filesystem 也是執行在 userspace =&gt; 有很多原本是 monolithic kernel, 慢慢的把很多元素搬到 userspace 來<br />
+</p>
+
+<p>
+可以從 <code>task_struct</code> 來看 linux 還是屬於 monolithic kernel<br />
+</p>
+
+<p>
+Linux thread state trasnsition<br />
+</p>
+
+<p>
+scheuled 在選出下一個要執行的任務, 發生 preeemption 時會將任務放回 ready queue<br />
+</p>
+
+<p>
+preempt (搶佔, 動詞)<br />
+</p>
+
+<p>
+perrmptive (形容詞)  premmptible<br />
+</p>
+
+<p>
+<code>preemptive process scheduling</code><br />
+</p>
+
+<p>
+<a href="https://events.linuxfoundation.org/sites/events/files/slides/rtmux_1.pdf">Making Linux do Hard (Real-)Time</a><br />
+</p>
+
+<p>
+Linux 本質上以機可以做到 software real-time, 但是距離 hard-realtime 是需要時間<br />
+</p>
+
+<p>
+<a href="http://concurrent-rt.com">http://concurrent-rt.com</a> 可以做到 3 ~ 5us response time (RTOS 一般都是 &lt; 10us)<br />
+</p>
+
+<p>
+Real-time linux 賣點是效能要接近<br />
+</p>
+
+<p>
+pagefault 所花的時間就是 10us<br />
+</p>
+
+<p>
+priority inheritance (PI)<br />
+</p>
+
+<p>
+threaded interrupt<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org254dd38" class="outline-3">
+<h3 id="org254dd38"><span class="todo TODO">TODO</span> Semaphore 與 mutex</h3>
+<div class="outline-text-3" id="text-org254dd38">
+<p>
+p.38<br />
+</p>
+
+<p>
+能否 lock 一個 mutex 好幾次 =&gt; resurive lock<br />
+</p>
+
+<p>
+mutex 在 linux 不是單純的 lock , 而是一系列實作<br />
+</p>
+
+<p>
+priority inversion =&gt; 優先權會倒轉<br />
+</p>
+
+<p>
+priority inversion =&gt; 是個協定<br />
+</p>
+
+<p>
+我們之所以要發展 mutex -&gt; 希望保護共享資源<br />
+</p>
+
+<p>
+很常見的解法叫做 PI =&gt; priority inheritance<br />
+</p>
+
+<p>
+futex 在 userspace 實作 =&gt; scalable<br />
+</p>
+
+<p>
+能在 userspace 作愈多 =&gt; 在 SMP 情況下更容易 migrate<br />
+</p>
+
+<p>
+linux 作為管理硬體的執行單元 =&gt; 本質上是不可數<br />
+</p>
+
+<p>
+每個 CPU 核心都有一個獨立的 register file (r0, r1, r2 ....etc)<br />
+</p>
+
+<p>
+(有獨立的 PC (point counter))<br />
+</p>
+
+<p>
+L1 cache 是完全獨立<br />
+</p>
+
+<p>
+sync 在確保 IO 的一致性 (有沒有可能被別人搶佔?)<br />
+</p>
+
+<p>
+其實要做到完全的 preemptive 是很困難的<br />
+</p>
+
+<p>
+ARM code density 很高<br />
+</p>
+
+<p>
+ARM 因為 virtualization 做的比較慢，所以可以避開許多問題 (效能還可以)<br />
+</p>
+
+<p>
+ARM server 的存在不是為了和 Intel 打對比 (不是一對一競爭，是商品競爭)<br />
+</p>
+
+<p>
+目前地表最快的 ARM 版本: Cortex-A75<br />
+</p>
+
+<p>
+500 大超級電腦 -&gt; 10% 在做金融機構 (避險基金的高頻交易)<br />
+</p>
+
+<p>
+real-time kvm<br />
+</p>
+
+<p>
+ARMv8.3a &lt;- 改變很大<br />
+</p>
+
+<p>
+<a href="https://community.arm.com/processors/b/blog/posts/armv8-a-architecture-2016-additions">ARMv8-A architecture – 2016 additions</a><br />
+</p>
+
+<p>
+可以針對 ARM 方向的改版，可以推測出市場方向在哪裡<br />
+</p>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42122243-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-07-11 Tue 11:01</p>
+<p class="author">Author: coldnew</p>
+<p class="date">Created: 2017-07-23 Sun 18:37</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
