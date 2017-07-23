@@ -1594,6 +1594,36 @@ linux kernel: //sound/sparc/dbri.c
    __vdso_clock_get_time
 
 * TODO 臨時筆記 (第二天)
+** QUIZ
+
+   Q6: 考慮以下程式碼:
+
+   #+BEGIN_SRC C
+     #define N 1024
+     void diag(int A[4][4], int val) {
+	 for (long i = 0; i < N; i++)
+	     A[i][i] = val;
+     }
+   #+END_SRC
+
+   當用 =gcc -O2= 編譯可得以下組合語言輸出:
+
+   #+BEGIN_SRC nasm
+	     .globl  diag
+	     .type   diag, @function
+     diag:
+	     leaq    20480(%rdi), %rax
+     .L2:
+	     movl    %esi, (%rdi)
+	     addq    $20, %rdi
+	     cmpq    %rax, %rdi
+	     jne     .L2
+	     rep ret
+   #+END_SRC
+
+   請試著從最佳化反推對應的 C 程式碼，並避免將 N 寫死。
+
+
 * Google Analytics                                                 :no_title:
 
   #+BEGIN_EXPORT html

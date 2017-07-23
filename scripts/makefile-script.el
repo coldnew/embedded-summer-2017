@@ -51,6 +51,9 @@
 (package-install 'rainbow-delimiters)
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
+;; extra mode
+(package-install 'nasm-mode)
+
 ;; 
 (defvar config-path
   (file-name-directory (or load-file-name (buffer-file-name))))
