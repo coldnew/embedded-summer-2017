@@ -1215,7 +1215,7 @@
 
     - [[https://unix.stackexchange.com/questions/155017/does-fork-immediately-copy-the-entire-process-heap-in-linux][Does fork() immediately copy the entire process heap in Linux?]]
 
-** 課前測驗參考解答
+** 參考解答
 
    - [[https://hackmd.io/s/ByzoiggIb][Q1: bit-reverse]]
 
