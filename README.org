@@ -1897,6 +1897,24 @@ The 0x20 is the offset, which is added to the effective address. There is no bit
 
    https://www.op-tee.org
 
+** TODO 以 Linux 為分析對象
+
+   Thread, Process, Task 沒有一個放諸四海的定義, 在不同作業系統用詞不一樣
+
+   ex: Android 的 Task (Thread + Process)
+
+   最早的 Linux 是沒有原生的 thread, 是後來才加入支援的
+
+   fork / clone
+
+   Q: fork 就是把 parent 的內容一模一樣複製給 child (這句話錯在哪?)
+
+   A: 實際是複製 =當下= (看 main 手冊) 但是很多東西是不會繼承自 parent process 的
+
+   LWP (Solaris 用語, linux 很多用語是學/仿效 Solaris 用語)
+
+   Linux 用 =clone= 去建立 =thread= (而不是 fork, clone 和 fork 不同)
+
 
 * Google Analytics                                                 :no_title:
 
