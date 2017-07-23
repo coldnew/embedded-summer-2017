@@ -1799,8 +1799,6 @@ The 0x20 is the offset, which is added to the effective address. There is no bit
    memcpy src 和 dst 不可以 overlap, 要 overlap 要用 memmove
 
 
-
-
 ** TODO QUIZ Q7
 
    #+BEGIN_SRC C
@@ -1843,6 +1841,61 @@ The 0x20 is the offset, which is added to the effective address. There is no bit
 *** 延伸閱讀
 
     - [[https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-172-performance-engineering-of-software-systems-fall-2010/video-lectures/lecture-5-performance-engineering-with-profiling-tools/MIT6_172F10_lec05.pdf][Performance Engineering with Profiling Tools]]
+
+** TODO 編譯器和最佳化原理
+
+   C99 引入 restrict 讓編譯器最佳化有個依據
+
+   GIMPLE -> GCC 的 IR
+
+   IPO (Inter-Procedural Optimization)
+
+   Android LTO
+
+   cortex-m 的存在是用來取代 arm7
+
+   [[http://events.linuxfoundation.org/sites/events/files/slides/optimize-uclinux.pdf][Optimize uClinux for ARM Cortex-M4]]
+
+   interrupt latency
+
+   kernel 有一個計畫: auto-reduce project
+
+   電腦很多詞彙來自數學, 比如程式的 function 就是來自數學的函數(function), 數學的 function 可以合成，但是 C 語言的 function 不能合成，function 裡面不能定義 function (但是數學的可以)
+
+   C 語言的 fucntion 本質上是 procedure
+
+
+   [[http://infocenter.arm.com/help/topic/com.arm.doc.ihi0042f/IHI0042F_aapcs.pdf][ARM Procdefure Call Standard (AAPCS)]]
+
+   ATPCS (ARM 對 16 位元的 thumb)
+
+** TODO 虛擬機設計與實作
+
+   [[https://blog.ledger.co/introducing-bolos-blockchain-open-ledger-operating-system-b9893d09f333][Introducing BOLOS: Blockchain Open Ledger Operating System]]
+
+   公司: Ledger 是由 [[https://bitcoincore.org][Bitcoin Core]] (檢驗區塊練) 的人所創辦
+
+   產品: Ledger Blue (企業級的安全裝置)
+
+   bitcoin hard fork
+
+   MMU: Memory Management Unit (page fault 有三種: Major, Minor, invalid)
+
+   MPU: Memory Protection Unit
+
+   [[https://events.linuxfoundation.org/sites/events/files/slides/mbed-uvisor.pdf][uVisor Debugging Facility Improvements for ARM mbed]]
+
+   [[https://www.cs.umd.edu/class/spring2011/cmsc838g/lectures/Feb.22.SFI.pdf][SFI (software fault isolation)]]
+
+   [[https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html][instrumentation compiler]]
+
+   linux ftrace
+
+   TEE  (trust zone)
+
+   https://www.arm.com/products/processors/technologies/trustzone/tee-smc.php
+
+   https://www.op-tee.org
 
 
 * Google Analytics                                                 :no_title:
