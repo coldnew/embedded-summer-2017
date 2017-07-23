@@ -1801,6 +1801,49 @@ The 0x20 is the offset, which is added to the effective address. There is no bit
 
 
 
+** TODO QUIZ Q7
+
+   #+BEGIN_SRC C
+     void merge(long *dst, ling *src1, ling *src2, size_t n) {
+	     size_t i1 = 0. i2 = 0, id = 0;
+	     /* line 4 ~ 7 對效能影響比較大 */
+	     while(i1 < n && i2 < n) {
+		     if (src1[i1] < src2[i2]) // <-- 效能問題 ?
+			     dst[id++] = src1[i1++];
+		     else
+			     dst[id++] = src2[i2++]; // <-- predict
+	     }
+	     while(i1 < n)
+		     dst[id++] = src1[i1++];
+
+	     while(i2 < n)
+		     dst[id++] = src2[i1++];
+     }
+   #+END_SRC
+
+*** think
+
+    #+BEGIN_SRC C
+      while(i1 < n && i2 < n) {
+	      int cmp = src1[i] <= src2[i]; // 1, 0
+	      long min = min(src1[i1], src2[i2]);
+
+	      dst[id++] = min;
+
+	      i1 += min;
+	      i2 += !min;
+      }
+
+    #+END_SRC
+
+    用 perf 觀察 branch perdictor 行為
+
+    : perf stat -e branches -e branch-misses -e cycles -e instructions ./mergesort 300000000 1
+
+*** 延伸閱讀
+
+    - [[https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-172-performance-engineering-of-software-systems-fall-2010/video-lectures/lecture-5-performance-engineering-with-profiling-tools/MIT6_172F10_lec05.pdf][Performance Engineering with Profiling Tools]]
+
 
 * Google Analytics                                                 :no_title:
 
